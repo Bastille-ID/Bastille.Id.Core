@@ -14,7 +14,7 @@ There are many ways in which you can participate in the project, for example:
  - Review source code changes.
  - Review the documentation and make pull requests for anything from typos to new content. 
 
-If you are interested in fixing issues and contributing directly to the code base, please see the document [How to Contribute](contribute.md), which covers the following:
+If you are interested in fixing issues and contributing directly to the code base, please see the document [How to Contribute](CONTRIBUTING.md), which covers the following:
 
  - How to build and run from source
  - The development workflow, including debugging and running tests.
