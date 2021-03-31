@@ -1,6 +1,6 @@
-# Talegen.AspNetCore.hCAPTCHA
+# Bastille.Id.Core
 
-Talegen **hCAPTCHA** Middleware & Model Validation Library for ASP.net Core.
+Bastille.ID **Core** Management Library for the Bastille.ID Identity Server.
 
 This repository ([Bastille.Id.Core](https://github.com/Bastille-ID/Bastille.Id.Core)) is where we (Talegen) lead the development and maintenance of the Bastille.ID Core library. The source code here is available to everyone under the standard [Apache 2.0 license](https://github.com/Talegen/Talegen.AspNetCore.hCAPTCHA/blob/main/LICENSE).
 
@@ -14,7 +14,7 @@ There are many ways in which you can participate in the project, for example:
  - Review source code changes.
  - Review the documentation and make pull requests for anything from typos to new content. 
 
-If you are interested in fixing issues and contributing directly to the code base, please see the document [How to Contribute](contribute.md), which covers the following:
+If you are interested in fixing issues and contributing directly to the code base, please see the document [How to Contribute](CONTRIBUTING.md), which covers the following:
 
  - How to build and run from source
  - The development workflow, including debugging and running tests.
