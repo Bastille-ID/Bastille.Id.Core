@@ -59,7 +59,6 @@
         <img id="logo" src="$URL$/img/logo.png" alt="GlobalLink Vasont" />
     </div>
     <div id="container">
-        <p>$FIRSTNAME$,</p>
         <p>Please click the link below to verify your e-mail address and activate your account.</p>
         <p>
             <div>
