@@ -1,0 +1,5 @@
+$FIRSTNAME$,
+
+Please click the link below to verify your e-mail address and activate your account.
+
+$LINK$

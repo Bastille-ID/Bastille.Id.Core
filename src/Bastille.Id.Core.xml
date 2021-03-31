@@ -1,0 +1,3128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bastille.Id.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Bastille.Id.Core.ApplicationContext`1">
+            <summary>
+            Contains an application context.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.ApplicationContext`1.#ctor(Microsoft.Extensions.Options.IOptionsSnapshot{`0},Bastille.Id.Core.Data.ApplicationDbContext,Talegen.Common.Core.Errors.IErrorManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.ApplicationContext`1" /> class.
+            </summary>
+            <param name="settings">Contains an instance of server settings.</param>
+            <param name="dataContext">Contains the database context.</param>
+            <param name="errorManager">Contains an instance of error manager.</param>
+        </member>
+        <member name="P:Bastille.Id.Core.ApplicationContext`1.Settings">
+            <summary>
+            Gets the server settings.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.ApplicationContext`1.DataContext">
+            <summary>
+            Gets the database context.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.ApplicationContext`1.ErrorManager">
+            <summary>
+            Gets the error manager.
+            </summary>
+            <value>The error manager.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.ApplicationContext`1.HostName">
+            <summary>
+            Gets or sets the name of the host.
+            </summary>
+            <value>The name of the host.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.ApplicationContext`1.CurrentUserId">
+            <summary>
+            Gets or sets the current user identifier.
+            </summary>
+            <value>The current user identifier.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.BaseServiceContext">
+            <summary>
+            This abstract class provides commonly used properties for service business logic context classes.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.BaseServiceContext.currentUserId">
+            <summary>
+            Contains the current user's identity value.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.BaseServiceContext.currentUserName">
+            <summary>
+            Contains the current user's user name.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.AuditLog">
+            <summary>
+            Gets or sets the audit log.
+            </summary>
+            <value>The audit log.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.DataContext">
+            <summary>
+            Gets or sets the data context.
+            </summary>
+            <value>The data context.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.CacheEntryOptions">
+            <summary>
+            Contains an instance of distributed cache options.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.Principal">
+            <summary>
+            Gets or sets the principal.
+            </summary>
+            <value>The principal.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.UserManager">
+            <summary>
+            Gets or sets the user manager.
+            </summary>
+            <value>The user manager.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.Cache">
+            <summary>
+            Gets or sets the cache.
+            </summary>
+            <value>The cache.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.ErrorManager">
+            <summary>
+            Gets or sets the error manager.
+            </summary>
+            <value>The error manager.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.HttpContext">
+            <summary>
+            Gets or sets the HTTP context.
+            </summary>
+            <value>The HTTP context.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.CurrentUserId">
+            <summary>
+            Gets the current user identity value.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.OptionalCurrentUserId">
+            <summary>
+            Gets the optional current user identifier.
+            </summary>
+            <value>The optional current user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.ClientAddress">
+            <summary>
+            Gets the client address.
+            </summary>
+            <value>The client address.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.BaseServiceContext.CurrentUserName">
+            <summary>
+            Gets the current user name.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Configuration.InstrumentationConfigInitializer">
+            <summary>
+            This class implements a Microsoft Instrumentation Telemetry Initializer instance.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Configuration.InstrumentationConfigInitializer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Configuration.InstrumentationConfigInitializer" /> class.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Configuration.InstrumentationConfigInitializer.Initialize(Microsoft.ApplicationInsights.Channel.ITelemetry)">
+            <summary>
+            This method is called to initialize the instrumentation telemetry configuration.
+            </summary>
+            <param name="telemetry">Contains the telemetry object that is being initialized.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Configuration.StorageType">
+            <summary>
+            Contains an enumerated list of supported background worker types.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Configuration.StorageType.Memory">
+            <summary>
+            Uses memory to act as a virtual disk storage for unit testing.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Configuration.StorageType.Local">
+            <summary>
+            Uses the local web server disk storage for working with and ultimately storing files.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Configuration.StorageType.Azure">
+            <summary>
+            Uses the Azure cloud storage mechanisms for storing files.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Configuration.StorageSettings">
+            <summary>
+            Contains storage settings.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.StorageSettings.RootPath">
+            <summary>
+            Gets or sets the root path.
+            </summary>
+            <value>The root path.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.StorageSettings.StorageType">
+            <summary>
+            Gets or sets the type of the storage.
+            </summary>
+            <value>The type of the storage.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Configuration.SynchronizationSettings">
+            <summary>
+            This class represents the user and group synchronization settings for the server.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.SynchronizationSettings.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Bastille.Id.Core.Configuration.SynchronizationSettings" /> is enabled.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.SynchronizationSettings.ClientId">
+            <summary>
+            Gets or sets the client identifier.
+            </summary>
+            <value>The client identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.SynchronizationSettings.ResourceUri">
+            <summary>
+            Gets or sets the resource URI.
+            </summary>
+            <value>The resource URI.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.SynchronizationSettings.Secret">
+            <summary>
+            Gets or sets the secret.
+            </summary>
+            <value>The secret.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.ApplicationDbContext">
+            <summary>
+            This class implements and extends the Identity Database Context to support extended VIDS tables and entities.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Data.ApplicationDbContext.connectionString">
+            <summary>
+            The connection string
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.ApplicationDbContext.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Data.ApplicationDbContext" /> class.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Bastille.Id.Core.Data.ApplicationDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Data.ApplicationDbContext" /> class.
+            </summary>
+            <param name="options">Contains additional database context initialization options for the given database context.</param>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.OrganizationAllowedDomains">
+            <summary>
+            Gets or sets the organization allowed domains.
+            </summary>
+            <value>The organization allowed domains.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.AuditLogs">
+            <summary>
+            Gets or sets security log events within the identity server data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.Groups">
+            <summary>
+            Gets or sets groups/tenants within the identity server data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.GroupUsers">
+            <summary>
+            Gets or sets organization user associations within the identity server data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.Languages">
+            <summary>
+            Gets or sets languages within the identity server data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.Organizations">
+            <summary>
+            Gets or sets the organizations.
+            </summary>
+            <value>The organizations.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.TimeZones">
+            <summary>
+            Gets or sets time zones within the identity server data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.TenantConfigs">
+            <summary>
+            Gets or sets the tenant configs.
+            </summary>
+            <value>The tenant configs.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.Templates">
+            <summary>
+            Gets or sets the templates.
+            </summary>
+            <value>The templates.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.ApplicationDbContext.Notifications">
+            <summary>
+            Gets or sets the notifications.
+            </summary>
+            <value>The notifications.</value>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.ApplicationDbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            <para>
+            Override this method to configure the database (and other options) to be used for this context. This method is called for each instance of the
+            context that is created. The base implementation does nothing.
+            </para>
+            </summary>
+            <param name="optionsBuilder">
+            A builder used to create or modify options for this context. Databases (and other extensions) typically define extension methods on this object that
+            allow you to configure the context.
+            </param>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.ApplicationDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            This method is called automatically when generating models inside EF code-first.
+            </summary>
+            <param name="builder">Contains an instance of the EF model builder.</param>
+            <remarks>This is the method where specifics about entities inside the overall database design is specified.</remarks>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.BrowseQueryHelper">
+            <summary>
+            This class contains page browsing helper methods for paginated queries used throughout the library.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.BrowseQueryHelper.ExecutePagedQueryAsync``1(System.Linq.IQueryable{``0},Talegen.Common.Models.Shared.Queries.PaginatedQueryRequestModel,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Executes the paged user query.
+            </summary>
+            <typeparam name="TModel">The type of the model.</typeparam>
+            <param name="query">The query.</param>
+            <param name="filters">The filters.</param>
+            <param name="defaultSortColumnName">Default name of the sort column.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> object.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.BrowseQueryHelper.BuildPagedQuery``1(Talegen.Common.Models.Shared.Queries.PaginatedQueryRequestModel,System.Linq.IQueryable{``0},System.String,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to build the query LINQ for reuse between retrieval methods in the service class.
+            </summary>
+            <param name="filters">Contains the event log filter parameters object.</param>
+            <param name="baseQuery">Contains the base query used to paginate.</param>
+            <param name="defaultColumnName">Contains the default column name to sort the paged query results by.</param>
+            <param name="cancellationToken">Contains the cancellation token.</param>
+            <returns>Returns an <see cref="T:System.Linq.IQueryable" /> query class built using optional parameters.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.AuditLog">
+            <summary>
+            This entity class represents a security log event record within the data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.AuditLogId">
+            <summary>
+            Gets or sets the unique identity of the security event log record.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.EventDateTime">
+            <summary>
+            Gets or sets the event date time the event occurred.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.UserId">
+            <summary>
+            Gets or sets the optional associated user that generated the event.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.Event">
+            <summary>
+            Gets or sets the event type.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.Action">
+            <summary>
+            Gets or sets the event type.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.Result">
+            <summary>
+            Gets or sets the event result.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.Message">
+            <summary>
+            Gets or sets an additional event message.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.ClientAddress">
+            <summary>
+            Gets or sets the client's IP address.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.Location">
+            <summary>
+            Gets or sets the client's location.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.Request">
+            <summary>
+            Gets or sets the request.
+            </summary>
+            <value>The request.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.AuditLog.User">
+            <summary>
+            Gets or sets the associated user.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.Group">
+            <summary>
+            This entity class represents an group tenant within the identity server data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.GroupId">
+            <summary>
+            Gets or sets the unique identity of the group.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.OrganizationId">
+            <summary>
+            Gets or sets the organization identifier.
+            </summary>
+            <value>The organization identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.ParentGroupId">
+            <summary>
+            Gets or sets an optional unique identity of the group's parent group.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.Name">
+            <summary>
+            Gets or sets the name of the group.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.OwnerUserId">
+            <summary>
+            Gets or sets the owner user identifier.
+            </summary>
+            <value>The owner user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.Owner">
+            <summary>
+            Gets or sets the owner.
+            </summary>
+            <value>The owner.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.Members">
+            <summary>
+            Gets or sets the group's associated users.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.Organization">
+            <summary>
+            Gets or sets the organization.
+            </summary>
+            <value>The organization.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.ParentGroup">
+            <summary>
+            Gets or sets the optional parent group.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.CreatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.CreatedByUserId">
+            <summary>
+            Gets or sets the created by user identifier.
+            </summary>
+            <value>The created by user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.CreatedBy">
+            <summary>
+            Gets or sets the created by.
+            </summary>
+            <value>The created by.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.UpdatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was last updated.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.UpdatedByUserId">
+            <summary>
+            Gets or sets the updated by user identifier.
+            </summary>
+            <value>The updated by user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.UpdatedBy">
+            <summary>
+            Gets or sets the user update by.
+            </summary>
+            <value>The updated by user.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Group.Active">
+            <summary>
+            Gets or sets a value indicating whether the group is an active user.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.GroupUser">
+            <summary>
+            This entity class represents an group user association within the identity data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.GroupUser.GroupId">
+            <summary>
+            Gets or sets the unique identity of the associated group.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.GroupUser.UserId">
+            <summary>
+            Gets or sets the unique identity of the associated user.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.GroupUser.Group">
+            <summary>
+            Gets or sets the associated group.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.GroupUser.User">
+            <summary>
+            Gets or sets the associated user.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.GroupUser.CreatedDate">
+            <summary>
+            Gets or sets the created date.
+            </summary>
+            <value>The created date.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.Language">
+            <summary>
+            This entity class represents a language definition within the identity data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Language.LanguageCode">
+            <summary>
+            Gets or sets the unique language locale code.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Language.Name">
+            <summary>
+            Gets or sets the name of the language.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Language.AvailableLocale">
+            <summary>
+            Gets or sets a value indicating whether [available locale].
+            </summary>
+            <value><c>true</c> if [available locale]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Language.Default">
+            <summary>
+            Gets or sets a value indicating whether if the language is the default for identity server.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Language.Active">
+            <summary>
+            Gets or sets a value indicating whether if the language is active and available.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.Notification">
+            <summary>
+            This class represents a notification message withing the application.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.NotificationId">
+            <summary>
+            Gets or sets the Notification identity.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.OrganizationId">
+            <summary>
+            Gets or sets the organization identifier.
+            </summary>
+            <value>The organization identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.UserId">
+            <summary>
+            Gets or sets the user identity.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.NotificationDate">
+            <summary>
+            Gets or sets the notification date.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.Alert">
+            <summary>
+            Gets or sets the notification alert value.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.State">
+            <summary>
+            Gets or sets the notification state.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.Target">
+            <summary>
+            Gets or sets the target type.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.Type">
+            <summary>
+            Gets or sets the type of notification.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.Subject">
+            <summary>
+            Gets or sets the model data for the notification message.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.Summary">
+            <summary>
+            Gets or sets the model data for the notification message.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.WebMessage">
+            <summary>
+            Gets or sets the model data for the notification message.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.Metadata">
+            <summary>
+            Gets or sets additional optional metadata for the message.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Notification.User">
+            <summary>
+            Gets or sets the user.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.Organization">
+            <summary>
+            This class represents an organization level record.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.OrganizationId">
+            <summary>
+            Gets or sets the organization identifier.
+            </summary>
+            <value>The organization identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Slug">
+            <summary>
+            Gets or sets the slug.
+            </summary>
+            <value>The slug.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.OwnerUserId">
+            <summary>
+            Gets or sets the owner user identifier.
+            </summary>
+            <value>The owner user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Address1">
+            <summary>
+            Gets or sets the address1.
+            </summary>
+            <value>The address1.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Address2">
+            <summary>
+            Gets or sets the address2.
+            </summary>
+            <value>The address2.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.City">
+            <summary>
+            Gets or sets the city.
+            </summary>
+            <value>The city.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Region">
+            <summary>
+            Gets or sets the region.
+            </summary>
+            <value>The region.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.PostalCode">
+            <summary>
+            Gets or sets the postal code.
+            </summary>
+            <value>The postal code.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Country">
+            <summary>
+            Gets or sets the country.
+            </summary>
+            <value>The country.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.CreatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.UpdatedDate">
+            <summary>
+            Gets or sets a date time value when a user account is updated.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Active">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Bastille.Id.Core.Data.Entities.Organization" /> is active.
+            </summary>
+            <value><c>true</c> if active; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Groups">
+            <summary>
+            Gets or sets the organization groups.
+            </summary>
+            <value>The groups.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Organization.Owner">
+            <summary>
+            Gets or sets the owner.
+            </summary>
+            <value>The owner.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.OrganizationAllowedDomain">
+            <summary>
+            This class represents an allowed domain for a given organization.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.OrganizationAllowedDomain.OrganizationId">
+            <summary>
+            Gets or sets the organization allowed domain.
+            </summary>
+            <value>The organization allowed domain.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.OrganizationAllowedDomain.Domain">
+            <summary>
+            Gets or sets the domain.
+            </summary>
+            <value>The domain.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.OrganizationAllowedDomain.Organization">
+            <summary>
+            Gets or sets the organization.
+            </summary>
+            <value>The organization.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.Role">
+            <summary>
+            This class represents a role within the security system.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Entities.Role.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Data.Entities.Role" /> class.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Role.RoleType">
+            <summary>
+            Gets or sets the type of the role.
+            </summary>
+            <value>The type of the role.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Role.CreatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Role.CreatedByUserId">
+            <summary>
+            Gets or sets the created by user identifier.
+            </summary>
+            <value>The created by user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Role.CreatedBy">
+            <summary>
+            Gets or sets the created by.
+            </summary>
+            <value>The created by.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Role.UpdatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was last updated.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Role.UpdatedByUserId">
+            <summary>
+            Gets or sets the updated by user identifier.
+            </summary>
+            <value>The updated by user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Role.UpdatedBy">
+            <summary>
+            Gets or sets the user update by.
+            </summary>
+            <value>The updated by user.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.Template">
+            <summary>
+            This class represents a content template within the application.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.TemplateId">
+            <summary>
+            Gets or sets the template identifier.
+            </summary>
+            <value>The template identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.OrganizationId">
+            <summary>
+            Gets or sets an optional organization identifier to make this template organization specific.
+            </summary>
+            <value>The organization identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.TemplateKey">
+            <summary>
+            Gets or sets a unique identity for the stored content template.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.TemplateType">
+            <summary>
+            Gets or sets the template content type.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.LanguageCode">
+            <summary>
+            Gets or sets the related language code for the template.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.Language">
+            <summary>
+            Gets or sets the related language navigation property.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.Content">
+            <summary>
+            Gets or sets the image binary data.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.CreatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.CreatedByUserId">
+            <summary>
+            Gets or sets the created by user identifier.
+            </summary>
+            <value>The created by user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.CreatedBy">
+            <summary>
+            Gets or sets the created by.
+            </summary>
+            <value>The created by.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.UpdatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was last updated.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.UpdatedByUserId">
+            <summary>
+            Gets or sets the updated by user identifier.
+            </summary>
+            <value>The updated by user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.Template.UpdatedBy">
+            <summary>
+            Gets or sets the user update by.
+            </summary>
+            <value>The updated by user.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.TenantConfig">
+            <summary>
+            This class represents a custom tenant configuration. If found, it will override the default configurations for the identity server. This allows
+            customized login pages, styles, and requirements for a custom tenant.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.TenantId">
+            <summary>
+            Gets or sets the tenant identifier.
+            </summary>
+            <value>The tenant identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.TenantKey">
+            <summary>
+            Gets or sets the tenant key.
+            </summary>
+            <value>The tenant key.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.OrganizationId">
+            <summary>
+            Gets or sets the organization identifier.
+            </summary>
+            <value>The organization identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.LogoUrl">
+            <summary>
+            Gets or sets the logo URL.
+            </summary>
+            <value>The logo URL.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.CreatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.CreatedByUserId">
+            <summary>
+            Gets or sets the created by user identifier.
+            </summary>
+            <value>The created by user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.CreatedBy">
+            <summary>
+            Gets or sets the created by.
+            </summary>
+            <value>The created by.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.UpdatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was last updated.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.UpdatedByUserId">
+            <summary>
+            Gets or sets the updated by user identifier.
+            </summary>
+            <value>The updated by user identifier.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.UpdatedBy">
+            <summary>
+            Gets or sets the user update by.
+            </summary>
+            <value>The updated by user.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TenantConfig.Organization">
+            <summary>
+            Gets or sets the organization.
+            </summary>
+            <value>The organization.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.TimeZone">
+            <summary>
+            This class represents a time zone in the application data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TimeZone.TimeZoneId">
+            <summary>
+            Gets or sets the unique identity of the time zone.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TimeZone.ShortName">
+            <summary>
+            Gets or sets the short name of the time zone.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TimeZone.LongName">
+            <summary>
+            Gets or sets the long name of the time zone.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TimeZone.Offset">
+            <summary>
+            Gets or sets the numeric time offset.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TimeZone.Default">
+            <summary>
+            Gets or sets a value indicating whether if this is the default time zone.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.TimeZone.Active">
+            <summary>
+            Gets or sets a value indicating whether the time zone is active.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Entities.User">
+            <summary>
+            This entity class represents a user within the application identity data store.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.User.LastLoginDate">
+            <summary>
+            Gets or sets a date time value when the user last logged-in.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.User.Groups">
+            <summary>
+            Gets or sets a list of organization user records.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.User.CreatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.User.UpdatedDate">
+            <summary>
+            Gets or sets a date time value when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.User.PasswordlessEnabled">
+            <summary>
+            Gets or sets a value indicating whether [passwordless enabled].
+            </summary>
+            <value><c>true</c> if [passwordless enabled]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.User.Active">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Bastille.Id.Core.Data.Entities.User" /> is active.
+            </summary>
+            <value><c>true</c> if active; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.Entities.User.Claims">
+            <summary>
+            Gets or sets the claims.
+            </summary>
+            <value>The claims.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Migrations.InitialCreate">
+            <summary>
+            This class implements the Bastille database enhancements and tables schema.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+            <summary>
+            This class implements the Bastille ID Server data schema model.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            <para>Builds the operations that will migrate the database 'up'.</para>
+            <para>
+            That is, builds the operations that will take the database from the state left in by the previous migration so that it is up-to-date with regard to
+            this migration.
+            </para>
+            <para>This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />.</para>
+            </summary>
+            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            <para>Builds the operations that will migrate the database 'down'.</para>
+            <para>
+            That is, builds the operations that will take the database from the state left in by this migration so that it returns to the state that it was in
+            before this migration was applied.
+            </para>
+            <para>
+            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" /> if both 'up' and
+            'down' migrations are to be supported. If it is not overridden, then calling it will throw and it will not be possible to migrate in the 'down' direction.
+            </para>
+            </summary>
+            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
+            </summary>
+            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Migrations.ApplicationDbContextModelSnapshot">
+            <summary>
+            This class implements the application database context model snapshot.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.ApplicationDbContextModelSnapshot.BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Called lazily by <see cref="P:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot.Model" /> to build the model snapshot the first time it is requested.
+            </summary>
+            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.InitialConfig">
+            <summary>
+            This class contains the migration for the initial identity server configuration tables.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+            <summary>
+            This class implements the initial model build for the identity server configuration schema.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.InitialConfig.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            <para>Builds the operations that will migrate the database 'up'.</para>
+            <para>
+            That is, builds the operations that will take the database from the state left in by the previous migration so that it is up-to-date with regard to
+            this migration.
+            </para>
+            <para>This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />.</para>
+            </summary>
+            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.InitialConfig.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            <para>Builds the operations that will migrate the database 'down'.</para>
+            <para>
+            That is, builds the operations that will take the database from the state left in by this migration so that it returns to the state that it was in
+            before this migration was applied.
+            </para>
+            <para>
+            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" /> if both 'up' and
+            'down' migrations are to be supported. If it is not overridden, then calling it will throw and it will not be possible to migrate in the 'down' direction.
+            </para>
+            </summary>
+            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.InitialConfig.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
+            </summary>
+            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.ConfigurationDbContextModelSnapshot">
+            <summary>
+            This class implements the identity server configuration model builder.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.ConfigurationDbContextModelSnapshot.BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Called lazily by <see cref="P:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot.Model" /> to build the model snapshot the first time it is requested.
+            </summary>
+            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.InitialPersist">
+            <summary>
+            This class implements the initial database implementation for Identity Server persisted grants schema DDL.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+            <summary>
+            This class implements the initial database migration for the persisted grants schema.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.InitialPersist.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            <para>Builds the operations that will migrate the database 'up'.</para>
+            <para>
+            That is, builds the operations that will take the database from the state left in by the previous migration so that it is up-to-date with regard to
+            this migration.
+            </para>
+            <para>This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />.</para>
+            </summary>
+            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.InitialPersist.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            <para>Builds the operations that will migrate the database 'down'.</para>
+            <para>
+            That is, builds the operations that will take the database from the state left in by this migration so that it returns to the state that it was in
+            before this migration was applied.
+            </para>
+            <para>
+            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" /> if both 'up' and
+            'down' migrations are to be supported. If it is not overridden, then calling it will throw and it will not be possible to migrate in the 'down' direction.
+            </para>
+            </summary>
+            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.InitialPersist.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
+            </summary>
+            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.RedisManager">
+            <summary>
+            This class is used to interact with the redis server.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Data.RedisManager.Connection">
+            <summary>
+            Gets the connection multiplexer
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.RedisManager.Initialize(System.String)">
+            <summary>
+            Initializes the multiplexer with the specified connection string.
+            </summary>
+            <param name="connectionString">Contains the connection string to connect to.</param>
+            <returns>Returns the new Redis multiplexer object.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Data.RedisManager.Publish(System.String,System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+            This method is used to publish a message to a specified channel.
+            </summary>
+            <param name="channelName">Contains the channel name to send to.</param>
+            <param name="message">Contains the message to send.</param>
+            <param name="commandFlags">Contains optional command flags.</param>
+            <returns>Returns the count of subscribers the message was sent to.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Extensions.ClaimExtensions">
+            <summary>
+            This class contains extension methods in support of working with claim to model conversions.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimExtensions.ToClaims(Bastille.Id.Models.Security.BastilleUserModel,System.String)">
+            <summary>
+            Converts the specified user model to related JWT claims.
+            </summary>
+            <param name="model">The user model to convert to JWT claims.</param>
+            <param name="baseUri">The base URI to prefix to a default picture URL if no image is specified.</param>
+            <returns>Returns a list of JWT claims converted from the specified user model.</returns>
+            <exception cref="T:System.ArgumentNullException">The exception is thrown if the <paramref name="model" /> is not specified.</exception>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimExtensions.ToClaims(Bastille.Id.Models.Security.ProfileModel,System.String)">
+            <summary>
+            Converts the specified profile model to related JWT claims.
+            </summary>
+            <param name="model">The model to convert.</param>
+            <param name="baseUri">The base URI to prefix to a default picture URL if no image is specified.</param>
+            <returns>Returns a list of JWT claims converted from the specified profile model.</returns>
+            <exception cref="T:System.ArgumentNullException">The exception is thrown if the <paramref name="model" /> is not specified.</exception>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimExtensions.ParseClaims(Bastille.Id.Models.Security.BastilleUserModel,System.Collections.Generic.List{Microsoft.AspNetCore.Identity.IdentityUserClaim{System.Guid}},System.String)">
+            <summary>
+            This method is used to run through the specified user claims and add them to the user model properties.
+            </summary>
+            <param name="model">Contains the model to populate.</param>
+            <param name="userClaims">Contains the claims used to populate the model.</param>
+            <param name="baseUri">Contains the base address to prefix for a user's default picture URL if none is found or specified.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ClaimExtensions.GenerateDefaultPictureUrl(System.String)">
+            <summary>
+            This method is used to generate the default picture address.
+            </summary>
+            <param name="baseUri">Contains the base URI for the default picture address.</param>
+            <returns>Returns the generated default picture address.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Extensions.MessagingExtensions">
+            <summary>
+            This class contains additional extension methods for working with the messaging queue services.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.MessagingExtensions.ToMessageUserAsync(Bastille.Id.Core.Data.Entities.User,Bastille.Id.Core.Data.ApplicationDbContext,System.String,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to convert a standard identity <see cref="T:Bastille.Id.Core.Data.Entities.User" /> object to a <see cref="T:Talegen.Common.Messaging.Models.MessageUser" /> model.
+            </summary>
+            <param name="user">Contains the <see cref="T:Bastille.Id.Core.Data.Entities.User" /> to convert.</param>
+            <param name="dataContext">Contains data context for claim lookup.</param>
+            <param name="absoluteUri">Contains the base URI used for building profile URL if picture claim does not exist.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a new <see cref="T:Talegen.Common.Messaging.Models.MessageUser" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.MessagingExtensions.ParseClaims(Talegen.Common.Messaging.Models.MessageUser,System.Collections.Generic.List{Microsoft.AspNetCore.Identity.IdentityUserClaim{System.Guid}},System.String)">
+            <summary>
+            This method is used to convert claims into <see cref="T:Talegen.Common.Messaging.Models.MessageUser" /> property values.
+            </summary>
+            <param name="model">Contains the model to populate.</param>
+            <param name="userClaims">Contains the claims used to populate the model.</param>
+            <param name="baseUri">Contains the base address to prefix for a user's default picture URL if none is found or specified.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Extensions.ModelExtensions">
+            <summary>
+            This class contains extensions related to converting objects between model definitions.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToClientModel(IdentityServer4.EntityFramework.Entities.Client)">
+            <summary>
+            Converts to clientmodel.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Identity.ClientService">
+            <summary>
+            This class contains all business logic related to managing clients within the IdP server.
+            </summary>
+            <seealso cref="T:Bastille.Id.Core.ServiceClassBase`1" />
+        </member>
+        <member name="F:Bastille.Id.Core.Identity.ClientService.context">
+            <summary>
+            Contains an instance of the client service context.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.#ctor(Bastille.Id.Core.Identity.ClientServiceContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Identity.ClientService" /> class.
+            </summary>
+            <param name="context">Contains an instance of the client service context.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.ReadClientsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Reads the clients for browsing interfaces.
+            </summary>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a list of <see cref="T:Bastille.Id.Models.Clients.BrowseClientModel" /> client models found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.ReadClientIdAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Reads the client model by unique client identifier.
+            </summary>
+            <param name="clientId">Contains the client unique identifier.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a <see cref="T:Bastille.Id.Models.Clients.ClientModel" /> if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.ReadEntityAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Reads the Client entity from the repository.
+            </summary>
+            <param name="id">Contains the client unique identifier.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a <see cref="T:IdentityServer4.EntityFramework.Entities.Client" /> entity if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.ReadAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Reads the client model by record identity.
+            </summary>
+            <param name="id">Contains the client record identifier.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a <see cref="T:Bastille.Id.Models.Clients.ClientModel" /> if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.CreateAsync(Bastille.Id.Models.Clients.ClientModel,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new client record.
+            </summary>
+            <param name="model">Contains the client model to store.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Clients.ClientModel" /> of the newly created record</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateAsync(Bastille.Id.Models.Clients.ClientModel,System.Threading.CancellationToken)">
+            <summary>
+            Updates an existing client record.
+            </summary>
+            <param name="model">Contains the client model to update.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Clients.ClientModel" /> of the updated record.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes an existing client record by identity.
+            </summary>
+            <param name="id">Contains the unique identifier of the client to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddScopeAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Associates the specified scope to the client.
+            </summary>
+            <param name="id">Contains the unique identifier of the client.</param>
+            <param name="scope">Contains the scope string to associate with the client.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientScope" /> record created.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateScopeAsync(System.Int32,System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Updates the client scope to the client.
+            </summary>
+            <param name="id">Contains the unique identifier of the client.</param>
+            <param name="scopeId">Contains the scope identifier to update.</param>
+            <param name="scope">Contains the new scope string to associate with the client.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientScope" /> entity that was updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteScopeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the client scope from the client.
+            </summary>
+            <param name="id">Contains the client identifier.</param>
+            <param name="scopeId">Contains the scope identifier to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddSecretAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientSecret,System.Threading.CancellationToken)">
+            <summary>
+            Adds a client secret to the specified client.
+            </summary>
+            <param name="id">Contains the unique identifier of the client.</param>
+            <param name="model">Contains the secret to add.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientSecret" /> entity added.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateSecretAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientSecret,System.Threading.CancellationToken)">
+            <summary>
+            Updates the secret to the specified client.
+            </summary>
+            <param name="id">Contains the client identifier.</param>
+            <param name="model">Contains the secret model for updating.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientSecret" /> updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteSecretAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the secret from the specified client.
+            </summary>
+            <param name="id">Contains the client identifier.</param>
+            <param name="secretId">Contains the secret identifier to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddRedirectAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Adds the redirect to the client specified.
+            </summary>
+            <param name="id">Contains the client unique identifier.</param>
+            <param name="redirectUri">Contains the redirect URI to add.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientRedirectUri" /> entity added.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateRedirectAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientRedirectUri,System.Threading.CancellationToken)">
+            <summary>
+            Updates the specified redirect for the client.
+            </summary>
+            <param name="id">Contains the client unique identifier.</param>
+            <param name="model">Contains the redirect model to update.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientRedirectUri" /> updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteRedirectAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the redirect from the specified client.
+            </summary>
+            <param name="id">Contains the client unique identifier.</param>
+            <param name="redirectId">Contains the redirect identifier to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddOriginAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Adds the allowed origin to the specified client.
+            </summary>
+            <param name="id">Contains the client unique identifier.</param>
+            <param name="originUri">Contains the allowed origin address to add to client.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientCorsOrigin" /> entity added.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateOriginAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientCorsOrigin,System.Threading.CancellationToken)">
+            <summary>
+            Updates the allowed origin for the specified client.
+            </summary>
+            <param name="id">Contains the client unique identifier.</param>
+            <param name="model">Contains the allowed origin model to update.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientCorsOrigin" /> entity updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteOriginAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the allowed origin from the client.
+            </summary>
+            <param name="id">Contains the client unique identifier.</param>
+            <param name="originId">Contains the allowed origin identifier to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddGrantTypeAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Adds the Grant Type to the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="grantType">Contains the Grant Type to add.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientGrantType" /> entity added.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateGrantTypeAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientGrantType,System.Threading.CancellationToken)">
+            <summary>
+            Updates the Grant Type for the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="model">Contains the Grant Type model to update.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientGrantType" /> entity updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteGrantTypeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the Grant Type from the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="grantTypeId">Contains the Grant Type identifier to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddPostLogoutRedirectAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Adds the Logout Redirect to the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="logoutUri">Contains the Logout Redirect address to add.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri" /> entity added.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdatePostLogoutRedirectTypeAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri,System.Threading.CancellationToken)">
+            <summary>
+            Updates the Logout Redirect for the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="model">Contains the Logout Redirect model to update.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri" /> entity updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeletePostLogoutRedirectTypeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the Logout Redirect from the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="logoutId">Contains the Logout Redirect identifier to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddPropertyAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientProperty,System.Threading.CancellationToken)">
+            <summary>
+            Adds the Property to the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="model">Contains the Property to add.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientProperty" /> entity added.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdatePropertyAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientProperty,System.Threading.CancellationToken)">
+            <summary>
+            Updates the Property for the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="model">Contains the Property model to update.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientProperty" /> updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeletePropertyAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the Property from the specified client.
+            </summary>
+            <param name="id">Contains the client unqiue identifier.</param>
+            <param name="propertyId">Contains the Property identifier to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.SaveClientAsync(IdentityServer4.EntityFramework.Entities.Client,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to execute an entity state save to the database.
+            </summary>
+            <param name="entity">Contains the entity to add, modify, or delete.</param>
+            <param name="state">Contains the state of the entity to execute on the database.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns a value indicating whether the save execution was successful.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.ValidateAsync(IdentityServer4.EntityFramework.Entities.Client,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to determine if the record meets all business rules during the save method.
+            </summary>
+            <param name="entity">The entity to validate.</param>
+            <param name="method">The method of record action to validate.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns true if the entity is validated for the state method.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientScopes(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+            <summary>
+            This method is used to update allowed scopes for a client.
+            </summary>
+            <param name="model">Contains the model that includes the client scopes.</param>
+            <param name="entity">Contains the entity that will be updated.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientSecrets(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+            <summary>
+            This method is used to update secrets for a client.
+            </summary>
+            <param name="model">Contains the model that includes the client secrets.</param>
+            <param name="entity">Contains the entity that will be updated.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientRedirectUris(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+            <summary>
+            This method is used to update redirect URIs for a client.
+            </summary>
+            <param name="model">Contains the model that includes the client redirect URIs.</param>
+            <param name="entity">Contains the entity that will be updated.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientCorsOrigins(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+            <summary>
+            This method is used to update CORS origins for a client.
+            </summary>
+            <param name="model">Contains the model that includes the client CORS origins.</param>
+            <param name="entity">Contains the entity that will be updated.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientGrantTypes(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+            <summary>
+            This method is used to update grant types for a client.
+            </summary>
+            <param name="model">Contains the model that includes the client grant types.</param>
+            <param name="entity">Contains the entity that will be updated.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientLogoutRedirectUris(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+            <summary>
+            This method is used to update logout redirect uris for a client.
+            </summary>
+            <param name="model">Contains the model that includes the client logout redirect uris.</param>
+            <param name="entity">Contains the entity that will be updated.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientProperties(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+            <summary>
+            This method is used to update properties for a client.
+            </summary>
+            <param name="model">Contains the model that includes the client properties.</param>
+            <param name="entity">Contains the entity that will be updated.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Identity.ClientServiceContext">
+            <summary>
+            This class provides a context for the client service.
+            </summary>
+            <seealso cref="T:Bastille.Id.Core.Identity.IdentityServiceContext" />
+        </member>
+        <member name="T:Bastille.Id.Core.Identity.IdentityServiceContext">
+            <summary>
+            This class implements the base properties for identity related service classes.
+            </summary>
+            <seealso cref="T:Bastille.Id.Core.BaseServiceContext" />
+        </member>
+        <member name="P:Bastille.Id.Core.Identity.IdentityServiceContext.ClientStore">
+            <summary>
+            Gets or sets the client store.
+            </summary>
+            <value>The client store.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Identity.IdentityServiceContext.ResourceStore">
+            <summary>
+            Gets or sets the resource store.
+            </summary>
+            <value>The resource store.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Identity.IdentityServiceContext.ConfigurationDbContext">
+            <summary>
+            Gets or sets the configuration database context.
+            </summary>
+            <value>The configuration database context.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.Logging.AuditLogService">
+            <summary>
+            This class provides security logging methods to the application.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Logging.AuditLogService.context">
+            <summary>
+            Contains an instance of the <see cref="T:Bastille.Id.Core.Data.ApplicationDbContext" /> class.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Logging.AuditLogService.#ctor(Bastille.Id.Core.Data.ApplicationDbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Logging.AuditLogService" /> class.
+            </summary>
+            <param name="context">Contains an instance of the <see cref="T:Bastille.Id.Core.Data.ApplicationDbContext" /> class.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Logging.AuditLogService.ReadAuditLogsAsync(Bastille.Id.Models.Logging.AuditLogQueryFilterModel,System.Threading.CancellationToken)">
+            <summary>
+            Reads the audit logs asynchronous.
+            </summary>
+            <param name="filters">The filters.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> result.</returns>
+            <exception cref="T:System.ArgumentNullException">The exception is thrown if the <paramref name="filters" /> parameter is not set.</exception>
+        </member>
+        <member name="M:Bastille.Id.Core.Logging.AuditLogService.LogAsync(Bastille.Id.Models.Logging.AuditEvent,Bastille.Id.Models.Logging.AuditResult,System.String,System.String,System.Nullable{System.Guid},System.String,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to log a security event within the application data store.
+            </summary>
+            <param name="securityEvent">Contains the security event.</param>
+            <param name="securityResult">Contains the security event result.</param>
+            <param name="clientAddress">Contains the client IP address.</param>
+            <param name="message">Contains an optional message.</param>
+            <param name="userId">Contains an optional user identity that is related to the event.</param>
+            <param name="location">Contains an optional user location.</param>
+            <param name="cancellationToken">Contains the cancellation token.</param>
+            <returns>Returns a value indicating the record was stored.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Logging.AuditLogService.BuildPagedResultsQuery(Bastille.Id.Models.Logging.AuditLogQueryFilterModel,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to build the query LINQ for reuse between retrieval methods in the service class.
+            </summary>
+            <param name="filters">Contains the event log filter parameters object.</param>
+            <param name="cancellationToken">Contains the cancellation token.</param>
+            <returns>Returns an <see cref="T:System.Linq.IQueryable" /> query class built using optional parameters.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Logging.AuditLogService.ExecutePagedQuery(System.Linq.IQueryable{Bastille.Id.Core.Data.Entities.AuditLog},Bastille.Id.Models.Logging.AuditLogQueryFilterModel,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to execute the passed query LINQ and return the results as an <see cref="T:Bastille.Id.Core.Data.Entities.AuditLog" /> list.
+            </summary>
+            <param name="query">Contains the LINQ statement to execute.</param>
+            <param name="filters">Contains the filters used for the query</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the results of the query in an <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> model.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Organization.GroupService">
+            <summary>
+            This class contains business logic related to organization groups within the database.
+            </summary>
+            <seealso cref="T:Bastille.Id.Core.ServiceClassBase`1" />
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.#ctor(Bastille.Id.Core.Data.ApplicationDbContext,Talegen.Common.Core.Errors.IErrorManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Organization.GroupService" /> class.
+            </summary>
+            <param name="context"></param>
+            <param name="errorManager">Contains the error manager.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.BrowseAsync(Bastille.Id.Models.Security.GroupQueryFilterModel,System.Threading.CancellationToken)">
+            <summary>
+            This method is used for paginated querying of the user groups.
+            </summary>
+            <param name="filter">The filter.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> containing the records found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.ReadAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reads the Group entity.
+            </summary>
+            <param name="id">The group identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a <see cref="T:Bastille.Id.Core.Data.Entities.Group" /> entity if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.ReadModelAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reads the group model.
+            </summary>
+            <param name="id">The group identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a <see cref="T:Bastille.Id.Models.Security.GroupModel" /> model if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.ReadUsersAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reads the group users.
+            </summary>
+            <param name="id">The group identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a list of <see cref="T:Bastille.Id.Models.Security.GroupUserModel" /> objects if any found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.ReadOwnerAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reads the owner for a group.
+            </summary>
+            <param name="id">The group identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the <see cref="T:Talegen.Common.Models.Security.MinimalUserModel" /> model for the group owner if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.CreateAsync(Bastille.Id.Models.Security.GroupModel,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new group.
+            </summary>
+            <param name="model">The group model to create.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Security.GroupModel" /> model of the created record.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.UpdateAsync(Bastille.Id.Models.Security.GroupModel,System.Threading.CancellationToken)">
+            <summary>
+            Updates the group.
+            </summary>
+            <param name="model">The group model.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Security.GroupModel" /> model updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the group.
+            </summary>
+            <param name="id">The group identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.SaveAsync(Bastille.Id.Core.Data.Entities.Group,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to wrap the save changes mechanism and report any errors through the response channel.
+            </summary>
+            <param name="entity">Contains the record to save.</param>
+            <param name="entityState">Contains the entity state of the save action.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns a value indicating whether the save changes was successful.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.GroupService.ValidateAsync(Bastille.Id.Core.Data.Entities.Group,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
+            <summary>
+            Validates the specified entity.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="entityState">State of the entity.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a value indicating whether the entity operation is valid.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Organization.ModelExtensions">
+            <summary>
+            This class contains extension methods for organization models.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.ModelExtensions.ToModel(Bastille.Id.Core.Data.Entities.Organization)">
+            <summary>
+            Converts an entity to model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Organization.OrganizationModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.ModelExtensions.ToEntity(Bastille.Id.Models.Organization.OrganizationModel)">
+            <summary>
+            Converts to entity value.
+            </summary>
+            <param name="model">The model to convert.</param>
+            <returns>Returns an <see cref="T:Bastille.Id.Core.Data.Entities.Organization" /> entity.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.ModelExtensions.ToModel(Bastille.Id.Core.Data.Entities.Group)">
+            <summary>
+            Converts to model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Security.GroupModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.ModelExtensions.ToEntity(Bastille.Id.Models.Security.GroupModel)">
+            <summary>
+            Converts to entity value.
+            </summary>
+            <param name="model">The model to convert.</param>
+            <returns>Returns a <see cref="T:Bastille.Id.Core.Data.Entities.Group" /> entity.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Organization.OrganizationService">
+            <summary>
+            This class contains business logic related to organizations within the database.
+            </summary>
+            <seealso cref="T:Bastille.Id.Core.ServiceClassBase`1" />
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.#ctor(Bastille.Id.Core.Data.ApplicationDbContext,Talegen.Common.Core.Errors.IErrorManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Organization.OrganizationService" /> class.
+            </summary>
+            <param name="context">Contains an instance of the application data context.</param>
+            <param name="errorManager">Contains an instance of an error manager.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.BrowseAsync(Bastille.Id.Models.Organization.OrganizationQueryFilterModel,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to execute a paginated query of organizations.
+            </summary>
+            <param name="filter">The filter.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> containing the records found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.ReadAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reads the organization specified.
+            </summary>
+            <param name="id">The organization identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a <see cref="T:Bastille.Id.Core.Data.Entities.Organization" /> entity if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.ReadModelAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reads the organization model specified.
+            </summary>
+            <param name="id">The organization identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a <see cref="T:Bastille.Id.Models.Organization.OrganizationModel" /> model if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.CreateAsync(Bastille.Id.Models.Organization.OrganizationModel,System.Threading.CancellationToken)">
+            <summary>
+            Creates the organization specified.
+            </summary>
+            <param name="model">The organization model.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Organization.OrganizationModel" /> created.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.UpdateAsync(Bastille.Id.Models.Organization.OrganizationModel,System.Threading.CancellationToken)">
+            <summary>
+            Updates the organization specified.
+            </summary>
+            <param name="model">The organization model.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Organization.OrganizationModel" /> updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the organization specified.
+            </summary>
+            <param name="id">The organization identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.SaveAsync(Bastille.Id.Core.Data.Entities.Organization,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to wrap the save changes mechanism and report any errors through the response channel.
+            </summary>
+            <param name="entity">Contains the record to save.</param>
+            <param name="entityState">Contains the entity state of the save action.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns a value indicating whether the save changes was successful.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Organization.OrganizationService.Validate(Bastille.Id.Core.Data.Entities.Organization,Microsoft.EntityFrameworkCore.EntityState)">
+            <summary>
+            Validates the specified entity.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="entityState">State of the entity.</param>
+            <returns>Returns a value indicating validation success.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Properties.ResourceKeys">
+            <summary>
+            This class is automatically generated and will create resource keys for use within the application.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorAccessDeniedText">
+            <summary>
+            Gets the key for the ErrorAccessDeniedText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorClientNotFoundText">
+            <summary>
+            Gets the key for the ErrorClientNotFoundText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorRecordNotFoundText">
+            <summary>
+            Gets the key for the ErrorRecordNotFoundText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorUserIdentityNotFoundText">
+            <summary>
+            Gets the key for the ErrorUserIdentityNotFoundText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorUserNotFoundText">
+            <summary>
+            Gets the key for the ErrorUserNotFoundText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.LabelChangePasswordText">
+            <summary>
+            Gets the key for the LabelChangePasswordText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.LabelConfirmPasswordText">
+            <summary>
+            Gets the key for the LabelConfirmPasswordText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.LabelNewPasswordText">
+            <summary>
+            Gets the key for the LabelNewPasswordText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientCreateFailureText">
+            <summary>
+            Gets the key for the PromptClientCreateFailureText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientDeleteFailureText">
+            <summary>
+            Gets the key for the PromptClientDeleteFailureText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientIdExistsText">
+            <summary>
+            Gets the key for the PromptClientIdExistsText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientIdRequiredText">
+            <summary>
+            Gets the key for the PromptClientIdRequiredText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientUpdateFailureText">
+            <summary>
+            Gets the key for the PromptClientUpdateFailureText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientUpdateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptNewAndConfirmPasswordAreNeededText">
+            <summary>
+            Gets the key for the PromptNewAndConfirmPasswordAreNeededText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptNewAndConfirmPasswordMustMatchText">
+            <summary>
+            Gets the key for the PromptNewAndConfirmPasswordMustMatchText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptPasswordRequirementsText">
+            <summary>
+            Gets the key for the PromptPasswordRequirementsText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptProfileUpdatedFailText">
+            <summary>
+            Gets the key for the PromptProfileUpdatedFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptProfileUpdatedSuccessfullyText">
+            <summary>
+            Gets the key for the PromptProfileUpdatedSuccessfullyText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptUserCreatedFailedText">
+            <summary>
+            Gets the key for the PromptUserCreatedFailedText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptUserCreatedSuccessText">
+            <summary>
+            Gets the key for the PromptUserCreatedSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptUserDeletedFailedText">
+            <summary>
+            Gets the key for the PromptUserDeletedFailedText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptUserDeletedSuccessText">
+            <summary>
+            Gets the key for the PromptUserDeletedSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptUserUpdatedFailedText">
+            <summary>
+            Gets the key for the PromptUserUpdatedFailedText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptUserUpdatedSuccessText">
+            <summary>
+            Gets the key for the PromptUserUpdatedSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.reset_password_en_htm">
+            <summary>
+            Gets the key for the reset_password_en_htm resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.reset_password_en_txt">
+            <summary>
+            Gets the key for the reset_password_en_txt resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.verify_account_en_htm">
+            <summary>
+            Gets the key for the verify_account_en_htm resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.verify_account_en_txt">
+            <summary>
+            Gets the key for the verify_account_en_txt resource string.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorAccessDeniedText">
+            <summary>
+              Looks up a localized string similar to Access Denied..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorClientNotFoundText">
+            <summary>
+              Looks up a localized string similar to A client was not found with the {0} &quot;{1}&quot;..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorGroupNameExistsText">
+            <summary>
+              Looks up a localized string similar to A group with the name &quot;{0}&quot; already exists..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorGroupNotFoundText">
+            <summary>
+              Looks up a localized string similar to A group was not found with the {0} &quot;{1}&quot;..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorGroupSpecifyOwnerText">
+            <summary>
+              Looks up a localized string similar to A valid owner Identity was not specified for the group..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorOrganizationNotFoundText">
+            <summary>
+              Looks up a localized string similar to An organization was not found with the {0} &quot;{1}&quot;..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorRecordNotFoundText">
+            <summary>
+              Looks up a localized string similar to A record was not found with the specified identity..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorUserIdentityNotFoundText">
+            <summary>
+              Looks up a localized string similar to Unable to load user with identity &quot;{0}&quot;..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.ErrorUserNotFoundText">
+            <summary>
+              Looks up a localized string similar to User not found..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.LabelChangePasswordText">
+            <summary>
+              Looks up a localized string similar to Change Password.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.LabelConfirmPasswordText">
+            <summary>
+              Looks up a localized string similar to Confirm Password.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.LabelNewPasswordText">
+            <summary>
+              Looks up a localized string similar to New Password.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PrompGroupCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added new group &quot;{0}&quot; with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientCreateFailureText">
+            <summary>
+              Looks up a localized string similar to Attempt failed to create new client with Id {0} and name {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully created a new client with an Id {0} and name {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientDeleteFailureText">
+            <summary>
+              Looks up a localized string similar to Attempt failed to delete client with Id {0} and name {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted client with Id {0} and name {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientGrantTypeCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to add new grant type &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientGrantTypeCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added grant type &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientGrantTypeDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete grant type &quot;{0}&quot; in Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientGrantTypeDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted grant type &quot;{0}&quot; in Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientGrantTypeExistsFailText">
+            <summary>
+              Looks up a localized string similar to The grant type &quot;{0}&quot; already exists for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientGrantTypeUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update grant type &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientGrantTypeUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated grant type &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientIdExistsText">
+            <summary>
+              Looks up a localized string similar to The Client Id &quot;{0}&quot; already exists..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientIdRequiredText">
+            <summary>
+              Looks up a localized string similar to A unique Client Id value is required..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientLogoutCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to add new logout URI &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientLogoutCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added logout URI &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientLogoutDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete logout URI &quot;{0}&quot; in Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientLogoutDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted logout URI &quot;{0}&quot; in Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientLogoutExistsFailText">
+            <summary>
+              Looks up a localized string similar to The logout URI &quot;{0}&quot; already exists for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientLogoutUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update logout URI &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientLogoutUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated logout URI &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientOriginCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to add new origin &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientOriginCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added origin &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientOriginDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete origin &quot;{0}&quot; in Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientOriginDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted origin &quot;{0}&quot; in Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientOriginExistsFailText">
+            <summary>
+              Looks up a localized string similar to The origin &quot;{0}&quot; already exists for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientOriginUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update origin &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientOriginUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated origin &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientPropertyCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to add new property &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientPropertyCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added property &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientPropertyDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete property &quot;{0}&quot; in Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientPropertyDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted property &quot;{0}&quot; in Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientPropertyExistsFailText">
+            <summary>
+              Looks up a localized string similar to The property &quot;{0}&quot; already exists for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientPropertyUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update property &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientPropertyUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated property &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientRedirectCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to add new redirect URI &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientRedirectCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added redirect URI &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientRedirectDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete redirect URI &quot;{0}&quot; in Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientRedirectDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted redirect URI &quot;{0}&quot; in Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientRedirectExistsFailText">
+            <summary>
+              Looks up a localized string similar to The redirect URI &quot;{0}&quot; already exists for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientRedirectUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update redirect URI &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientRedirectUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated redirect URI &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientScopeCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to add new scope &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientScopeCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added scope &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientScopeDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete scope &quot;{0}&quot; in Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientScopeDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted scope &quot;{0}&quot; in Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientScopeExistsFailText">
+            <summary>
+              Looks up a localized string similar to The scope &quot;{0}&quot; already exists for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientScopeUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update scope &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientScopeUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated scope &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientSecretCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to add new secret of type &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientSecretCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added secret of type &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientSecretDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete secret of type &quot;{0}&quot; in Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientSecretDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted secret of type &quot;{0}&quot; in Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientSecretExistsFailText">
+            <summary>
+              Looks up a localized string similar to The secret specified of type &quot;{0}&quot; already exists for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientSecretUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update secret of type &quot;{0}&quot; for Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientSecretUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated secret of type &quot;{0}&quot; to Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientUpdateFailureText">
+            <summary>
+              Looks up a localized string similar to Attempt failed to update client with Id {0} and name {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated client with Id {0} and name {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptGroupCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to create new group &quot;{0}&quot; failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptGroupDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete group &quot;{0}&quot; with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptGroupDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted group {0} {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptGroupUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update group &quot;{0}&quot; with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptGroupUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated group {0} {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptNewAndConfirmPasswordAreNeededText">
+            <summary>
+              Looks up a localized string similar to New Password and Confirm Password are needed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptNewAndConfirmPasswordMustMatchText">
+            <summary>
+              Looks up a localized string similar to New Password and Confirm Password must match..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptPasswordRequirementsText">
+            <summary>
+              Looks up a localized string similar to Passwords must be 8-20 characters, contain one lower case letter, one upper case letter, one number, and one special character. Passwords must not contain spaces or emoji..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptProfileUpdatedFailText">
+            <summary>
+              Looks up a localized string similar to Profile update for user {0}:{1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptProfileUpdatedSuccessfullyText">
+            <summary>
+              Looks up a localized string similar to Profile Updated Successfully.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptUserCreatedFailedText">
+            <summary>
+              Looks up a localized string similar to Attempt Failed to create a new user with details: Email: {0}.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptUserCreatedSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully created a new user with details: Email: {0} Id: {1}.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptUserDeletedFailedText">
+            <summary>
+              Looks up a localized string similar to Attempt Failed to delete a user with details: Email: {0}: Id: {1}.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptUserDeletedSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted user with details: Email: {0} Id: {1}.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptUserUpdatedFailedText">
+            <summary>
+              Looks up a localized string similar to Attempt Failed to update user with details: Email: {0} Id: {1}.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptUserUpdatedSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated a user with these details: Email: {0} Id: {1}.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.reset_password_en_htm">
+             <summary>
+               Looks up a localized string similar to &lt;html&gt;
+            &lt;head&gt;
+                &lt;title&gt;Reset Your Password&lt;/title&gt;
+                &lt;style&gt;
+            
+                    body, html {
+                        padding: 0;
+                        margin: 0;
+                        font-family: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;
+                        font-size: 16px;
+                        color: black;
+                        background-color: whitesmoke;
+                    }
+            
+                    body,
+                    html, 
+                    .body {
+                      background: #f3f3f3 !important;
+                    }
+            
+                    .header {
+                      background: #f3f3f3;
+                    }
+            
+                    #heade [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.reset_password_en_txt">
+             <summary>
+               Looks up a localized string similar to $FIRSTNAME$,
+            
+            We received a request to reset your password. 
+            
+            To reset your password, please click the following link below to complete the password reset process:
+            
+            $LINK$
+            
+            If you did not request a password reset, please contact us..
+             </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.verify_account_en_htm">
+             <summary>
+               Looks up a localized string similar to &lt;html&gt;
+            &lt;head&gt;
+                &lt;title&gt;Reset Your Password&lt;/title&gt;
+                &lt;style&gt;
+            
+                    body, html {
+                        padding: 0;
+                        margin: 0;
+                        font-family: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;
+                        font-size: 16px;
+                        color: black;
+                        background-color: whitesmoke;
+                    }
+            
+                    #header {
+                        height: 64px;
+                    }
+            
+                    #logo {
+                        padding: 0;
+                        height: 64px;
+                        width: 182px;
+                    }
+            
+                    #conta [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.verify_account_en_txt">
+             <summary>
+               Looks up a localized string similar to $FIRSTNAME$,
+            
+            Please click the link below to verify your e-mail address and activate your account.
+            
+            $LINK$.
+             </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Security.ModelExtensions">
+            <summary>
+            This class contains security model extension methods.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.ModelExtensions.ToModel(Bastille.Id.Core.Data.Entities.User)">
+            <summary>
+            Converts to model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Talegen.Common.Models.Security.MinimalUserModel" /> model.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Security.SecurityDefaults">
+            <summary>
+            This class contains security default constants
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.IdentityApiResource">
+            <summary>
+            The identity API resource.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultOrganizationSlug">
+            <summary>
+            The default organization slug.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultOrganizationName">
+            <summary>
+            The default organization name.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultOrganizationDomain">
+            <summary>
+            The default organization domain.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.SupportRoleName">
+            <summary>
+            Contains the support role name.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.AdministratorRoleName">
+            <summary>
+            Contains the administrators role name.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultUserEmail">
+            <summary>
+            The default user email.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultUserPassword">
+            <summary>
+            The default user password.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultUserTimeZone">
+            <summary>
+            Contains the user default user time zone.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultUserLocale">
+            <summary>
+            Contains the user default user locale.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultExpirationMinutes">
+            <summary>
+            Contains the maximum amount of time security information will stay in memory.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.VerifyAccountTemplateName">
+            <summary>
+            The verify account template name.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ResetPasswordTemplateName">
+            <summary>
+            The reset password template name.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultUserImageName">
+            <summary>
+            The default user image name.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.IsAdminCacheKeyTemplate">
+            <summary>
+            The is admin cache key template.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimAllRights">
+            <summary>
+            The claim all abilities.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.TenantClaimType">
+            <summary>
+            The tenant claim type.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimAuditRead">
+            <summary>
+            The claim audit read.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimIdentityRead">
+            <summary>
+            The claim identity read.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimIdentityManage">
+            <summary>
+            The claim identity manage.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimProductRead">
+            <summary>
+            The claim product read.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimProductManage">
+            <summary>
+            The claim product manage.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimSubscriptionRead">
+            <summary>
+            The claim subscription read.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimSubscriptionManage">
+            <summary>
+            The claim subscription manage.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimSecurityManage">
+            <summary>
+            The claim security manage.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimOrgRead">
+            <summary>
+            The claim org read.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimOrgManage">
+            <summary>
+            The claim org manage.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimProfileRead">
+            <summary>
+            The claim profile read.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClaimProfileManage">
+            <summary>
+            The claim profile manage.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Security.SecurityService">
+            <summary>
+            This class contains security related business logic.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityService.context">
+            <summary>
+            Contains an instance of the security service context.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.#ctor(Bastille.Id.Core.Security.SecurityServiceContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Security.SecurityService" /> class.
+            </summary>
+            <param name="context">Contains an instance of the security service context.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.AddToAdminRoleAsync(Bastille.Id.Core.Data.Entities.User,System.Threading.CancellationToken)">
+            <summary>
+            Adds a user to the main administration role.
+            </summary>
+            <param name="userToAdd">The user to add.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a value indicating success.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.RemoveFromAdminRoleAsync(Bastille.Id.Core.Data.Entities.User,System.Threading.CancellationToken)">
+            <summary>
+            Removes the specified user from the main administration role.
+            </summary>
+            <param name="userToRemove">The user to remove.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a value indicating success.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.CanReadUserAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Determines if the current user can read the contents of the specified user identity.
+            </summary>
+            <param name="userId">Contains the user identity to read.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a value indicating whether the current user can read the specified user.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.GetClaimValue(System.String)">
+            <summary>
+            This method is used to retrieve a claim value from the identity.
+            </summary>
+            <param name="claimType">Contains the claim value to retrieve.</param>
+            <returns>Returns the value of the claim if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.CanManageUserAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to determine if the current user has the permission to manage the specified user.
+            </summary>
+            <param name="userId">Contains the identity of the user to manage.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a value indicating whether the current user can manage the details of the specified user.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.CanRemoveUserAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Determines whether the current user can remove the specified user.
+            </summary>
+            <param name="userId">The user identifier.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a value indicating whether the current user can remove the specified user.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.IsUserAdminAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to determine if the specified user is an administrator.
+            </summary>
+            <param name="userId">Contains the unique user identity.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Returns a value indicating whether the user is an administrator.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.CanAccessGroupAsync(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to determine if the specified user is a member of the specified group.
+            </summary>
+            <param name="userId">The user identity to match.</param>
+            <param name="groupId">The group identity to match.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns a value indicating whether the specified user is a member of the specified group.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.SecurityService.CanManageGroupAsync(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to determine if the specified user is a manager of the specified group.
+            </summary>
+            <param name="userId">The user identity to match.</param>
+            <param name="groupId">The group identity to match.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns a value indicating whether the specified user is a manager of the specified group.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Security.SecurityServiceContext">
+            <summary>
+            This class contains properties necessary for security service operations.
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Security.TenantHelpers">
+            <summary>
+            This class contains helper methods for working with tenant specific details.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.TenantHelpers.TenantCacheKeyTemplate">
+            <summary>
+            Contains the tenant cache key template.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.TenantHelpers.FindTenantByKeyAsync(System.String,Vasont.AspnetCore.RedisClient.IAdvancedDistributedCache,Bastille.Id.Core.Data.ApplicationDbContext,System.Threading.CancellationToken)">
+            <summary>
+            Finds the tenant information by key in cache and alternatively in the database.
+            </summary>
+            <param name="tenantKey">The tenant key.</param>
+            <param name="cache">The cache.</param>
+            <param name="dataContext">The data context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the tenant configuration if found.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Security.UserService">
+            <summary>
+            This class contains methods for querying the application database for user related data and queries.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.UserService.context">
+            <summary>
+            The user service context
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.#ctor(Bastille.Id.Core.Security.UserServiceContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Security.UserService" /> class.
+            </summary>
+            <param name="context">Contains the user service context.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.BrowseAsync(Talegen.Common.Models.Security.Queries.UserQueryFilterModel,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to execute a paginated query of user records.
+            </summary>
+            <param name="filter">The filter.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> paginated result model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.ReadUserAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reads the user specified.
+            </summary>
+            <param name="userId">Contains the user unique identifier.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Core.Data.Entities.User" /> entity if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.CreateNewUserAsync(Bastille.Id.Models.Security.BastilleUserModel,System.Threading.CancellationToken)">
+            <summary>
+            Creates a new user specified.
+            </summary>
+            <param name="model">The user model.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Security.BastilleUserModel" /> created.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UpdateUserAsync(Bastille.Id.Models.Security.BastilleUserModel,System.Threading.CancellationToken)">
+            <summary>
+            Updates the user specified.
+            </summary>
+            <param name="model">The user model.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Security.BastilleUserModel" /> model updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.DeleteUserAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the user specified.
+            </summary>
+            <param name="id">Contains the user unique identifier.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.BuildClaimsListAsync(System.Guid,Bastille.Id.Models.Security.ProfileModel,System.Threading.CancellationToken)">
+            <summary>
+            Builds the claims list for the profile model specified.
+            </summary>
+            <param name="id">Contains the user unique identifier.</param>
+            <param name="model">The profile model.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a list of <see cref="T:System.Security.Claims.Claim" /> models.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.FindUserProfileModelAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Finds the user profile model for the specified user identifier.
+            </summary>
+            <param name="id">Contains the user unique identifier.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a <see cref="T:Bastille.Id.Models.Security.ProfileModel" /> if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UserExistsAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Returns a value indicating whether the user record exists.
+            </summary>
+            <param name="userId">Contains the user identity to find.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a value indicating whether the user exists.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UpdateProfileAsync(Bastille.Id.Models.Security.ProfileModel,System.Threading.CancellationToken)">
+            <summary>
+            Updates the profile record.
+            </summary>
+            <param name="model">The model.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a value indicating success.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.ChangeProfilePasswordAsync(System.Guid,Bastille.Id.Models.Security.ChangePasswordModel,System.Threading.CancellationToken)">
+            <summary>
+            Changes the profile user password.
+            </summary>
+            <param name="userId">Contains the user unique identifier.</param>
+            <param name="model">The password change model.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a value indicating success.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.ConvertToProfileAsync(Bastille.Id.Core.Data.Entities.User,System.Threading.CancellationToken)">
+            <summary>
+            Converts a user entity to profile model.
+            </summary>
+            <param name="user">The user entity to convert.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Security.ProfileModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UserGroupsAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to retrieve all the organizations the user is part of.
+            </summary>
+            <param name="userId">Contains the user identity value.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a list of <see cref="T:Bastille.Id.Core.Data.Entities.Group" /> models the user is part of, if found.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.SaveAsync(Bastille.Id.Core.Data.Entities.User,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to wrap the save changes mechanism and report any errors through the response channel.
+            </summary>
+            <param name="user">Contains the user record to save.</param>
+            <param name="entityState">Contains the entity state of the save action.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns a value indicating whether the save changes was successful.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.ConvertToModelAsync(Bastille.Id.Core.Data.Entities.User,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to convert a user found in the system to a management model.
+            </summary>
+            <param name="userFound">Contains the user entity found.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Security.BastilleUserModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UpdateUserFromModelAsync(Bastille.Id.Core.Data.Entities.User,Bastille.Id.Models.Security.BastilleUserModel)">
+            <summary>
+            Updates the user from Bastille user model.
+            </summary>
+            <param name="updatedUser">The updated user entity.</param>
+            <param name="model">The model update.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Security.BastilleUserModel" /> object.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UpdateUserFromProfileAsync(Bastille.Id.Core.Data.Entities.User,Bastille.Id.Models.Security.ProfileModel)">
+            <summary>
+            Updates the user from a profile model.
+            </summary>
+            <param name="updatedUser">The updated user.</param>
+            <param name="model">The model.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Security.ProfileModel" /> object.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UpdateUserClaimsAsync(Bastille.Id.Core.Data.Entities.User,System.Collections.Generic.List{System.Security.Claims.Claim})">
+            <summary>
+            Updates the user claims specified.
+            </summary>
+            <param name="updatedUser">The user to update.</param>
+            <param name="newClaims">The new claims to add.</param>
+            <returns>Returns the <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UpdateUserGroupsAsync(Bastille.Id.Models.Security.BastilleUserModel,System.Threading.CancellationToken)">
+            <summary>
+            Updates the user groups specified.
+            </summary>
+            <param name="model">The user model.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the <see cref="T:Bastille.Id.Models.Security.BastilleUserModel" /> model updated.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.UpdateUserRoleAsync(Bastille.Id.Core.Data.Entities.User,Bastille.Id.Models.Security.BastilleUserModel,System.Threading.CancellationToken)">
+            <summary>
+            Updates the user roles specified.
+            </summary>
+            <param name="updateUser">The user entity.</param>
+            <param name="model">The user model.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns a value indicating success.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Security.UserService.ProcessGroupsAddedAsync(Bastille.Id.Models.Security.BastilleUserModel,Bastille.Id.Core.Data.Entities.User,System.Threading.CancellationToken)">
+            <summary>
+            This method is used to process adding user groups to a new user
+            </summary>
+            <param name="model">Contains the new user model.</param>
+            <param name="newUser">Contains the new user.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the action task.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Security.UserServiceContext">
+            <summary>
+            This class contains properties for the user service class to utilize during operation.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.UserServiceContext.baseUrl">
+            <summary>
+            Contains The base URL.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Security.UserServiceContext.SecurityService">
+            <summary>
+            Gets or sets the security service.
+            </summary>
+            <value>The security service.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Security.UserServiceContext.ClientStore">
+            <summary>
+            Gets or sets the client store.
+            </summary>
+            <value>The client store.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Security.UserServiceContext.ResourceStore">
+            <summary>
+            Gets or sets the resource store.
+            </summary>
+            <value>The resource store.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Security.UserServiceContext.CurrentUserTimezone">
+            <summary>
+            Gets the current user time zone information. If the user has no time zone claim, time zone is set to a default of UTC.
+            </summary>
+            <returns>Returns a value indicating the time zone information for the logged-in user.</returns>
+        </member>
+        <member name="P:Bastille.Id.Core.Security.UserServiceContext.CurrentUserLocale">
+            <summary>
+            Gets the current user locale information. If the user has no time zone claim, locale is set to a default English
+            </summary>
+            <returns>Returns a value indicating the locale for the logged-in user.</returns>
+        </member>
+        <member name="P:Bastille.Id.Core.Security.UserServiceContext.BaseUrl">
+            <summary>
+            Gets or sets the base URL.
+            </summary>
+            <value>The base URL.</value>
+        </member>
+        <member name="T:Bastille.Id.Core.ServiceClassBase`1">
+            <summary>
+            This class implements the base properties and methods for a data service class.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.ServiceClassBase`1.#ctor(`0,Talegen.Common.Core.Errors.IErrorManager,Bastille.Id.Core.Logging.AuditLogService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.ServiceClassBase`1" /> class.
+            </summary>
+            <param name="context">The application context.</param>
+            <param name="errorManager">Contains the error manager.</param>
+            <param name="auditLogService">Contains an optional audit logging service.</param>
+        </member>
+        <member name="P:Bastille.Id.Core.ServiceClassBase`1.DataContext">
+            <summary>
+            Gets the context.
+            </summary>
+            <value>The context.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.ServiceClassBase`1.ErrorManager">
+            <summary>
+            Gets the error manager.
+            </summary>
+            <value>The error manager.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.ServiceClassBase`1.AuditLog">
+            <summary>
+            Gets the audit log.
+            </summary>
+            <value>The audit log.</value>
+        </member>
+        <member name="M:Bastille.Id.Core.ServiceClassBase`1.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method is used to execute the data context save changes and catch all validation errors.
+            </summary>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns the number of rows updated on success.</returns>
+        </member>
+        <member name="T:Bastille.Id.Server.Core.Data.DataInstallHelpers">
+            <summary>
+            This class contains static methods used to initialize database records
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Server.Core.Data.DataInstallHelpers.InitializeDefaultSecurityDataAsync(Bastille.Id.Core.Data.ApplicationDbContext,Microsoft.AspNetCore.Identity.RoleManager{Bastille.Id.Core.Data.Entities.Role},Microsoft.AspNetCore.Identity.UserManager{Bastille.Id.Core.Data.Entities.User},System.Threading.CancellationToken)">
+            <summary>
+            Initializes a user in the database.
+            </summary>
+            <param name="appContext">Contains the application database context.</param>
+            <param name="roleManager">Contains a role manager.</param>
+            <param name="userManager">Contains a user manager.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ErrorAccessDeniedText" xml:space="preserve">
+    <value>Access Denied.</value>
+  </data>
+  <data name="ErrorClientNotFoundText" xml:space="preserve">
+    <value>A client was not found with the {0} "{1}".</value>
+  </data>
+  <data name="ErrorGroupNameExistsText" xml:space="preserve">
+    <value>A group with the name "{0}" already exists.</value>
+  </data>
+  <data name="ErrorGroupNotFoundText" xml:space="preserve">
+    <value>A group was not found with the {0} "{1}".</value>
+  </data>
+  <data name="ErrorGroupSpecifyOwnerText" xml:space="preserve">
+    <value>A valid owner Identity was not specified for the group.</value>
+  </data>
+  <data name="ErrorOrganizationNotFoundText" xml:space="preserve">
+    <value>An organization was not found with the {0} "{1}".</value>
+  </data>
+  <data name="ErrorRecordNotFoundText" xml:space="preserve">
+    <value>A record was not found with the specified identity.</value>
+  </data>
+  <data name="ErrorUserIdentityNotFoundText" xml:space="preserve">
+    <value>Unable to load user with identity "{0}".</value>
+  </data>
+  <data name="ErrorUserNotFoundText" xml:space="preserve">
+    <value>User not found.</value>
+  </data>
+  <data name="LabelChangePasswordText" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="LabelConfirmPasswordText" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="LabelNewPasswordText" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="PrompGroupCreateSuccessText" xml:space="preserve">
+    <value>Successfully added new group "{0}" with Id {1}.</value>
+  </data>
+  <data name="PromptClientCreateFailureText" xml:space="preserve">
+    <value>Attempt failed to create new client with Id {0} and name {1}.</value>
+  </data>
+  <data name="PromptClientCreateSuccessText" xml:space="preserve">
+    <value>Successfully created a new client with an Id {0} and name {1}.</value>
+  </data>
+  <data name="PromptClientDeleteFailureText" xml:space="preserve">
+    <value>Attempt failed to delete client with Id {0} and name {1}.</value>
+  </data>
+  <data name="PromptClientDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted client with Id {0} and name {1}.</value>
+  </data>
+  <data name="PromptClientGrantTypeCreateFailText" xml:space="preserve">
+    <value>Attempt to add new grant type "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientGrantTypeCreateSuccessText" xml:space="preserve">
+    <value>Successfully added grant type "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientGrantTypeDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete grant type "{0}" in Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientGrantTypeDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted grant type "{0}" in Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientGrantTypeExistsFailText" xml:space="preserve">
+    <value>The grant type "{0}" already exists for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientGrantTypeUpdateFailText" xml:space="preserve">
+    <value>Attempt to update grant type "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientGrantTypeUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated grant type "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientIdExistsText" xml:space="preserve">
+    <value>The Client Id "{0}" already exists.</value>
+  </data>
+  <data name="PromptClientIdRequiredText" xml:space="preserve">
+    <value>A unique Client Id value is required.</value>
+  </data>
+  <data name="PromptClientLogoutCreateFailText" xml:space="preserve">
+    <value>Attempt to add new logout URI "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientLogoutCreateSuccessText" xml:space="preserve">
+    <value>Successfully added logout URI "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientLogoutDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete logout URI "{0}" in Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientLogoutDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted logout URI "{0}" in Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientLogoutExistsFailText" xml:space="preserve">
+    <value>The logout URI "{0}" already exists for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientLogoutUpdateFailText" xml:space="preserve">
+    <value>Attempt to update logout URI "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientLogoutUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated logout URI "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientOriginCreateFailText" xml:space="preserve">
+    <value>Attempt to add new origin "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientOriginCreateSuccessText" xml:space="preserve">
+    <value>Successfully added origin "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientOriginDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete origin "{0}" in Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientOriginDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted origin "{0}" in Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientOriginExistsFailText" xml:space="preserve">
+    <value>The origin "{0}" already exists for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientOriginUpdateFailText" xml:space="preserve">
+    <value>Attempt to update origin "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientOriginUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated origin "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientPropertyCreateFailText" xml:space="preserve">
+    <value>Attempt to add new property "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientPropertyCreateSuccessText" xml:space="preserve">
+    <value>Successfully added property "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientPropertyDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete property "{0}" in Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientPropertyDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted property "{0}" in Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientPropertyExistsFailText" xml:space="preserve">
+    <value>The property "{0}" already exists for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientPropertyUpdateFailText" xml:space="preserve">
+    <value>Attempt to update property "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientPropertyUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated property "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientRedirectCreateFailText" xml:space="preserve">
+    <value>Attempt to add new redirect URI "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientRedirectCreateSuccessText" xml:space="preserve">
+    <value>Successfully added redirect URI "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientRedirectDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete redirect URI "{0}" in Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientRedirectDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted redirect URI "{0}" in Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientRedirectExistsFailText" xml:space="preserve">
+    <value>The redirect URI "{0}" already exists for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientRedirectUpdateFailText" xml:space="preserve">
+    <value>Attempt to update redirect URI "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientRedirectUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated redirect URI "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientScopeCreateFailText" xml:space="preserve">
+    <value>Attempt to add new scope "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientScopeCreateSuccessText" xml:space="preserve">
+    <value>Successfully added scope "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientScopeDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete scope "{0}" in Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientScopeDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted scope "{0}" in Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientScopeExistsFailText" xml:space="preserve">
+    <value>The scope "{0}" already exists for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientScopeUpdateFailText" xml:space="preserve">
+    <value>Attempt to update scope "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientScopeUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated scope "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientSecretCreateFailText" xml:space="preserve">
+    <value>Attempt to add new secret of type "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientSecretCreateSuccessText" xml:space="preserve">
+    <value>Successfully added secret of type "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientSecretDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete secret of type "{0}" in Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientSecretDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted secret of type "{0}" in Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientSecretExistsFailText" xml:space="preserve">
+    <value>The secret specified of type "{0}" already exists for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientSecretUpdateFailText" xml:space="preserve">
+    <value>Attempt to update secret of type "{0}" for Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientSecretUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated secret of type "{0}" to Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientUpdateFailureText" xml:space="preserve">
+    <value>Attempt failed to update client with Id {0} and name {1}.</value>
+  </data>
+  <data name="PromptClientUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated client with Id {0} and name {1}.</value>
+  </data>
+  <data name="PromptGroupCreateFailText" xml:space="preserve">
+    <value>Attempt to create new group "{0}" failed.</value>
+  </data>
+  <data name="PromptGroupDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete group "{0}" with Id {1} failed.</value>
+  </data>
+  <data name="PromptGroupDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted group {0} {1}.</value>
+  </data>
+  <data name="PromptGroupUpdateFailText" xml:space="preserve">
+    <value>Attempt to update group "{0}" with Id {1} failed.</value>
+  </data>
+  <data name="PromptGroupUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated group {0} {1}.</value>
+  </data>
+  <data name="PromptNewAndConfirmPasswordAreNeededText" xml:space="preserve">
+    <value>New Password and Confirm Password are needed.</value>
+  </data>
+  <data name="PromptNewAndConfirmPasswordMustMatchText" xml:space="preserve">
+    <value>New Password and Confirm Password must match.</value>
+  </data>
+  <data name="PromptPasswordRequirementsText" xml:space="preserve">
+    <value>Passwords must be 8-20 characters, contain one lower case letter, one upper case letter, one number, and one special character. Passwords must not contain spaces or emoji.</value>
+  </data>
+  <data name="PromptProfileUpdatedFailText" xml:space="preserve">
+    <value>Profile update for user {0}:{1} failed.</value>
+  </data>
+  <data name="PromptProfileUpdatedSuccessfullyText" xml:space="preserve">
+    <value>Profile Updated Successfully</value>
+  </data>
+  <data name="PromptUserCreatedFailedText" xml:space="preserve">
+    <value>Attempt Failed to create a new user with details: Email: {0}</value>
+  </data>
+  <data name="PromptUserCreatedSuccessText" xml:space="preserve">
+    <value>Successfully created a new user with details: Email: {0} Id: {1}</value>
+  </data>
+  <data name="PromptUserDeletedFailedText" xml:space="preserve">
+    <value>Attempt Failed to delete a user with details: Email: {0}: Id: {1}</value>
+  </data>
+  <data name="PromptUserDeletedSuccessText" xml:space="preserve">
+    <value>Successfully deleted user with details: Email: {0} Id: {1}</value>
+  </data>
+  <data name="PromptUserUpdatedFailedText" xml:space="preserve">
+    <value>Attempt Failed to update user with details: Email: {0} Id: {1}</value>
+  </data>
+  <data name="PromptUserUpdatedSuccessText" xml:space="preserve">
+    <value>Successfully updated a user with these details: Email: {0} Id: {1}</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="reset_password_en_htm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reset_password_en_htm.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="reset_password_en_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reset_password_en_txt.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="verify_account_en_htm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\verify_account_en_htm.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="verify_account_en_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\verify_account_en_txt.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+</root>
