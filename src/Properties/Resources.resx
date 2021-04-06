@@ -156,6 +156,30 @@
   <data name="PrompGroupCreateSuccessText" xml:space="preserve">
     <value>Successfully added new group "{0}" with Id {1}.</value>
   </data>
+  <data name="PromptClientClaimCreateFailText" xml:space="preserve">
+    <value>Attempt to add new client claim Type "{0}" Value "{1}" for Client with Id {2} failed.</value>
+  </data>
+  <data name="PromptClientClaimCreateSuccessText" xml:space="preserve">
+    <value>Successfully added client claim Type "{0}" Value "{1}"  to Client with Id {2}.</value>
+  </data>
+  <data name="PromptClientClaimDeleteFailText" xml:space="preserve">
+    <value>Attempt to delete client claim Type "{0}" in Client with Id {1} failed.</value>
+  </data>
+  <data name="PromptClientClaimDeleteSuccessText" xml:space="preserve">
+    <value>Successfully deleted clientclaim Type "{0}" in Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientClaimExistsFailText" xml:space="preserve">
+    <value>The client claim Type "{0}" already exists for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientClaimNotFoundFailText" xml:space="preserve">
+    <value>The client claim Type "{0}" could not be found for Client with Id {1}.</value>
+  </data>
+  <data name="PromptClientClaimUpdateFailText" xml:space="preserve">
+    <value>Attempt to update Client claim Type "{0}" Value "{1}" for Client with Id {2} failed.</value>
+  </data>
+  <data name="PromptClientClaimUpdateSuccessText" xml:space="preserve">
+    <value>Successfully updated Client claim Type "{0}" Value "{1}" to Client with Id {2}.</value>
+  </data>
   <data name="PromptClientCreateFailureText" xml:space="preserve">
     <value>Attempt failed to create new client with Id {0} and name {1}.</value>
   </data>

@@ -178,6 +178,78 @@ namespace Bastille.Id.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attempt to add new client claim Type &quot;{0}&quot; Value &quot;{1}&quot; for Client with Id {2} failed..
+        /// </summary>
+        public static string PromptClientClaimCreateFailText {
+            get {
+                return ResourceManager.GetString("PromptClientClaimCreateFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully added client claim Type &quot;{0}&quot; Value &quot;{1}&quot;  to Client with Id {2}..
+        /// </summary>
+        public static string PromptClientClaimCreateSuccessText {
+            get {
+                return ResourceManager.GetString("PromptClientClaimCreateSuccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attempt to delete client claim Type &quot;{0}&quot; in Client with Id {1} failed..
+        /// </summary>
+        public static string PromptClientClaimDeleteFailText {
+            get {
+                return ResourceManager.GetString("PromptClientClaimDeleteFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully deleted clientclaim Type &quot;{0}&quot; in Client with Id {1}..
+        /// </summary>
+        public static string PromptClientClaimDeleteSuccessText {
+            get {
+                return ResourceManager.GetString("PromptClientClaimDeleteSuccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The client claim Type &quot;{0}&quot; already exists for Client with Id {1}..
+        /// </summary>
+        public static string PromptClientClaimExistsFailText {
+            get {
+                return ResourceManager.GetString("PromptClientClaimExistsFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The client claim Type &quot;{0}&quot; could not be found for Client with Id {1}..
+        /// </summary>
+        public static string PromptClientClaimNotFoundFailText {
+            get {
+                return ResourceManager.GetString("PromptClientClaimNotFoundFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attempt to update Client claim Type &quot;{0}&quot; Value &quot;{1}&quot; for Client with Id {2} failed..
+        /// </summary>
+        public static string PromptClientClaimUpdateFailText {
+            get {
+                return ResourceManager.GetString("PromptClientClaimUpdateFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully updated Client claim Type &quot;{0}&quot; Value &quot;{1}&quot; to Client with Id {2}..
+        /// </summary>
+        public static string PromptClientClaimUpdateSuccessText {
+            get {
+                return ResourceManager.GetString("PromptClientClaimUpdateSuccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attempt failed to create new client with Id {0} and name {1}..
         /// </summary>
         public static string PromptClientCreateFailureText {
@@ -868,11 +940,9 @@ namespace Bastille.Id.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $FIRSTNAME$,
-        ///
-        ///We received a request to reset your password. 
-        ///
-        ///To reset your password, please click the following link below to complete the password reset process:
+        ///   Looks up a localized string similar to Forgot Your Password?
+        ///      
+        ///It happens. Click the link below to reset your password.
         ///
         ///$LINK$
         ///
@@ -918,8 +988,7 @@ namespace Bastille.Id.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $FIRSTNAME$,
-        ///
+        ///   Looks up a localized string similar to 
         ///Please click the link below to verify your e-mail address and activate your account.
         ///
         ///$LINK$.
