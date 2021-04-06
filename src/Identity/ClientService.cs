@@ -436,19 +436,18 @@ namespace Bastille.Id.Core.Identity
 
         #endregion
 
-        #region Client Scope Related Methods
+        #region Client Claims Related Methods
 
         /// <summary>
-        /// Associates the specified scope to the client.
+        /// Adds a new claim to the specified client.
         /// </summary>
-        /// <param name="id">Contains the unique identifier of the client.</param>
-        /// <param name="scope">Contains the scope string to associate with the client.</param>
-        /// <param name="cancellationToken">Contains a cancellation token.</param>
-        /// <returns>Returns a new <see cref="ClientScope" /> record created.</returns>
-        public async Task<ClientScope> AddScopeAsync(int id, string scope, CancellationToken cancellationToken)
+        /// <param name="model">The claim model to add.</param>
+        /// <param name="cancellationToken">Contains an optional cancellation token.</param>
+        /// <returns>Returns the new <see cref="IdentityServer4.Models.ClientClaim" /> model upon success.</returns>
+        public async Task<ClientClaimModel> AddClaimAsync(ClientClaimModel model, CancellationToken cancellationToken)
         {
-            ClientScope result = null;
-            var client = await this.ReadEntityAsync(id, cancellationToken);
+            ClientClaimModel result = model;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
@@ -456,34 +455,181 @@ namespace Bastille.Id.Core.Identity
                 AuditResult auditResult = AuditResult.Success;
 
                 // if scope currently doesnt exist for client...
-                if (client.AllowedScopes.All(es => es.Scope != scope))
+                if (client.Claims.All(cc => cc.Type != model.Type))
                 {
-                    // add new scope
-                    result = new ClientScope
+                    // add new claim entity
+                    ClientClaim entity = new ClientClaim
                     {
                         Client = client,
                         ClientId = client.Id,
-                        Scope = scope
+                        Type = model.Type,
+                        Value = model.Value
                     };
 
                     // add new scope
-                    client.AllowedScopes.Add(result);
+                    client.Claims.Add(entity);
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientScopeCreateSuccessText, scope, id);
+                        result = entity.ToModel();
+                        message = string.Format(Resources.PromptClientClaimCreateSuccessText, model.Type, model.Value, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientScopeCreateFailText, scope, id);
+                        message = string.Format(Resources.PromptClientClaimCreateFailText, model.Type, model.Value, model.ClientId);
                         this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientScopeExistsFailText, scope, id);
+                    message = string.Format(Resources.PromptClientClaimExistsFailText, model.Type, model.ClientId);
+                    this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
+                }
+
+                await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Updates the claim value for the specified client.
+        /// </summary>
+        /// <param name="model">Contains the claim model.</param>
+        /// <param name="cancellationToken">Contains a cancellation token.</param>
+        /// <returns>Returns the updated <see cref="IdentityServer4.Models.ClientClaim" /> model.</returns>
+        public async Task<ClientClaimModel> UpdateClaimAsync(ClientClaimModel model, CancellationToken cancellationToken)
+        {
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
+
+            if (client != null)
+            {
+                string message = string.Empty;
+                AuditResult auditResult = AuditResult.Success;
+                var entityToUpdate = client.Claims.FirstOrDefault(cc => cc.Type == model.Type);
+
+                if (entityToUpdate != null)
+                {
+                    entityToUpdate.Value = model.Value;
+
+                    if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
+                    {
+                        message = string.Format(Resources.PromptClientClaimUpdateSuccessText, model.Type, model.Value, model.ClientId);
+                    }
+                    else
+                    {
+                        auditResult = AuditResult.Fail;
+                        message = string.Format(Resources.PromptClientClaimUpdateFailText, model.Type, model.Value, model.ClientId);
+                        this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
+                    }
+                }
+                else
+                {
+                    auditResult = AuditResult.Fail;
+                    message = string.Format(Resources.PromptClientClaimNotFoundFailText, model.Type, model.ClientId);
+                    this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
+                }
+
+                await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
+            }
+
+            return model;
+        }
+
+        /// <summary>
+        /// Deletes the client claim from the client.
+        /// </summary>
+        /// <param name="id">Contains the client identifier.</param>
+        /// <param name="claimType">Contains the claim type identifier to delete.</param>
+        /// <param name="cancellationToken">Contains a cancellation token.</param>
+        public async Task DeleteScopeAsync(int id, string claimType, CancellationToken cancellationToken)
+        {
+            var client = await this.ReadEntityAsync(id, cancellationToken);
+
+            if (client != null)
+            {
+                string message = string.Empty;
+                AuditResult auditResult = AuditResult.Success;
+                var entityToDelete = client.Claims.FirstOrDefault(cc => cc.Type == claimType);
+
+                if (entityToDelete != null)
+                {
+                    client.Claims.Remove(entityToDelete);
+
+                    if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
+                    {
+                        message = string.Format(Resources.PromptClientClaimDeleteSuccessText, claimType, id);
+                    }
+                    else
+                    {
+                        auditResult = AuditResult.Fail;
+                        message = string.Format(Resources.PromptClientClaimDeleteFailText, claimType, id);
+                        this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
+                    }
+                }
+                else
+                {
+                    auditResult = AuditResult.Fail;
+                    message = string.Format(Resources.PromptClientClaimNotFoundFailText, claimType, id);
+                    this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
+                }
+
+                await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
+            }
+        }
+
+        #endregion
+
+        #region Client Scope Related Methods
+
+        /// <summary>
+        /// Associates the specified scope to the client.
+        /// </summary>
+        /// <param name="model">Contains the model to add.</param>
+        /// <param name="cancellationToken">Contains a cancellation token.</param>
+        /// <returns>Returns a new <see cref="ClientScope" /> record created.</returns>
+        public async Task<ClientScopeModel> AddScopeAsync(ClientScopeModel model, CancellationToken cancellationToken)
+        {
+            ClientScopeModel result = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
+
+            if (client != null)
+            {
+                string message = string.Empty;
+                AuditResult auditResult = AuditResult.Success;
+
+                // if scope currently doesnt exist for client...
+                if (client.AllowedScopes.All(es => es.Scope != model.Scope))
+                {
+                    // add new scope
+                    var entity = new ClientScope
+                    {
+                        Client = client,
+                        ClientId = client.Id,
+                        Scope = model.Scope
+                    };
+
+                    // add new scope
+                    client.AllowedScopes.Add(entity);
+
+                    if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
+                    {
+                        result = entity.ToModel();
+                        message = string.Format(Resources.PromptClientScopeCreateSuccessText, model.Scope, model.ClientId);
+                    }
+                    else
+                    {
+                        auditResult = AuditResult.Fail;
+                        message = string.Format(Resources.PromptClientScopeCreateFailText, model.Scope, model.ClientId);
+                        this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
+                    }
+                }
+                else
+                {
+                    auditResult = AuditResult.Fail;
+                    message = string.Format(Resources.PromptClientScopeExistsFailText, model.Scope, model.ClientId);
                     this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
                 }
 
@@ -496,48 +642,46 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Updates the client scope to the client.
         /// </summary>
-        /// <param name="id">Contains the unique identifier of the client.</param>
-        /// <param name="scopeId">Contains the scope identifier to update.</param>
-        /// <param name="scope">Contains the new scope string to associate with the client.</param>
+        /// <param name="model">Contains the model to update.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientScope" /> entity that was updated.</returns>
-        public async Task<ClientScope> UpdateScopeAsync(int id, int scopeId, string scope, CancellationToken cancellationToken)
+        public async Task<ClientScopeModel> UpdateScopeAsync(ClientScopeModel model, CancellationToken cancellationToken)
         {
-            var client = await this.ReadEntityAsync(id, cancellationToken);
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
             ClientScope scopeToUpdate = null;
 
             if (client != null)
             {
                 string message = string.Empty;
                 AuditResult auditResult = AuditResult.Success;
-                scopeToUpdate = client.AllowedScopes.FirstOrDefault(a => a.Id == scopeId);
+                scopeToUpdate = client.AllowedScopes.FirstOrDefault(a => a.Id == model.Id);
 
                 if (scopeToUpdate != null)
                 {
-                    scopeToUpdate.Scope = scope;
+                    scopeToUpdate.Scope = model.Scope;
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientScopeUpdateSuccessText, scope, id);
+                        message = string.Format(Resources.PromptClientScopeUpdateSuccessText, model.Scope, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientScopeUpdateFailText, scope, id);
+                        message = string.Format(Resources.PromptClientScopeUpdateFailText, model.Scope, model.ClientId);
                         this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientScopeExistsFailText, scope, id);
+                    message = string.Format(Resources.PromptClientScopeExistsFailText, model.Scope, model.ClientId);
                     this.ErrorManager.CriticalFormat(message, ErrorCategory.Application);
                 }
 
                 await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
             }
 
-            return scopeToUpdate;
+            return model;
         }
 
         /// <summary>
@@ -589,14 +733,13 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Adds a client secret to the specified client.
         /// </summary>
-        /// <param name="id">Contains the unique identifier of the client.</param>
         /// <param name="model">Contains the secret to add.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the new <see cref="ClientSecret" /> entity added.</returns>
-        public async Task<ClientSecret> AddSecretAsync(int id, ClientSecret model, CancellationToken cancellationToken)
+        public async Task<ClientSecretModel> AddSecretAsync(ClientSecretModel model, CancellationToken cancellationToken)
         {
-            ClientSecret result = null;
-            var client = await this.ReadEntityAsync(id, cancellationToken);
+            ClientSecretModel result = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
@@ -604,37 +747,38 @@ namespace Bastille.Id.Core.Identity
                 AuditResult auditResult = AuditResult.Success;
 
                 // if scope currently doesnt exist for client...
-                if (client.ClientSecrets.All(es => es.Type != model.Type && es.Value != model.Value))
+                if (client.ClientSecrets.All(es => es.Type != model.Type.ToDescription() && es.Value != model.Value))
                 {
                     // add new scope
-                    result = new ClientSecret
+                    var entity = new ClientSecret
                     {
                         Client = client,
                         ClientId = client.Id,
                         Created = DateTime.UtcNow,
                         Description = model.Description,
                         Expiration = model.Expiration,
-                        Type = model.Type,
+                        Type = model.Type.ToDescription(),
                         Value = model.Value.ToSha256()
                     };
 
-                    client.ClientSecrets.Add(result);
+                    client.ClientSecrets.Add(entity);
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientSecretCreateSuccessText, model.Type, id);
+                        result = entity.ToModel();
+                        message = string.Format(Resources.PromptClientSecretCreateSuccessText, model.Type, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientSecretCreateFailText, model.Type, id);
+                        message = string.Format(Resources.PromptClientSecretCreateFailText, model.Type, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientSecretExistsFailText, model.Type, id);
+                    message = string.Format(Resources.PromptClientSecretExistsFailText, model.Type, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
@@ -647,50 +791,48 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Updates the secret to the specified client.
         /// </summary>
-        /// <param name="id">Contains the client identifier.</param>
         /// <param name="model">Contains the secret model for updating.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientSecret" /> updated.</returns>
-        public async Task<ClientSecret> UpdateSecretAsync(int id, ClientSecret model, CancellationToken cancellationToken)
+        public async Task<ClientSecretModel> UpdateSecretAsync(ClientSecretModel model, CancellationToken cancellationToken)
         {
-            var client = await this.ReadEntityAsync(id, cancellationToken);
-            ClientSecret secretToUpdate = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
                 string message = string.Empty;
                 AuditResult auditResult = AuditResult.Success;
-                secretToUpdate = client.ClientSecrets.FirstOrDefault(a => a.Id == model.Id);
+                var secretToUpdate = client.ClientSecrets.FirstOrDefault(a => a.Id == model.Id);
 
                 if (secretToUpdate != null)
                 {
                     secretToUpdate.Expiration = model.Expiration;
                     secretToUpdate.Description = model.Description;
                     secretToUpdate.Value = model.Value.ToSha256();
-                    secretToUpdate.Type = model.Type;
+                    secretToUpdate.Type = model.Type.ToDescription();
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientSecretUpdateSuccessText, model.Type, id);
+                        message = string.Format(Resources.PromptClientSecretUpdateSuccessText, model.Type, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientSecretUpdateFailText, model.Type, id);
+                        message = string.Format(Resources.PromptClientSecretUpdateFailText, model.Type, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientSecretExistsFailText, model.Type, id);
+                    message = string.Format(Resources.PromptClientSecretExistsFailText, model.Type, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
                 await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
             }
 
-            return secretToUpdate;
+            return model;
         }
 
         /// <summary>
@@ -742,14 +884,13 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Adds the redirect to the client specified.
         /// </summary>
-        /// <param name="id">Contains the client unique identifier.</param>
-        /// <param name="redirectUri">Contains the redirect URI to add.</param>
+        /// <param name="model">Contains the model to add.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the new <see cref="ClientRedirectUri" /> entity added.</returns>
-        public async Task<ClientRedirectUri> AddRedirectAsync(int id, string redirectUri, CancellationToken cancellationToken)
+        public async Task<ClientRedirectUriModel> AddRedirectAsync(ClientRedirectUriModel model, CancellationToken cancellationToken)
         {
-            ClientRedirectUri result = null;
-            var client = await this.ReadEntityAsync(id, cancellationToken);
+            ClientRedirectUriModel result = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
@@ -757,33 +898,34 @@ namespace Bastille.Id.Core.Identity
                 AuditResult auditResult = AuditResult.Success;
 
                 // if scope currently doesnt exist for client...
-                if (client.RedirectUris.All(r => r.RedirectUri != redirectUri))
+                if (client.RedirectUris.All(r => r.RedirectUri != model.RedirectUri.ToString()))
                 {
                     // add new scope
-                    result = new ClientRedirectUri
+                    var entity = new ClientRedirectUri
                     {
                         Client = client,
                         ClientId = client.Id,
-                        RedirectUri = redirectUri
+                        RedirectUri = model.RedirectUri.ToString()
                     };
 
-                    client.RedirectUris.Add(result);
+                    client.RedirectUris.Add(entity);
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientRedirectCreateSuccessText, redirectUri, id);
+                        result = entity.ToModel();
+                        message = string.Format(Resources.PromptClientRedirectCreateSuccessText, model.RedirectUri, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientRedirectCreateFailText, redirectUri, id);
+                        message = string.Format(Resources.PromptClientRedirectCreateFailText, model.RedirectUri, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientRedirectExistsFailText, redirectUri, id);
+                    message = string.Format(Resources.PromptClientRedirectExistsFailText, model.RedirectUri, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
@@ -796,47 +938,45 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Updates the specified redirect for the client.
         /// </summary>
-        /// <param name="id">Contains the client unique identifier.</param>
         /// <param name="model">Contains the redirect model to update.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientRedirectUri" /> updated.</returns>
-        public async Task<ClientRedirectUri> UpdateRedirectAsync(int id, ClientRedirectUri model, CancellationToken cancellationToken)
+        public async Task<ClientRedirectUriModel> UpdateRedirectAsync(ClientRedirectUriModel model, CancellationToken cancellationToken)
         {
-            var client = await this.ReadEntityAsync(id, cancellationToken);
-            ClientRedirectUri redirectToUpdate = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
                 string message = string.Empty;
                 AuditResult auditResult = AuditResult.Success;
-                redirectToUpdate = client.RedirectUris.FirstOrDefault(a => a.Id == model.Id);
+                var redirectToUpdate = client.RedirectUris.FirstOrDefault(a => a.Id == model.Id);
 
                 if (redirectToUpdate != null)
                 {
-                    redirectToUpdate.RedirectUri = model.RedirectUri;
+                    redirectToUpdate.RedirectUri = model.RedirectUri.ToString();
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientRedirectUpdateSuccessText, model.RedirectUri, id);
+                        message = string.Format(Resources.PromptClientRedirectUpdateSuccessText, model.RedirectUri, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientRedirectUpdateFailText, model.RedirectUri, id);
+                        message = string.Format(Resources.PromptClientRedirectUpdateFailText, model.RedirectUri, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientRedirectExistsFailText, model.RedirectUri, id);
+                    message = string.Format(Resources.PromptClientRedirectExistsFailText, model.RedirectUri, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
                 await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
             }
 
-            return redirectToUpdate;
+            return model;
         }
 
         /// <summary>
@@ -888,14 +1028,13 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Adds the allowed origin to the specified client.
         /// </summary>
-        /// <param name="id">Contains the client unique identifier.</param>
-        /// <param name="originUri">Contains the allowed origin address to add to client.</param>
+        /// <param name="model">Contains the model to add.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientCorsOrigin" /> entity added.</returns>
-        public async Task<ClientCorsOrigin> AddOriginAsync(int id, string originUri, CancellationToken cancellationToken)
+        public async Task<ClientCorsOriginModel> AddOriginAsync(ClientCorsOriginModel model, CancellationToken cancellationToken)
         {
-            ClientCorsOrigin result = null;
-            var client = await this.ReadEntityAsync(id, cancellationToken);
+            ClientCorsOriginModel result = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
@@ -903,33 +1042,34 @@ namespace Bastille.Id.Core.Identity
                 AuditResult auditResult = AuditResult.Success;
 
                 // if scope currently doesnt exist for client...
-                if (client.AllowedCorsOrigins.All(r => r.Origin != originUri))
+                if (client.AllowedCorsOrigins.All(r => r.Origin != model.Origin))
                 {
                     // add new scope
-                    result = new ClientCorsOrigin
+                    var entity = new ClientCorsOrigin
                     {
                         Client = client,
                         ClientId = client.Id,
-                        Origin = originUri
+                        Origin = model.Origin
                     };
 
-                    client.AllowedCorsOrigins.Add(result);
+                    client.AllowedCorsOrigins.Add(entity);
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientOriginCreateSuccessText, originUri, id);
+                        result = entity.ToModel();
+                        message = string.Format(Resources.PromptClientOriginCreateSuccessText, model.Origin, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientOriginCreateFailText, originUri, id);
+                        message = string.Format(Resources.PromptClientOriginCreateFailText, model.Origin, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientOriginExistsFailText, originUri, id);
+                    message = string.Format(Resources.PromptClientOriginExistsFailText, model.Origin, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
@@ -942,20 +1082,18 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Updates the allowed origin for the specified client.
         /// </summary>
-        /// <param name="id">Contains the client unique identifier.</param>
         /// <param name="model">Contains the allowed origin model to update.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientCorsOrigin" /> entity updated.</returns>
-        public async Task<ClientCorsOrigin> UpdateOriginAsync(int id, ClientCorsOrigin model, CancellationToken cancellationToken)
+        public async Task<ClientCorsOriginModel> UpdateOriginAsync(ClientCorsOriginModel model, CancellationToken cancellationToken)
         {
-            var client = await this.ReadEntityAsync(id, cancellationToken);
-            ClientCorsOrigin originToUpdate = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
                 string message = string.Empty;
                 AuditResult auditResult = AuditResult.Success;
-                originToUpdate = client.AllowedCorsOrigins.FirstOrDefault(a => a.Id == model.Id);
+                var originToUpdate = client.AllowedCorsOrigins.FirstOrDefault(a => a.Id == model.Id);
 
                 if (originToUpdate != null)
                 {
@@ -963,26 +1101,26 @@ namespace Bastille.Id.Core.Identity
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientOriginUpdateSuccessText, model.Origin, id);
+                        message = string.Format(Resources.PromptClientOriginUpdateSuccessText, model.Origin, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientOriginUpdateFailText, model.Origin, id);
+                        message = string.Format(Resources.PromptClientOriginUpdateFailText, model.Origin, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientOriginExistsFailText, model.Origin, id);
+                    message = string.Format(Resources.PromptClientOriginExistsFailText, model.Origin, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
                 await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
             }
 
-            return originToUpdate;
+            return model;
         }
 
         /// <summary>
@@ -1034,14 +1172,13 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Adds the Grant Type to the specified client.
         /// </summary>
-        /// <param name="id">Contains the client unqiue identifier.</param>
-        /// <param name="grantType">Contains the Grant Type to add.</param>
+        /// <param name="model">Contains the model to add.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientGrantType" /> entity added.</returns>
-        public async Task<ClientGrantType> AddGrantTypeAsync(int id, string grantType, CancellationToken cancellationToken)
+        public async Task<ClientGrantTypeModel> AddGrantTypeAsync(ClientGrantTypeModel model, CancellationToken cancellationToken)
         {
-            ClientGrantType result = null;
-            var client = await this.ReadEntityAsync(id, cancellationToken);
+            ClientGrantTypeModel result = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
@@ -1049,33 +1186,34 @@ namespace Bastille.Id.Core.Identity
                 AuditResult auditResult = AuditResult.Success;
 
                 // if scope currently doesnt exist for client...
-                if (client.AllowedGrantTypes.All(r => r.GrantType != grantType))
+                if (client.AllowedGrantTypes.All(r => r.GrantType != model.Type.ToDescription()))
                 {
                     // add new scope
-                    result = new ClientGrantType
+                    var entity = new ClientGrantType
                     {
                         Client = client,
                         ClientId = client.Id,
-                        GrantType = grantType
+                        GrantType = model.Type.ToDescription()
                     };
 
-                    client.AllowedGrantTypes.Add(result);
+                    client.AllowedGrantTypes.Add(entity);
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientGrantTypeCreateSuccessText, grantType, id);
+                        result = entity.ToModel();
+                        message = string.Format(Resources.PromptClientGrantTypeCreateSuccessText, model.Type, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientGrantTypeCreateFailText, grantType, id);
+                        message = string.Format(Resources.PromptClientGrantTypeCreateFailText, model.Type, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientGrantTypeExistsFailText, grantType, id);
+                    message = string.Format(Resources.PromptClientGrantTypeExistsFailText, model.Type, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
@@ -1088,47 +1226,45 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Updates the Grant Type for the specified client.
         /// </summary>
-        /// <param name="id">Contains the client unqiue identifier.</param>
         /// <param name="model">Contains the Grant Type model to update.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientGrantType" /> entity updated.</returns>
-        public async Task<ClientGrantType> UpdateGrantTypeAsync(int id, ClientGrantType model, CancellationToken cancellationToken)
+        public async Task<ClientGrantTypeModel> UpdateGrantTypeAsync(ClientGrantTypeModel model, CancellationToken cancellationToken)
         {
-            var client = await this.ReadEntityAsync(id, cancellationToken);
-            ClientGrantType grantTypeToUpdate = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
                 string message = string.Empty;
                 AuditResult auditResult = AuditResult.Success;
-                grantTypeToUpdate = client.AllowedGrantTypes.FirstOrDefault(a => a.Id == model.Id);
+                var grantTypeToUpdate = client.AllowedGrantTypes.FirstOrDefault(a => a.Id == model.Id);
 
                 if (grantTypeToUpdate != null)
                 {
-                    grantTypeToUpdate.GrantType = model.GrantType;
+                    grantTypeToUpdate.GrantType = model.Type.ToDescription();
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientGrantTypeUpdateSuccessText, model.GrantType, id);
+                        message = string.Format(Resources.PromptClientGrantTypeUpdateSuccessText, model.Type, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientGrantTypeUpdateFailText, model.GrantType, id);
+                        message = string.Format(Resources.PromptClientGrantTypeUpdateFailText, model.Type, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientGrantTypeExistsFailText, grantTypeToUpdate, id);
+                    message = string.Format(Resources.PromptClientGrantTypeExistsFailText, model.Type, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
                 await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
             }
 
-            return grantTypeToUpdate;
+            return model;
         }
 
         /// <summary>
@@ -1180,14 +1316,13 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Adds the Logout Redirect to the specified client.
         /// </summary>
-        /// <param name="id">Contains the client unqiue identifier.</param>
-        /// <param name="logoutUri">Contains the Logout Redirect address to add.</param>
+        /// <param name="model">Contains the model to add.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientPostLogoutRedirectUri" /> entity added.</returns>
-        public async Task<ClientPostLogoutRedirectUri> AddPostLogoutRedirectAsync(int id, string logoutUri, CancellationToken cancellationToken)
+        public async Task<ClientLogoutRedirectUriModel> AddPostLogoutRedirectAsync(ClientLogoutRedirectUriModel model, CancellationToken cancellationToken)
         {
-            ClientPostLogoutRedirectUri result = null;
-            var client = await this.ReadEntityAsync(id, cancellationToken);
+            ClientLogoutRedirectUriModel result = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
@@ -1195,33 +1330,34 @@ namespace Bastille.Id.Core.Identity
                 AuditResult auditResult = AuditResult.Success;
 
                 // if scope currently doesnt exist for client...
-                if (client.PostLogoutRedirectUris.All(r => r.PostLogoutRedirectUri != logoutUri))
+                if (client.PostLogoutRedirectUris.All(r => r.PostLogoutRedirectUri != model.LogoutRedirectUri.ToString()))
                 {
                     // add new scope
-                    result = new ClientPostLogoutRedirectUri
+                    var entity = new ClientPostLogoutRedirectUri
                     {
                         Client = client,
                         ClientId = client.Id,
-                        PostLogoutRedirectUri = logoutUri
+                        PostLogoutRedirectUri = model.LogoutRedirectUri.ToString()
                     };
 
-                    client.PostLogoutRedirectUris.Add(result);
+                    client.PostLogoutRedirectUris.Add(entity);
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientLogoutCreateSuccessText, logoutUri, id);
+                        result = entity.ToModel();
+                        message = string.Format(Resources.PromptClientLogoutCreateSuccessText, model.LogoutRedirectUri, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientLogoutCreateFailText, logoutUri, id);
+                        message = string.Format(Resources.PromptClientLogoutCreateFailText, model.LogoutRedirectUri, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientLogoutExistsFailText, logoutUri, id);
+                    message = string.Format(Resources.PromptClientLogoutExistsFailText, model.LogoutRedirectUri, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
@@ -1234,47 +1370,45 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Updates the Logout Redirect for the specified client.
         /// </summary>
-        /// <param name="id">Contains the client unqiue identifier.</param>
         /// <param name="model">Contains the Logout Redirect model to update.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientPostLogoutRedirectUri" /> entity updated.</returns>
-        public async Task<ClientPostLogoutRedirectUri> UpdatePostLogoutRedirectTypeAsync(int id, ClientPostLogoutRedirectUri model, CancellationToken cancellationToken)
+        public async Task<ClientLogoutRedirectUriModel> UpdatePostLogoutRedirectTypeAsync(ClientLogoutRedirectUriModel model, CancellationToken cancellationToken)
         {
-            var client = await this.ReadEntityAsync(id, cancellationToken);
-            ClientPostLogoutRedirectUri logoutToUpdate = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
                 string message = string.Empty;
                 AuditResult auditResult = AuditResult.Success;
-                logoutToUpdate = client.PostLogoutRedirectUris.FirstOrDefault(a => a.Id == model.Id);
+                var logoutToUpdate = client.PostLogoutRedirectUris.FirstOrDefault(a => a.Id == model.Id);
 
                 if (logoutToUpdate != null)
                 {
-                    logoutToUpdate.PostLogoutRedirectUri = model.PostLogoutRedirectUri;
+                    logoutToUpdate.PostLogoutRedirectUri = model.LogoutRedirectUri.ToString();
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientLogoutUpdateSuccessText, model.PostLogoutRedirectUri, id);
+                        message = string.Format(Resources.PromptClientLogoutUpdateSuccessText, model.LogoutRedirectUri, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientLogoutUpdateFailText, model.PostLogoutRedirectUri, id);
+                        message = string.Format(Resources.PromptClientLogoutUpdateFailText, model.LogoutRedirectUri, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientLogoutExistsFailText, model.PostLogoutRedirectUri, id);
+                    message = string.Format(Resources.PromptClientLogoutExistsFailText, model.LogoutRedirectUri, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
                 await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
             }
 
-            return logoutToUpdate;
+            return model;
         }
 
         /// <summary>
@@ -1326,14 +1460,13 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Adds the Property to the specified client.
         /// </summary>
-        /// <param name="id">Contains the client unqiue identifier.</param>
         /// <param name="model">Contains the Property to add.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientProperty" /> entity added.</returns>
-        public async Task<ClientProperty> AddPropertyAsync(int id, ClientProperty model, CancellationToken cancellationToken)
+        public async Task<ClientPropertyModel> AddPropertyAsync(ClientPropertyModel model, CancellationToken cancellationToken)
         {
-            ClientProperty result = null;
-            var client = await this.ReadEntityAsync(id, cancellationToken);
+            ClientPropertyModel result = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
@@ -1344,7 +1477,7 @@ namespace Bastille.Id.Core.Identity
                 if (client.Properties.All(r => r.Key != model.Key))
                 {
                     // add new scope
-                    result = new ClientProperty
+                    var entity = new ClientProperty
                     {
                         Client = client,
                         ClientId = client.Id,
@@ -1352,23 +1485,24 @@ namespace Bastille.Id.Core.Identity
                         Value = model.Value
                     };
 
-                    client.Properties.Add(result);
+                    client.Properties.Add(entity);
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientPropertyCreateSuccessText, model.Key, id);
+                        result = entity.ToModel();
+                        message = string.Format(Resources.PromptClientPropertyCreateSuccessText, model.Key, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientPropertyCreateFailText, model.Key, id);
+                        message = string.Format(Resources.PromptClientPropertyCreateFailText, model.Key, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientPropertyExistsFailText, model.Key, id);
+                    message = string.Format(Resources.PromptClientPropertyExistsFailText, model.Key, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
@@ -1381,20 +1515,18 @@ namespace Bastille.Id.Core.Identity
         /// <summary>
         /// Updates the Property for the specified client.
         /// </summary>
-        /// <param name="id">Contains the client unqiue identifier.</param>
         /// <param name="model">Contains the Property model to update.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns the <see cref="ClientProperty" /> updated.</returns>
-        public async Task<ClientProperty> UpdatePropertyAsync(int id, ClientProperty model, CancellationToken cancellationToken)
+        public async Task<ClientPropertyModel> UpdatePropertyAsync(ClientPropertyModel model, CancellationToken cancellationToken)
         {
-            var client = await this.ReadEntityAsync(id, cancellationToken);
-            ClientProperty propertyToUpdate = null;
+            var client = await this.ReadEntityAsync(model.ClientId, cancellationToken);
 
             if (client != null)
             {
                 string message = string.Empty;
                 AuditResult auditResult = AuditResult.Success;
-                propertyToUpdate = client.Properties.FirstOrDefault(a => a.Id == model.Id);
+                var propertyToUpdate = client.Properties.FirstOrDefault(a => a.Id == model.Id);
 
                 if (propertyToUpdate != null)
                 {
@@ -1403,26 +1535,26 @@ namespace Bastille.Id.Core.Identity
 
                     if (await this.SaveClientAsync(client, EntityState.Modified, cancellationToken))
                     {
-                        message = string.Format(Resources.PromptClientPropertyUpdateSuccessText, model.Key, id);
+                        message = string.Format(Resources.PromptClientPropertyUpdateSuccessText, model.Key, model.ClientId);
                     }
                     else
                     {
                         auditResult = AuditResult.Fail;
-                        message = string.Format(Resources.PromptClientPropertyUpdateFailText, model.Key, id);
+                        message = string.Format(Resources.PromptClientPropertyUpdateFailText, model.Key, model.ClientId);
                         this.ErrorManager.Critical(message, ErrorCategory.Application);
                     }
                 }
                 else
                 {
                     auditResult = AuditResult.Fail;
-                    message = string.Format(Resources.PromptClientPropertyExistsFailText, model.Key, id);
+                    message = string.Format(Resources.PromptClientPropertyExistsFailText, model.Key, model.ClientId);
                     this.ErrorManager.Critical(message, ErrorCategory.Application);
                 }
 
                 await this.context.AuditLog.LogAsync(AuditEvent.Config, auditResult, this.context.ClientAddress, message, this.context.OptionalCurrentUserId, cancellationToken: cancellationToken);
             }
 
-            return propertyToUpdate;
+            return model;
         }
 
         /// <summary>

@@ -1267,6 +1267,62 @@
             This class contains extensions related to converting objects between model definitions.
             </summary>
         </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientClaim)">
+            <summary>
+            Converts the claim entity to a model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientClaimModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientScope)">
+            <summary>
+            Converts the client scope entity to a model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientSecret)">
+            <summary>
+            Converts the client secret entity to a model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientRedirectUri)">
+            <summary>
+            Converts the client redirect entity to a model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientCorsOrigin)">
+            <summary>
+            Converts the client origin entity to a model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientGrantType)">
+            <summary>
+            Converts the client redirect entity to a model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri)">
+            <summary>
+            Converts the client logout redirect entity to a model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientProperty)">
+            <summary>
+            Converts the client origin entity to a model.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
+        </member>
         <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToClientModel(IdentityServer4.EntityFramework.Entities.Client)">
             <summary>
             Converts to clientmodel.
@@ -1345,22 +1401,43 @@
             <param name="id">Contains the unique identifier of the client to delete.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.AddScopeAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddClaimAsync(Bastille.Id.Models.Clients.ClientClaimModel,System.Threading.CancellationToken)">
+            <summary>
+            Adds a new claim to the specified client.
+            </summary>
+            <param name="model">The claim model to add.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns the new <see cref="T:IdentityServer4.Models.ClientClaim" /> model upon success.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClaimAsync(Bastille.Id.Models.Clients.ClientClaimModel,System.Threading.CancellationToken)">
+            <summary>
+            Updates the claim value for the specified client.
+            </summary>
+            <param name="model">Contains the claim model.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+            <returns>Returns the updated <see cref="T:IdentityServer4.Models.ClientClaim" /> model.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteScopeAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the client claim from the client.
+            </summary>
+            <param name="id">Contains the client identifier.</param>
+            <param name="claimType">Contains the claim type identifier to delete.</param>
+            <param name="cancellationToken">Contains a cancellation token.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddScopeAsync(Bastille.Id.Models.Clients.ClientScopeModel,System.Threading.CancellationToken)">
             <summary>
             Associates the specified scope to the client.
             </summary>
-            <param name="id">Contains the unique identifier of the client.</param>
-            <param name="scope">Contains the scope string to associate with the client.</param>
+            <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns a new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientScope" /> record created.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateScopeAsync(System.Int32,System.Int32,System.String,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateScopeAsync(Bastille.Id.Models.Clients.ClientScopeModel,System.Threading.CancellationToken)">
             <summary>
             Updates the client scope to the client.
             </summary>
-            <param name="id">Contains the unique identifier of the client.</param>
-            <param name="scopeId">Contains the scope identifier to update.</param>
-            <param name="scope">Contains the new scope string to associate with the client.</param>
+            <param name="model">Contains the model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientScope" /> entity that was updated.</returns>
         </member>
@@ -1372,20 +1449,18 @@
             <param name="scopeId">Contains the scope identifier to delete.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.AddSecretAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientSecret,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddSecretAsync(Bastille.Id.Models.Clients.ClientSecretModel,System.Threading.CancellationToken)">
             <summary>
             Adds a client secret to the specified client.
             </summary>
-            <param name="id">Contains the unique identifier of the client.</param>
             <param name="model">Contains the secret to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientSecret" /> entity added.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateSecretAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientSecret,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateSecretAsync(Bastille.Id.Models.Clients.ClientSecretModel,System.Threading.CancellationToken)">
             <summary>
             Updates the secret to the specified client.
             </summary>
-            <param name="id">Contains the client identifier.</param>
             <param name="model">Contains the secret model for updating.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientSecret" /> updated.</returns>
@@ -1398,20 +1473,18 @@
             <param name="secretId">Contains the secret identifier to delete.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.AddRedirectAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddRedirectAsync(Bastille.Id.Models.Clients.ClientRedirectUriModel,System.Threading.CancellationToken)">
             <summary>
             Adds the redirect to the client specified.
             </summary>
-            <param name="id">Contains the client unique identifier.</param>
-            <param name="redirectUri">Contains the redirect URI to add.</param>
+            <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientRedirectUri" /> entity added.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateRedirectAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientRedirectUri,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateRedirectAsync(Bastille.Id.Models.Clients.ClientRedirectUriModel,System.Threading.CancellationToken)">
             <summary>
             Updates the specified redirect for the client.
             </summary>
-            <param name="id">Contains the client unique identifier.</param>
             <param name="model">Contains the redirect model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientRedirectUri" /> updated.</returns>
@@ -1424,20 +1497,18 @@
             <param name="redirectId">Contains the redirect identifier to delete.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.AddOriginAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddOriginAsync(Bastille.Id.Models.Clients.ClientCorsOriginModel,System.Threading.CancellationToken)">
             <summary>
             Adds the allowed origin to the specified client.
             </summary>
-            <param name="id">Contains the client unique identifier.</param>
-            <param name="originUri">Contains the allowed origin address to add to client.</param>
+            <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientCorsOrigin" /> entity added.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateOriginAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientCorsOrigin,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateOriginAsync(Bastille.Id.Models.Clients.ClientCorsOriginModel,System.Threading.CancellationToken)">
             <summary>
             Updates the allowed origin for the specified client.
             </summary>
-            <param name="id">Contains the client unique identifier.</param>
             <param name="model">Contains the allowed origin model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientCorsOrigin" /> entity updated.</returns>
@@ -1450,20 +1521,18 @@
             <param name="originId">Contains the allowed origin identifier to delete.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.AddGrantTypeAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddGrantTypeAsync(Bastille.Id.Models.Clients.ClientGrantTypeModel,System.Threading.CancellationToken)">
             <summary>
             Adds the Grant Type to the specified client.
             </summary>
-            <param name="id">Contains the client unqiue identifier.</param>
-            <param name="grantType">Contains the Grant Type to add.</param>
+            <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientGrantType" /> entity added.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateGrantTypeAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientGrantType,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateGrantTypeAsync(Bastille.Id.Models.Clients.ClientGrantTypeModel,System.Threading.CancellationToken)">
             <summary>
             Updates the Grant Type for the specified client.
             </summary>
-            <param name="id">Contains the client unqiue identifier.</param>
             <param name="model">Contains the Grant Type model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientGrantType" /> entity updated.</returns>
@@ -1476,20 +1545,18 @@
             <param name="grantTypeId">Contains the Grant Type identifier to delete.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.AddPostLogoutRedirectAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddPostLogoutRedirectAsync(Bastille.Id.Models.Clients.ClientLogoutRedirectUriModel,System.Threading.CancellationToken)">
             <summary>
             Adds the Logout Redirect to the specified client.
             </summary>
-            <param name="id">Contains the client unqiue identifier.</param>
-            <param name="logoutUri">Contains the Logout Redirect address to add.</param>
+            <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri" /> entity added.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdatePostLogoutRedirectTypeAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdatePostLogoutRedirectTypeAsync(Bastille.Id.Models.Clients.ClientLogoutRedirectUriModel,System.Threading.CancellationToken)">
             <summary>
             Updates the Logout Redirect for the specified client.
             </summary>
-            <param name="id">Contains the client unqiue identifier.</param>
             <param name="model">Contains the Logout Redirect model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri" /> entity updated.</returns>
@@ -1502,20 +1569,18 @@
             <param name="logoutId">Contains the Logout Redirect identifier to delete.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.AddPropertyAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientProperty,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.AddPropertyAsync(Bastille.Id.Models.Clients.ClientPropertyModel,System.Threading.CancellationToken)">
             <summary>
             Adds the Property to the specified client.
             </summary>
-            <param name="id">Contains the client unqiue identifier.</param>
             <param name="model">Contains the Property to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientProperty" /> entity added.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdatePropertyAsync(System.Int32,IdentityServer4.EntityFramework.Entities.ClientProperty,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdatePropertyAsync(Bastille.Id.Models.Clients.ClientPropertyModel,System.Threading.CancellationToken)">
             <summary>
             Updates the Property for the specified client.
             </summary>
-            <param name="id">Contains the client unqiue identifier.</param>
             <param name="model">Contains the Property model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientProperty" /> updated.</returns>
@@ -2125,6 +2190,46 @@
               Looks up a localized string similar to Successfully added new group &quot;{0}&quot; with Id {1}..
             </summary>
         </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientClaimCreateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to add new client claim Type &quot;{0}&quot; Value &quot;{1}&quot; for Client with Id {2} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientClaimCreateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully added client claim Type &quot;{0}&quot; Value &quot;{1}&quot;  to Client with Id {2}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientClaimDeleteFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to delete client claim Type &quot;{0}&quot; in Client with Id {1} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientClaimDeleteSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully deleted clientclaim Type &quot;{0}&quot; in Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientClaimExistsFailText">
+            <summary>
+              Looks up a localized string similar to The client claim Type &quot;{0}&quot; already exists for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientClaimNotFoundFailText">
+            <summary>
+              Looks up a localized string similar to The client claim Type &quot;{0}&quot; could not be found for Client with Id {1}..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientClaimUpdateFailText">
+            <summary>
+              Looks up a localized string similar to Attempt to update Client claim Type &quot;{0}&quot; Value &quot;{1}&quot; for Client with Id {2} failed..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientClaimUpdateSuccessText">
+            <summary>
+              Looks up a localized string similar to Successfully updated Client claim Type &quot;{0}&quot; Value &quot;{1}&quot; to Client with Id {2}..
+            </summary>
+        </member>
         <member name="P:Bastille.Id.Core.Properties.Resources.PromptClientCreateFailureText">
             <summary>
               Looks up a localized string similar to Attempt failed to create new client with Id {0} and name {1}..
@@ -2521,11 +2626,9 @@
         </member>
         <member name="P:Bastille.Id.Core.Properties.Resources.reset_password_en_txt">
              <summary>
-               Looks up a localized string similar to $FIRSTNAME$,
-            
-            We received a request to reset your password. 
-            
-            To reset your password, please click the following link below to complete the password reset process:
+               Looks up a localized string similar to Forgot Your Password?
+                  
+            It happens. Click the link below to reset your password.
             
             $LINK$
             
@@ -2563,8 +2666,7 @@
         </member>
         <member name="P:Bastille.Id.Core.Properties.Resources.verify_account_en_txt">
              <summary>
-               Looks up a localized string similar to $FIRSTNAME$,
-            
+               Looks up a localized string similar to 
             Please click the link below to verify your e-mail address and activate your account.
             
             $LINK$.
