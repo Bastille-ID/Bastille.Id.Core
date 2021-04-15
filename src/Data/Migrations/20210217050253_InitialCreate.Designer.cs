@@ -22,6 +22,7 @@ namespace Bastille.Id.Core.Data.Migrations
     using Microsoft.EntityFrameworkCore.Infrastructure;
     using Microsoft.EntityFrameworkCore.Metadata;
     using Microsoft.EntityFrameworkCore.Migrations;
+    using Talegen.Common.Core.Extensions;
 
     /// <summary>
     /// This class implements the Bastille ID Server data schema model.
@@ -1413,232 +1414,390 @@ namespace Bastille.Id.Core.Data.Migrations
                         new
                         {
                             TemplateId = new Guid("41e1d669-53b1-431d-ba1d-7bafca4a9b50"),
-                            Content = @"$FIRSTNAME$,
-
-We received a request to reset your password. 
-
-To reset your password, please click the following link below to complete the password reset process:
+                            Content = @"Forgot Your Password?
+      
+It happens. Click the link below to reset your password.
 
 $LINK$
 
-If you did not request a password reset, please contact us.",
+If you did not request a password reset, please contact us at $SUPPORTEMAIL$.",
                             CreatedDate = new DateTime(2021, 2, 17, 5, 2, 53, 456, DateTimeKind.Utc).AddTicks(1902),
-                            LanguageCode = "en-US",
+                            LanguageCode = LocaleExtensions.DefaultLanguageCode,
                             TemplateKey = "reset_password_en-US_txt",
                             TemplateType = "Message"
                         },
                         new
                         {
                             TemplateId = new Guid("9a1cb149-67dd-4b7f-bf91-d3566d9a17bf"),
-                            Content = @"<html>
-<head>
-    <title>Reset Your Password</title>
-    <style>
+                            Content = @"<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"" ""http://www.w3.org/TR/html4/loose.dtd"">
+                <html>
+                <head>
+                <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" >
+                <title>Reset Your Password</title>
+                <style type=""text/css"">
+                html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
 
-        body, html {
-            padding: 0;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 16px;
-            color: black;
-            background-color: whitesmoke;
-        }
+                    @media only screen and (min-device-width: 750px) {
+                        .table750 {width: 750px !important;}
+                    }
+                    @media only screen and (max-device-width: 750px), only screen and (max-width: 750px){
+                      table[class=""table750""] {width: 100% !important;}
+                      .mob_b {width: 93% !important; max-width: 93% !important; min-width: 93% !important;}
+                      .mob_b1 {width: 100% !important; max-width: 100% !important; min-width: 100% !important;}
+                      .mob_left {text-align: left !important;}
+                      .mob_soc {width: 50% !important; max-width: 50% !important; min-width: 50% !important;}
+                      .mob_menu {width: 50% !important; max-width: 50% !important; min-width: 50% !important; box-shadow: inset -1px -1px 0 0 rgba(255, 255, 255, 0.2); }
+                      .mob_center {text-align: center !important;}
+                      .top_pad {height: 15px !important; max-height: 15px !important; min-height: 15px !important;}
+                      .mob_pad {width: 15px !important; max-width: 15px !important; min-width: 15px !important;}
+                      .mob_div {display: block !important;}
+                    }
+                   @media only screen and (max-device-width: 550px), only screen and (max-width: 550px){
+                      .mod_div {display: block !important;}
+                   }
+                    .table750 {width: 750px;}
+                </style>
+                </head>
+                <body style=""margin: 0; padding: 0;"">
 
-        body,
-        html, 
-        .body {
-          background: #f3f3f3 !important;
-        }
+                <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""100%"" style=""background: #f3f3f3; min-width: 350px; font-size: 1px; line-height: normal;"">
+                    <tr>
+                    <td align=""center"" valign=""top"">
+                        <!--[if (gte mso 9)|(IE)]>
+                         <table border=""0"" cellspacing=""0"" cellpadding=""0"">
+                         <tr><td align=""center"" valign=""top"" width=""750""><![endif]-->
+                        <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""750"" class=""table750"" style=""width: 100%; max-width: 750px; min-width: 350px; background: #f3f3f3;"">
+                            <tr>
+                               <td class=""mob_pad"" width=""25"" style=""width: 25px; max-width: 25px; min-width: 25px;"">&nbsp;</td>
+                                <td align=""center"" valign=""top"" style=""background: #ffffff;"">
 
-        .header {
-          background: #f3f3f3;
-        }
+                                  <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""100%"" style=""width: 100% !important; min-width: 100%; max-width: 100%; background: #f3f3f3;"">
+                                     <tr>
+                                        <td align=""right"" valign=""top"">
+                                           <div class=""top_pad"" style=""height: 25px; line-height: 25px; font-size: 23px;"">&nbsp;</div>
+                                        </td>
+                                     </tr>
+                                  </table>
 
-        #header {
-            height: 64px;
-        }
+                                  <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""88%"" style=""width: 88% !important; min-width: 88%; max-width: 88%;"">
+                                     <tr>
+                                        <td align=""center"" valign=""top"">
+                                           <div style=""height: 39px; line-height: 39px; font-size: 37px;"">&nbsp;</div>
+                                           <a href=""https://bastille.id"" target=""_blank"" style=""display: block; max-width: 128px;"" alt=""Bastille.Id"">
+                                              <img src=""$URL$/img/logo.png"" alt=""img"" width=""128"" border=""0"" style=""display: block; width: 128px;"" />
+                                           </a>
+                                           <div style=""height: 32px; line-height: 32px; font-size: 51px;"">&nbsp;</div>
+                                        </td>
+                                     </tr>
+                                  </table>
 
-        #logo {
-            padding: 0;
-            height: 64px;
-            width: 182px;
-        }
+                                  <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""88%"" style=""width: 88% !important; min-width: 88%; max-width: 88%;"">
+                                     <tr>
+                                        <td align=""left"" valign=""top"">
+                                           <font face=""'Source Sans Pro', sans-serif"" color=""#585858"" style=""font-size: 24px; line-height: 32px;"">
+                                              <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;"">
+                                              Hey, it happens. Crazy passwords are hard to remember. Click the link below to reset your password.
+                                              </span>
+                                           </font>
+                                           <div style=""height: 33px; line-height: 33px; font-size: 31px;"">&nbsp;</div>
+                                           <table class=""mob_btn"" cellpadding=""0"" cellspacing=""0"" border=""0"" style=""background: #27cbcc; border-radius: 4px;"">
+                                              <tr>
+                                                 <td align=""center"" valign=""top"">
+                                                    <a href=""$LINK$"" target=""_blank"" style=""display: block; border: 1px solid #27cbcc; border-radius: 4px; padding: 12px 23px; font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;"">
+                                                       <font face=""'Source Sans Pro', sans-serif"" color=""#ffffff"" style=""font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;"">
+                                                          <span style=""font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;"">
+                                                          Reset Password
+                                                          </span>
+                                                       </font>
+                                                    </a>
+                                                 </td>
+                                              </tr>
+                                           </table>
+                                           <div style=""height: 20px; line-height: 20px; font-size: 18px;"">&nbsp;</div>
+                                           <font face=""'Source Sans Pro', sans-serif"" color=""#585858"" style=""font-size: 24px; line-height: 32px;"">
+                                              <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;"">
+                                              If you have trouble seeing the link button above, please <a href=""$LINK$"" target=""_blank"">follow the link here</a>.
+                                              </span>
+                                           </font>
+                                           <div style=""height: 20px; line-height: 20px; font-size: 18px;"">&nbsp;</div>
+                                           <font face=""'Source Sans Pro', sans-serif"" color=""#585858"" style=""font-size: 24px; line-height: 32px;"">
+                                              <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;"">
+                                              If you did not request a password reset, please <a href=""mailto:$SUPPORTEMAIL$"">contact us</a>.
+                                              </span>
+                                           </font>
+                                           <div style=""height: 75px; line-height: 75px; font-size: 73px;"">&nbsp;</div>
+                                        </td>
+                                     </tr>
+                                  </table>
 
-        #container {
-            padding: 15px;
-            margin: 5px;
-        }
+                                  <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""100%"" style=""width: 100% !important; min-width: 100%; max-width: 100%; background: #f3f3f3;"">
+                                     <tr>
+                                        <td align=""center"" valign=""top"">
+                                           <div style=""height: 15px; line-height: 15px; font-size: 12px;"">&nbsp;</div>
+                                           <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""88%"" style=""width: 88% !important; min-width: 88%; max-width: 88%;"">
+                                              <tr>
+                                                 <td align=""center"" valign=""top"">
+                                                    <div style=""height: 34px; line-height: 34px; font-size: 32px;"">&nbsp;</div>
+                                                    <font face=""'Source Sans Pro', sans-serif"" color=""#868686"" style=""font-size: 17px; line-height: 20px;"">
+                                                       <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;"">
+                                                        Copyright &copy; <a href=""https://bastille.id"" target=""_blank"" style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;"">Bastille.Id</a>. All&nbsp;Rights&nbsp;Reserved.
+                                                       </span>
+                                                    </font>
+                                                    <div style=""height: 3px; line-height: 3px; font-size: 1px;"">&nbsp;</div>
+                                                    <font face=""'Source Sans Pro', sans-serif"" color=""#1a1a1a"" style=""font-size: 17px; line-height: 20px;"">
+                                                       <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px;"">
+                                                        <a href=""mailto:support@bastille.id"" target=""_blank"" style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;"">
+                                                         support@bastille.id
+                                                        </a>
+                                                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                                                        <a href=""phone:1-800-555-1234"" target=""_blank"" style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;"">
+                                                         1-800-555-1234
+                                                        </a>
+                                                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                                                        <a href=""/Account#Email"" target=""_blank"" style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;"">
+                                                         E-mail Preferences
+                                                        </a>
+                                                       </span>
+                                                    </font>
+                                                    <div style=""height: 35px; line-height: 35px; font-size: 33px;"">&nbsp;</div>
+                                                    <table cellpadding=""0"" cellspacing=""0"" border=""0"">
+                                                       <tr>
+                                                          <td align=""center"" valign=""top"">
+                                                             <a href=""https://facebook.com/Talegen"" target=""_blank"" style=""display: block; max-width: 19px;"">
+                                                                <img src=""https://www.bastille.id/wp-content/uploads/2021/04/soc_faceb.png"" alt=""img"" width=""19"" border=""0"" style=""display: block; width: 19px;"" />
+                                                             </a>
+                                                          </td>
+                                                          <td width=""45"" style=""width: 45px; max-width: 45px; min-width: 45px;"">&nbsp;</td>
+                                                          <td align=""center"" valign=""top"">
+                                                             <a href=""https://instagram.com/TalegenInc"" target=""_blank"" style=""display: block; max-width: 18px;"">
+                                                                <img src=""https://www.bastille.id/wp-content/uploads/2021/04/soc_insta.png"" alt=""img"" width=""18"" border=""0"" style=""display: block; width: 18px;"" />
+                                                             </a>
+                                                          </td>
+                                                          <td width=""45"" style=""width: 45px; max-width: 45px; min-width: 45px;"">&nbsp;</td>
+                                                          <td align=""center"" valign=""top"">
+                                                             <a href=""https://twitter.com/TalegenInc"" target=""_blank"" style=""display: block; max-width: 21px;"">
+                                                                <img src=""https://www.bastille.id/wp-content/uploads/2021/04/soc_twitt.png"" alt=""img"" width=""21"" border=""0"" style=""display: block; width: 21px;"" />
+                                                             </a>
+                                                          </td>
+                                                       </tr>
+                                                    </table>
+                                                    <div style=""height: 35px; line-height: 35px; font-size: 33px;"">&nbsp;</div>
+                                                 </td>
+                                              </tr>
+                                           </table>
+                                        </td>
+                                     </tr>
+                                  </table>
 
-        p {
-            padding: 5px 5px 5px 5px;
-        }
-
-        .actionButton {
-            background-color: #0aae3a;
-            border: 1px solid #0c8822;
-            border-radius: 3px;
-            color: #ffffff;
-            display: inline-block;
-            font-family: sans-serif;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 38px;
-            text-align: center;
-            text-decoration: none;
-            width: 250px;
-            height: 50px;
-            -webkit-text-size-adjust: none;
-            mso-hide: all;
-        }
-
-        .externalClass .not-for-outlook, [owa] .not-for-outlook {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <spacer size=""16""></spacer>
-
-    <container>
-
-      <row class=""header"">
-        <columns>
-
-          <spacer size=""16""></spacer>
-      
-          <h4 class=""text-center""></h4>
-        </columns>
-      </row>
-      <row>
-        <columns>
-
-          <spacer size=""32""></spacer>
-
-          <center>
-            <img src=""$URL$/img/logo.png"" alt=""logo"">
-          </center>
-
-          <spacer size=""16""></spacer>
-
-          <h1 class=""text-center"">Forgot Your Password?</h1>
-      
-          <spacer size=""16""></spacer>
-
-          <p class=""text-center"">
-          It happens. Click the link below to reset your password.</p>
-          <button class=""large expand"" href=""$LINK$"">Reset Password</button>
-
-          <hr/>
-
-          <p><small>If you did not request a password reset, please contact us.</small></p>
-        </columns>
-      </row>
-
-      <spacer size=""16""></spacer>
-    </container>
-
-</body>
-</html>",
+                               </td>
+                               <td class=""mob_pad"" width=""25"" style=""width: 25px; max-width: 25px; min-width: 25px;"">&nbsp;</td>
+                            </tr>
+                         </table>
+                         <!--[if (gte mso 9)|(IE)]>
+                         </td></tr>
+                         </table><![endif]-->
+                      </td>
+                   </tr>
+                </table>
+                </body>
+                </html>",
                             CreatedDate = new DateTime(2021, 2, 17, 5, 2, 53, 457, DateTimeKind.Utc).AddTicks(934),
-                            LanguageCode = "en-US",
+                            LanguageCode = LocaleExtensions.DefaultLanguageCode,
                             TemplateKey = "reset_password_en-US_htm",
                             TemplateType = "Message"
                         },
                         new
                         {
                             TemplateId = new Guid("9a151f65-7673-4e88-9f77-f2104a76de64"),
-                            Content = @"$FIRSTNAME$,
+                            Content = @"You're almost there! Please click the link below to verify your e-mail address and activate your account.
 
-Please click the link below to verify your e-mail address and activate your account.
+                Please click the link below to verify your e-mail address and activate your account.
 
-$LINK$",
+                $LINK$
+
+                If you did not request an account from us, please contact us at $SUPPORTEMAIL$.",
                             CreatedDate = new DateTime(2021, 2, 17, 5, 2, 53, 457, DateTimeKind.Utc).AddTicks(1912),
-                            LanguageCode = "en-US",
+                            LanguageCode = LocaleExtensions.DefaultLanguageCode,
                             TemplateKey = "verify_account_en-US_txt",
                             TemplateType = "Message"
                         },
                         new
                         {
                             TemplateId = new Guid("34c00483-ae50-465b-b8d1-4fb9c82dfd8e"),
-                            Content = @"<html>
-<head>
-    <title>Reset Your Password</title>
-    <style>
+                            Content = @"<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"" ""http://www.w3.org/TR/html4/loose.dtd"">
+                <html>
+                <head>
+                <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" >
+                <title>Verify Your Account</title>
+                <style type=""text/css"">
+                html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
 
-        body, html {
-            padding: 0;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 16px;
-            color: black;
-            background-color: whitesmoke;
-        }
+                    @media only screen and (min-device-width: 750px) {
+                        .table750 {width: 750px !important;}
+                    }
+                    @media only screen and (max-device-width: 750px), only screen and (max-width: 750px){
+                      table[class=""table750""] {width: 100% !important;}
+                      .mob_b {width: 93% !important; max-width: 93% !important; min-width: 93% !important;}
+                      .mob_b1 {width: 100% !important; max-width: 100% !important; min-width: 100% !important;}
+                      .mob_left {text-align: left !important;}
+                      .mob_soc {width: 50% !important; max-width: 50% !important; min-width: 50% !important;}
+                      .mob_menu {width: 50% !important; max-width: 50% !important; min-width: 50% !important; box-shadow: inset -1px -1px 0 0 rgba(255, 255, 255, 0.2); }
+                      .mob_center {text-align: center !important;}
+                      .top_pad {height: 15px !important; max-height: 15px !important; min-height: 15px !important;}
+                      .mob_pad {width: 15px !important; max-width: 15px !important; min-width: 15px !important;}
+                      .mob_div {display: block !important;}
+                    }
+                   @media only screen and (max-device-width: 550px), only screen and (max-width: 550px){
+                      .mod_div {display: block !important;}
+                   }
+                    .table750 {width: 750px;}
+                </style>
+                </head>
+                <body style=""margin: 0; padding: 0;"">
 
-        #header {
-            height: 64px;
-        }
+                <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""100%"" style=""background: #f3f3f3; min-width: 350px; font-size: 1px; line-height: normal;"">
+                    <tr>
+                    <td align=""center"" valign=""top"">
+                        <!--[if (gte mso 9)|(IE)]>
+                         <table border=""0"" cellspacing=""0"" cellpadding=""0"">
+                         <tr><td align=""center"" valign=""top"" width=""750""><![endif]-->
+                        <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""750"" class=""table750"" style=""width: 100%; max-width: 750px; min-width: 350px; background: #f3f3f3;"">
+                            <tr>
+                               <td class=""mob_pad"" width=""25"" style=""width: 25px; max-width: 25px; min-width: 25px;"">&nbsp;</td>
+                                <td align=""center"" valign=""top"" style=""background: #ffffff;"">
 
-        #logo {
-            padding: 0;
-            height: 64px;
-            width: 182px;
-        }
+                                  <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""100%"" style=""width: 100% !important; min-width: 100%; max-width: 100%; background: #f3f3f3;"">
+                                     <tr>
+                                        <td align=""right"" valign=""top"">
+                                           <div class=""top_pad"" style=""height: 25px; line-height: 25px; font-size: 23px;"">&nbsp;</div>
+                                        </td>
+                                     </tr>
+                                  </table>
 
-        #container {
-            padding: 15px;
-            margin: 5px;
-        }
+                                  <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""88%"" style=""width: 88% !important; min-width: 88%; max-width: 88%;"">
+                                     <tr>
+                                        <td align=""center"" valign=""top"">
+                                           <div style=""height: 39px; line-height: 39px; font-size: 37px;"">&nbsp;</div>
+                                           <a href=""https://bastille.id"" target=""_blank"" style=""display: block; max-width: 128px;"" alt=""Bastille.Id"">
+                                              <img src=""$URL$/img/logo.png"" alt=""img"" width=""128"" border=""0"" style=""display: block; width: 128px;"" />
+                                           </a>
+                                           <div style=""height: 32px; line-height: 32px; font-size: 51px;"">&nbsp;</div>
+                                        </td>
+                                     </tr>
+                                  </table>
 
-        p {
-            padding: 5px 5px 5px 5px;
-        }
+                                  <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""88%"" style=""width: 88% !important; min-width: 88%; max-width: 88%;"">
+                                     <tr>
+                                        <td align=""left"" valign=""top"">
+                                           <font face=""'Source Sans Pro', sans-serif"" color=""#585858"" style=""font-size: 24px; line-height: 32px;"">
+                                              <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;"">
+                                              You're almost there! Please click the link below to verify your e-mail address and activate your account.
+                                              </span>
+                                           </font>
+                                           <div style=""height: 33px; line-height: 33px; font-size: 31px;"">&nbsp;</div>
+                                           <table class=""mob_btn"" cellpadding=""0"" cellspacing=""0"" border=""0"" style=""background: #27cbcc; border-radius: 4px;"">
+                                              <tr>
+                                                 <td align=""center"" valign=""top"">
+                                                    <a href=""$LINK$"" target=""_blank"" style=""display: block; border: 1px solid #27cbcc; border-radius: 4px; padding: 12px 23px; font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;"">
+                                                       <font face=""'Source Sans Pro', sans-serif"" color=""#ffffff"" style=""font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;"">
+                                                          <span style=""font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;"">
+                                                          Verify Account
+                                                          </span>
+                                                       </font>
+                                                    </a>
+                                                 </td>
+                                              </tr>
+                                           </table>
+                                           <div style=""height: 20px; line-height: 20px; font-size: 18px;"">&nbsp;</div>
+                                           <font face=""'Source Sans Pro', sans-serif"" color=""#585858"" style=""font-size: 24px; line-height: 32px;"">
+                                              <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;"">
+                                              If you have trouble seeing the link button above, please <a href=""$LINK$"" target=""_blank"">follow the link here</a>.
+                                              </span>
+                                           </font>
+                                           <div style=""height: 20px; line-height: 20px; font-size: 18px;"">&nbsp;</div>
+                                           <font face=""'Source Sans Pro', sans-serif"" color=""#585858"" style=""font-size: 24px; line-height: 32px;"">
+                                              <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;"">
+                                              If you did not request an account from us, please <a href=""mailto:$SUPPORTEMAIL$"">contact us</a>.
+                                              </span>
+                                           </font>
+                                           <div style=""height: 75px; line-height: 75px; font-size: 73px;"">&nbsp;</div>
+                                        </td>
+                                     </tr>
+                                  </table>
 
-        .actionButton {
-            background-color: #0aae3a;
-            border: 1px solid #0c8822;
-            border-radius: 3px;
-            color: #ffffff;
-            display: inline-block;
-            font-family: sans-serif;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 38px;
-            text-align: center;
-            text-decoration: none;
-            width: 250px;
-            height: 50px;
-            -webkit-text-size-adjust: none;
-            mso-hide: all;
-        }
+                                  <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""100%"" style=""width: 100% !important; min-width: 100%; max-width: 100%; background: #f3f3f3;"">
+                                     <tr>
+                                        <td align=""center"" valign=""top"">
+                                           <div style=""height: 15px; line-height: 15px; font-size: 12px;"">&nbsp;</div>
+                                           <table cellpadding=""0"" cellspacing=""0"" border=""0"" width=""88%"" style=""width: 88% !important; min-width: 88%; max-width: 88%;"">
+                                              <tr>
+                                                 <td align=""center"" valign=""top"">
+                                                    <div style=""height: 34px; line-height: 34px; font-size: 32px;"">&nbsp;</div>
+                                                    <font face=""'Source Sans Pro', sans-serif"" color=""#868686"" style=""font-size: 17px; line-height: 20px;"">
+                                                       <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;"">
+                                                        Copyright &copy; <a href=""https://bastille.id"" target=""_blank"" style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;"">Bastille.Id</a>. All&nbsp;Rights&nbsp;Reserved.
+                                                       </span>
+                                                    </font>
+                                                    <div style=""height: 3px; line-height: 3px; font-size: 1px;"">&nbsp;</div>
+                                                    <font face=""'Source Sans Pro', sans-serif"" color=""#1a1a1a"" style=""font-size: 17px; line-height: 20px;"">
+                                                       <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px;"">
+                                                        <a href=""mailto:support@bastille.id"" target=""_blank"" style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;"">
+                                                         support@bastille.id
+                                                        </a>
+                                                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                                                        <a href=""phone:1-800-555-1234"" target=""_blank"" style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;"">
+                                                         1-800-555-1234
+                                                        </a>
+                                                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                                                        <a href=""/Account#Email"" target=""_blank"" style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;"">
+                                                         E-mail Preferences
+                                                        </a>
+                                                       </span>
+                                                    </font>
+                                                    <div style=""height: 35px; line-height: 35px; font-size: 33px;"">&nbsp;</div>
+                                                    <table cellpadding=""0"" cellspacing=""0"" border=""0"">
+                                                       <tr>
+                                                          <td align=""center"" valign=""top"">
+                                                             <a href=""https://facebook.com/Talegen"" target=""_blank"" style=""display: block; max-width: 19px;"">
+                                                                <img src=""https://www.bastille.id/wp-content/uploads/2021/04/soc_faceb.png"" alt=""img"" width=""19"" border=""0"" style=""display: block; width: 19px;"" />
+                                                             </a>
+                                                          </td>
+                                                          <td width=""45"" style=""width: 45px; max-width: 45px; min-width: 45px;"">&nbsp;</td>
+                                                          <td align=""center"" valign=""top"">
+                                                             <a href=""https://instagram.com/TalegenInc"" target=""_blank"" style=""display: block; max-width: 18px;"">
+                                                                <img src=""https://www.bastille.id/wp-content/uploads/2021/04/soc_insta.png"" alt=""img"" width=""18"" border=""0"" style=""display: block; width: 18px;"" />
+                                                             </a>
+                                                          </td>
+                                                          <td width=""45"" style=""width: 45px; max-width: 45px; min-width: 45px;"">&nbsp;</td>
+                                                          <td align=""center"" valign=""top"">
+                                                             <a href=""https://twitter.com/TalegenInc"" target=""_blank"" style=""display: block; max-width: 21px;"">
+                                                                <img src=""https://www.bastille.id/wp-content/uploads/2021/04/soc_twitt.png"" alt=""img"" width=""21"" border=""0"" style=""display: block; width: 21px;"" />
+                                                             </a>
+                                                          </td>
+                                                       </tr>
+                                                    </table>
+                                                    <div style=""height: 35px; line-height: 35px; font-size: 33px;"">&nbsp;</div>
+                                                 </td>
+                                              </tr>
+                                           </table>
+                                        </td>
+                                     </tr>
+                                  </table>
 
-        .externalClass .not-for-outlook, [owa] .not-for-outlook {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div id=""header"">
-        <img id=""logo"" src=""$URL$/img/logo.png"" alt=""GlobalLink Vasont"" />
-    </div>
-    <div id=""container"">
-        <p>$FIRSTNAME$,</p>
-        <p>Please click the link below to verify your e-mail address and activate your account.</p>
-        <p>
-            <div>
-                <!--[if mso]>
-                    <v:roundrect xmlns:v=""urn:schemas-microsoft-com:vml"" xmlns:w=""urn:schemas-microsoft-com:office:word"" href=""$LINK$"" style=""height:50px;v-text-anchor:middle;width:220px;"" arcsize=""8%"" strokecolor=""#0c8822"" fillcolor=""#0aae3a"">
-                        <w:anchorlock/>
-                        <center style=""color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:bold;"">Verify Account</center>
-                    </v:roundrect>
-                <![endif]-->
-                <a href=""$LINK$"" class=""actionButton not-for-outlook"">Verify Account</a>
-            </div>
-        </p>
-    </div>
-</body>
-</html>",
+                               </td>
+                               <td class=""mob_pad"" width=""25"" style=""width: 25px; max-width: 25px; min-width: 25px;"">&nbsp;</td>
+                            </tr>
+                         </table>
+                         <!--[if (gte mso 9)|(IE)]>
+                         </td></tr>
+                         </table><![endif]-->
+                      </td>
+                   </tr>
+                </table>
+                </body>
+                </html>",
                             CreatedDate = new DateTime(2021, 2, 17, 5, 2, 53, 457, DateTimeKind.Utc).AddTicks(2614),
-                            LanguageCode = "en-US",
+                            LanguageCode = LocaleExtensions.DefaultLanguageCode,
                             TemplateKey = "verify_account_en-US_htm",
                             TemplateType = "Message"
                         });

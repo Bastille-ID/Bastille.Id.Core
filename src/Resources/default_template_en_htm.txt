@@ -1,8 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-<title>Reset Your Password</title>
+<title>Subject Title</title>
 <style type="text/css">
 html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
 
@@ -53,7 +53,7 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                         <td align="center" valign="top">
                            <div style="height: 39px; line-height: 39px; font-size: 37px;">&nbsp;</div>
                            <a href="https://bastille.id" target="_blank" style="display: block; max-width: 128px;" alt="Bastille.Id">
-                              <img src="$URL$/img/logo.png" alt="img" width="128" border="0" style="display: block; width: 128px;" />
+                              <img src="https://www.bastille.id/wp-content/uploads/2021/03/bastille-logo_128x128.png" alt="img" width="128" border="0" style="display: block; width: 128px;" />
                            </a>
                            <div style="height: 32px; line-height: 32px; font-size: 51px;">&nbsp;</div>
                         </td>
@@ -63,9 +63,23 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                   <table cellpadding="0" cellspacing="0" border="0" width="88%" style="width: 88% !important; min-width: 88%; max-width: 88%;">
                      <tr>
                         <td align="left" valign="top">
+                           <font face="'Source Sans Pro', sans-serif" color="#1a1a1a" style="font-size: 52px; line-height: 60px; font-weight: 300; letter-spacing: -1.5px;">
+                              <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 32px; line-height: 60px; font-weight: 300; letter-spacing: -1.5px;">
+                              Hey $FIRSTNAME$,
+                              </span>
+                           </font>
+                           <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
                            <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
                               <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">
-                              Hey, it happens. Crazy passwords are hard to remember. Click the link below to reset your password.
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                              </span>
+                           </font>
+                           <div style="height: 20px; line-height: 20px; font-size: 18px;">&nbsp;</div>
+                           <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
+                              <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                               </span>
                            </font>
                            <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
@@ -75,7 +89,7 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                                     <a href="$LINK$" target="_blank" style="display: block; border: 1px solid #27cbcc; border-radius: 4px; padding: 12px 23px; font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
                                        <font face="'Source Sans Pro', sans-serif" color="#ffffff" style="font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
                                           <span style="font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
-                                          Reset Password
+                                          $LINK_TEXT$
                                           </span>
                                        </font>
                                     </a>
@@ -86,12 +100,6 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                            <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
                               <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">
                               If you have trouble seeing the link button above, please <a href="$LINK$" target="_blank">follow the link here</a>.
-                              </span>
-                           </font>
-                           <div style="height: 20px; line-height: 20px; font-size: 18px;">&nbsp;</div>
-                           <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
-                              <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">
-                              If you did not request a password reset, please <a href="mailto:$SUPPORTEMAIL$">contact us</a>.
                               </span>
                            </font>
                            <div style="height: 75px; line-height: 75px; font-size: 73px;">&nbsp;</div>

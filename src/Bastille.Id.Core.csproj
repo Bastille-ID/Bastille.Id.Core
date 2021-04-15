@@ -13,12 +13,12 @@
     <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <PackageReleaseNotes>Updated models and business logic within service classes.</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated email templates and supporting data-related migrations.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <Version>1.0.3</Version>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <Version>1.0.4</Version>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <FileVersion>1.0.4.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -64,7 +64,7 @@
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
     <PackageReference Include="Talegen.AspNetCore.Web" Version="1.0.1" />
     <PackageReference Include="Talegen.Common.Core" Version="1.0.5" />
-    <PackageReference Include="Talegen.Common.Messaging" Version="1.0.2" />
+    <PackageReference Include="Talegen.Common.Messaging" Version="1.0.3" />
     <PackageReference Include="Talegen.Common.Models" Version="1.0.2" />
     <PackageReference Include="Vasont.AspnetCore.RedisClient" Version="1.0.3" />
   </ItemGroup>
