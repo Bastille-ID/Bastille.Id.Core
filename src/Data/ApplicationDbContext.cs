@@ -26,6 +26,7 @@ namespace Bastille.Id.Core.Data
     using Bastille.Id.Core.Properties;
     using Talegen.Common.Messaging.Templates;
     using Template = Entities.Template;
+    using Talegen.Common.Core.Extensions;
 
     /// <summary>
     /// This class implements and extends the Identity Database Context to support extended VIDS tables and entities.
@@ -476,10 +477,10 @@ namespace Bastille.Id.Core.Data
 
             // add base templates
             builder.Entity<Template>().HasData(
-                    new Template { TemplateKey = SecurityDefaults.ResetPasswordTemplateName + "_en-US_txt", LanguageCode = "en-US", TemplateType = TemplateType.Message, Content = Resources.reset_password_en_txt },
-                    new Template { TemplateKey = SecurityDefaults.ResetPasswordTemplateName + "_en-US_htm", LanguageCode = "en-US", TemplateType = TemplateType.Message, Content = Resources.reset_password_en_htm },
-                    new Template { TemplateKey = SecurityDefaults.VerifyAccountTemplateName + "_en-US_txt", LanguageCode = "en-US", TemplateType = TemplateType.Message, Content = Resources.verify_account_en_txt },
-                    new Template { TemplateKey = SecurityDefaults.VerifyAccountTemplateName + "_en-US_htm", LanguageCode = "en-US", TemplateType = TemplateType.Message, Content = Resources.verify_account_en_htm }
+                    new Template { TemplateKey = SecurityDefaults.ResetPasswordTemplateName + "_en-US_txt", LanguageCode = LocaleExtensions.DefaultLanguageCode, TemplateType = TemplateType.Message, Content = Resources.reset_password_en_txt },
+                    new Template { TemplateKey = SecurityDefaults.ResetPasswordTemplateName + "_en-US_htm", LanguageCode = LocaleExtensions.DefaultLanguageCode, TemplateType = TemplateType.Message, Content = Resources.reset_password_en_htm },
+                    new Template { TemplateKey = SecurityDefaults.VerifyAccountTemplateName + "_en-US_txt", LanguageCode = LocaleExtensions.DefaultLanguageCode, TemplateType = TemplateType.Message, Content = Resources.verify_account_en_txt },
+                    new Template { TemplateKey = SecurityDefaults.VerifyAccountTemplateName + "_en-US_htm", LanguageCode = LocaleExtensions.DefaultLanguageCode, TemplateType = TemplateType.Message, Content = Resources.verify_account_en_htm }
                 );
         }
 

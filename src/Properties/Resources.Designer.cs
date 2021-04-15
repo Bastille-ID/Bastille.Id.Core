@@ -61,6 +61,43 @@ namespace Bastille.Id.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; &gt;
+        ///&lt;title&gt;Subject Title&lt;/title&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;
+        ///html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
+        ///
+        ///    @media only screen and (min-device-width: 750px) {
+        ///        .table750 {width: 750px !important;}
+        ///    }
+        ///    @media only screen and (max-device-width: 750px), only screen and (max-width: 750px [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string default_template_en_htm {
+            get {
+                return ResourceManager.GetString("default_template_en_htm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hey $FIRSTNAME$,
+        /// 
+        ///Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        ///Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        /// 
+        ///Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+        ///occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        /// 
+        ///$LINK$.
+        /// </summary>
+        public static string default_template_en_txt {
+            get {
+                return ResourceManager.GetString("default_template_en_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Denied..
         /// </summary>
         public static string ErrorAccessDeniedText {

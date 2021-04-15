@@ -14,6 +14,8 @@
  *
 */
 
+using Talegen.Common.Core.Extensions;
+
 namespace Bastille.Id.Core.Security
 {
     /// <summary>
@@ -69,7 +71,7 @@ namespace Bastille.Id.Core.Security
         /// <summary>
         /// Contains the user default user locale.
         /// </summary>
-        public const string DefaultUserLocale = "en-US";
+        public const string DefaultUserLocale = LocaleExtensions.DefaultLanguageCode;
 
         /// <summary>
         /// Contains the maximum amount of time security information will stay in memory.

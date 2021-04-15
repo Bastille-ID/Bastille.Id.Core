@@ -1,4 +1,7 @@
+You're almost there! Please click the link below to verify your e-mail address and activate your account.
 
 Please click the link below to verify your e-mail address and activate your account.
 
 $LINK$
+
+If you did not request an account from us, please contact us at $SUPPORTEMAIL$.
