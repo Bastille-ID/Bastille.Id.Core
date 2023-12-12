@@ -52,12 +52,12 @@ namespace Bastille.Id.Core.Organization
                 UpdatedDate = entity.UpdatedDate,
                 Owner = entity.Owner != null ? new BastilleMicroUserModel
                 {
-                    UserId = entity.Owner.Id,
+                    Id = entity.Owner.Id,
                     Email = entity.Owner.Email,
                     FirstName = entity.Owner.Claims.Where(uc => uc.ClaimType == JwtClaimTypes.GivenName).Select(uc => uc.ClaimValue).FirstOrDefault(),
                     LastName = entity.Owner.Claims.Where(uc => uc.ClaimType == JwtClaimTypes.FamilyName).Select(uc => uc.ClaimValue).FirstOrDefault(),
                     Picture = entity.Owner.Claims.Where(uc => uc.ClaimType == JwtClaimTypes.Picture).Select(uc => uc.ClaimValue).FirstOrDefault(),
-                    UserName = entity.Owner.UserName
+                    Name = entity.Owner.UserName
                 } : null,
                 Groups = entity.Groups?.Select(g => new GroupModel
                 {
@@ -89,7 +89,7 @@ namespace Bastille.Id.Core.Organization
                 Region = model.Region,
                 Slug = string.IsNullOrWhiteSpace(model.Slug) ? model.Name.Slugify() : model.Slug,
                 UpdatedDate = model.UpdatedDate,
-                OwnerUserId = model.Owner.UserId
+                OwnerUserId = model.Owner.Id
             };
         }
 

@@ -32,7 +32,7 @@ namespace Bastille.Id.Core.Organization
     using Microsoft.EntityFrameworkCore;
     using Talegen.Common.Core.Errors;
     using Talegen.Common.Models.Security;
-    using Talegen.Common.Models.Shared.Queries;
+    using Talegen.Common.Models.Server.Queries;
 
     /// <summary>
     /// This class contains business logic related to organization groups within the database.

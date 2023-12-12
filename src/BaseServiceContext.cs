@@ -29,6 +29,7 @@ namespace Bastille.Id.Core
     using Talegen.Common.Core.Errors;
     using Talegen.Common.Core.Extensions;
     using Vasont.AspnetCore.RedisClient;
+    using Bastille.Id.Core.Extensions;
 
     /// <summary>
     /// This abstract class provides commonly used properties for service business logic context classes.
@@ -102,7 +103,7 @@ namespace Bastille.Id.Core
                 if (this.currentUserId == Guid.Empty && this.Principal != null)
                 {
                     // get subject
-                    var id = this.Principal.GetUserId();
+                    var id = this.Principal.SubjectId();
                     this.currentUserId = !string.IsNullOrEmpty(id) ? new Guid(id) : this.UserManager.GetUserId(this.Principal).ToGuid();
                 }
 
@@ -144,7 +145,7 @@ namespace Bastille.Id.Core
             {
                 if (string.IsNullOrEmpty(this.currentUserName))
                 {
-                    this.currentUserName = this.Principal.GetUserName();
+                    this.currentUserName = this.Principal.UserName();
                     if (string.IsNullOrWhiteSpace(this.currentUserName))
                     {
                         this.currentUserName = this.UserManager.GetUserName(this.Principal);

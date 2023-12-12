@@ -127,7 +127,8 @@ namespace Bastille.Id.Core.Extensions
 
             if (model.PictureUrl == null || !userClaims.Exists(x => x.ClaimType == JwtClaimTypes.Picture))
             {
-                model.PictureUrl = new Uri(ClaimExtensions.GenerateDefaultPictureUrl(baseUri));
+                string subjectId = userClaims.FirstOrDefault(uc => uc.ClaimType == JwtClaimTypes.Subject)?.ClaimValue ?? string.Empty;
+                model.PictureUrl = new Uri(ClaimExtensions.GenerateDefaultPictureUrl(baseUri, subjectId));
             }
         }
     }

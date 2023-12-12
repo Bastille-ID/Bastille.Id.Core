@@ -35,13 +35,13 @@ namespace Bastille.Id.Core.Security
         {
             return new MinimalUserModel
             {
-                UserId = entity.Id,
+                Id = entity.Id,
                 Email = entity.Email,
                 FirstName = entity.Claims.Where(c => c.ClaimType == JwtClaimTypes.GivenName).Select(c => c.ClaimValue).FirstOrDefault(),
                 LastName = entity.Claims.Where(c => c.ClaimType == JwtClaimTypes.FamilyName).Select(c => c.ClaimValue).FirstOrDefault(),
                 Locale = entity.Claims.Where(c => c.ClaimType == JwtClaimTypes.Locale).Select(c => c.ClaimValue).FirstOrDefault(),
                 TimeZone = entity.Claims.Where(c => c.ClaimType == JwtClaimTypes.ZoneInfo).Select(c => c.ClaimValue).FirstOrDefault(),
-                UserName = entity.UserName
+                Name = entity.UserName
             };
         }
     }

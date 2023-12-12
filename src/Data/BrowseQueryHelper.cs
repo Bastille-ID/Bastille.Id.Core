@@ -21,7 +21,7 @@ namespace Bastille.Id.Core.Data
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Talegen.Common.Core.Extensions;
-    using Talegen.Common.Models.Shared.Queries;
+    using Talegen.Common.Models.Server.Queries;
 
     /// <summary>
     /// This class contains page browsing helper methods for paginated queries used throughout the library.
@@ -82,7 +82,7 @@ namespace Bastille.Id.Core.Data
                 {
                     if (!string.IsNullOrWhiteSpace(filters.Sort[i]))
                     {
-                        baseQuery = baseQuery.OrderByName(filters.Sort[i], filters.Dir[i]);
+                        baseQuery = baseQuery.OrderByName(filters.Sort[i], filters.Direction[i]);
                     }
                 }
             }

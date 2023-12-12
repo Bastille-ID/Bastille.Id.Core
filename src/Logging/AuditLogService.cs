@@ -25,7 +25,7 @@ namespace Bastille.Id.Core.Logging
     using Bastille.Id.Models.Logging;
     using Microsoft.EntityFrameworkCore;
     using Talegen.Common.Core.Extensions;
-    using Talegen.Common.Models.Shared.Queries;
+    using Talegen.Common.Models.Server.Queries;
 
     /// <summary>
     /// This class provides security logging methods to the application.
@@ -136,7 +136,7 @@ namespace Bastille.Id.Core.Logging
                 {
                     if (!string.IsNullOrWhiteSpace(filters.Sort[i]))
                     {
-                        query = query.OrderByName(filters.Sort[i], filters.Dir[i]);
+                        query = query.OrderByName(filters.Sort[i], filters.Direction[i]);
                     }
                 }
             }

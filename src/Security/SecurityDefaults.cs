@@ -26,7 +26,22 @@ namespace Bastille.Id.Core.Security
         /// <summary>
         /// The identity API resource.
         /// </summary>
-        public const string IdentityApiResource = "bastille-id-api";
+        public const string ApiResourceNameKey = "bastille-id-api";
+
+        /// <summary>
+        /// The scope policy.
+        /// </summary>
+        public const string ScopePolicy = "ResourceScopePolicy";
+
+        /// <summary>
+        /// The backchannel policy.
+        /// </summary>
+        public const string BackchannelPolicy = "BackchannelPolicy";
+
+        /// <summary>
+        /// The client claim backchannel.
+        /// </summary>
+        public const string ClientClaimBackchannel = "client_backchannel";
 
         /// <summary>
         /// The default organization slug.

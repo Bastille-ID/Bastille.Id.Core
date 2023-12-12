@@ -16,6 +16,7 @@
 
 namespace Bastille.Id.Core.Security
 {
+    using Bastille.Id.Core.Configuration;
     using IdentityServer4.Stores;
     using Talegen.AspNetCore.Web.Extensions;
 
@@ -28,6 +29,12 @@ namespace Bastille.Id.Core.Security
         /// Contains The base URL.
         /// </summary>
         private string baseUrl;
+
+        /// <summary>
+        /// Gets or sets the profile settings.
+        /// </summary>
+        /// <value>The profile settings.</value>
+        public ProfileSettings ProfileSettings { get; set; }
 
         /// <summary>
         /// Gets or sets the security service.
@@ -51,13 +58,13 @@ namespace Bastille.Id.Core.Security
         /// Gets the current user time zone information. If the user has no time zone claim, time zone is set to a default of UTC.
         /// </summary>
         /// <returns>Returns a value indicating the time zone information for the logged-in user.</returns>
-        public string CurrentUserTimezone => this.Principal.GetTimeZone() ?? SecurityDefaults.DefaultUserTimeZone;
+        public string CurrentUserTimezone => this.Principal.TimeZone() ?? SecurityDefaults.DefaultUserTimeZone;
 
         /// <summary>
         /// Gets the current user locale information. If the user has no time zone claim, locale is set to a default English
         /// </summary>
         /// <returns>Returns a value indicating the locale for the logged-in user.</returns>
-        public string CurrentUserLocale => this.Principal.GetLocale() ?? SecurityDefaults.DefaultUserLocale;
+        public string CurrentUserLocale => this.Principal.Locale() ?? SecurityDefaults.DefaultUserLocale;
 
         /// <summary>
         /// Gets or sets the base URL.

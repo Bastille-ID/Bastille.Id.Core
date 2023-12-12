@@ -22,8 +22,10 @@ namespace Bastille.Id.Core.Security
     using System.Threading;
     using System.Threading.Tasks;
     using Bastille.Id.Core.Data.Entities;
+    using Bastille.Id.Core.Extensions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+    using Talegen.AspNetCore.Web.Extensions;
     using Talegen.Common.Core.Errors;
     using Talegen.Common.Models.Security;
     using Vasont.AspnetCore.RedisClient;
@@ -107,6 +109,7 @@ namespace Bastille.Id.Core.Security
         public async Task<bool> CanReadUserAsync(Guid userId, CancellationToken cancellationToken)
         {
             return this.context.CurrentUserId == userId ||
+                this.context.Principal.IsBackchannel() ||
                 await this.IsUserAdminAsync(this.context.CurrentUserId, cancellationToken).ConfigureAwait(false) ||
                 await this.CanManageUserAsync(userId, cancellationToken).ConfigureAwait(false);
         }
