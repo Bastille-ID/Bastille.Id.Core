@@ -18,17 +18,33 @@ namespace Bastille.Id.Core.Extensions
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Security.Claims;
     using Bastille.Id.Core.Security;
     using Bastille.Id.Models.Security;
     using IdentityModel;
     using Microsoft.AspNetCore.Identity;
+    using Talegen.Common.Core.Extensions;
 
     /// <summary>
     /// This class contains extension methods in support of working with claim to model conversions.
     /// </summary>
     public static class ClaimExtensions
     {
+        /// <summary>
+        /// The allowed profile claims.
+        /// </summary>
+        private static List<string> allowedProfileClaims = new List<string> { JwtClaimTypes.Name, JwtClaimTypes.GivenName, JwtClaimTypes.FamilyName, JwtClaimTypes.WebSite,
+            JwtClaimTypes.Address, JwtClaimTypes.BirthDate, JwtClaimTypes.Email, JwtClaimTypes.EmailVerified, JwtClaimTypes.FamilyName, JwtClaimTypes.Gender,
+            JwtClaimTypes.Locale, JwtClaimTypes.MiddleName, JwtClaimTypes.NickName, JwtClaimTypes.PhoneNumber, JwtClaimTypes.PhoneNumberVerified, JwtClaimTypes.Picture,
+            JwtClaimTypes.ZoneInfo };
+
+        /// <summary>
+        /// Gets the allowed profile claims.
+        /// </summary>
+        /// <value>The allowed profile claims.</value>
+        public static List<string> AllowedProfileClaims => allowedProfileClaims;
+
         /// <summary>
         /// Converts the specified user model to related JWT claims.
         /// </summary>
@@ -43,15 +59,46 @@ namespace Bastille.Id.Core.Extensions
                 throw new ArgumentNullException(nameof(model));
             }
 
-            return new List<Claim>
+            var results = new List<Claim>();
+
+            if (!string.IsNullOrEmpty(model.FullName))
             {
-                new Claim(JwtClaimTypes.GivenName, model.FirstName),
-                new Claim(JwtClaimTypes.FamilyName, model.LastName),
-                new Claim(JwtClaimTypes.Locale, model.Locale),
-                new Claim(JwtClaimTypes.ZoneInfo, model.TimeZone),
-                new Claim(JwtClaimTypes.PhoneNumber, model.Phone),
-                new Claim(JwtClaimTypes.Picture, !string.IsNullOrWhiteSpace(model.Picture) ? model.Picture : GenerateDefaultPictureUrl(baseUri))
-            };
+                results.Add(new Claim(JwtClaimTypes.Name, model.FullName));
+            }
+
+            if (!string.IsNullOrEmpty(model.FirstName))
+            {
+                results.Add(new Claim(JwtClaimTypes.GivenName, model.FirstName));
+            }
+
+            if (!string.IsNullOrEmpty(model.LastName))
+            {
+                results.Add(new Claim(JwtClaimTypes.FamilyName, model.LastName));
+            }
+
+            if (!string.IsNullOrEmpty(model.Locale))
+            {
+                results.Add(new Claim(JwtClaimTypes.Locale, model.Locale));
+            }
+
+            if (!string.IsNullOrEmpty(model.TimeZone))
+            {
+                results.Add(new Claim(JwtClaimTypes.ZoneInfo, model.TimeZone));
+            }
+
+            if (!string.IsNullOrEmpty(model.Phone))
+            {
+                results.Add(new Claim(JwtClaimTypes.PhoneNumber, model.Phone));
+            }
+
+            if (string.IsNullOrEmpty(model.Picture))
+            {
+                model.Picture = GenerateDefaultPictureUrl(baseUri, model.Id.ToString());
+            }
+
+            results.Add(new Claim(JwtClaimTypes.Picture, model.Picture));
+
+            return results;
         }
 
         /// <summary>
@@ -63,20 +110,20 @@ namespace Bastille.Id.Core.Extensions
         /// <exception cref="System.ArgumentNullException">The exception is thrown if the <paramref name="model" /> is not specified.</exception>
         public static List<Claim> ToClaims(this ProfileModel model, string baseUri = "")
         {
-            if (model == null)
+            var results = new List<Claim>();
+
+            if (string.IsNullOrEmpty(model.PictureUrl))
             {
-                throw new ArgumentNullException(nameof(model));
+                model.PictureUrl = GenerateDefaultPictureUrl(baseUri, model.UserId);
             }
 
-            return new List<Claim>
+            // return claims that are filtered
+            foreach (string key in model.Claims.Keys.Where(k => AllowedProfileClaims.Contains(k)))
             {
-                new Claim(JwtClaimTypes.GivenName, model.FirstName),
-                new Claim(JwtClaimTypes.FamilyName, model.LastName),
-                new Claim(JwtClaimTypes.Locale, model.Locale),
-                new Claim(JwtClaimTypes.ZoneInfo, model.TimeZone),
-                new Claim(JwtClaimTypes.PhoneNumber, model.PhoneNumber),
-                new Claim(JwtClaimTypes.Picture, !string.IsNullOrWhiteSpace(model.PictureUrl) ? model.PictureUrl : GenerateDefaultPictureUrl(baseUri))
-            };
+                results.Add(new Claim(key, model.Claims[key].ConvertToString()));
+            }
+
+            return results;
         }
 
         /// <summary>
@@ -125,7 +172,8 @@ namespace Bastille.Id.Core.Extensions
 
             if (string.IsNullOrEmpty(model.Picture) || !userClaims.Exists(x => x.ClaimType == JwtClaimTypes.Picture))
             {
-                model.Picture = GenerateDefaultPictureUrl(baseUri);
+                string subjectId = userClaims.FirstOrDefault(uc => uc.ClaimType == JwtClaimTypes.Subject)?.ClaimValue ?? string.Empty;
+                model.Picture = GenerateDefaultPictureUrl(baseUri, subjectId);
             }
         }
 
@@ -133,10 +181,11 @@ namespace Bastille.Id.Core.Extensions
         /// This method is used to generate the default picture address.
         /// </summary>
         /// <param name="baseUri">Contains the base URI for the default picture address.</param>
+        /// <param name="subjectId">Contains the subject id.</param>
         /// <returns>Returns the generated default picture address.</returns>
-        public static string GenerateDefaultPictureUrl(string baseUri)
+        public static string GenerateDefaultPictureUrl(string baseUri, string subjectId)
         {
-            return string.Concat(baseUri, SecurityDefaults.DefaultUserImageName);
+            return string.Concat(baseUri, $"/Picture/{subjectId}");
         }
     }
 }

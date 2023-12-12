@@ -944,31 +944,18 @@ namespace Bastille.Id.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
+        ///   Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+        ///&lt;html&gt;
         ///&lt;head&gt;
-        ///    &lt;title&gt;Reset Your Password&lt;/title&gt;
-        ///    &lt;style&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; &gt;
+        ///&lt;title&gt;Reset Your Password&lt;/title&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;
+        ///html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
         ///
-        ///        body, html {
-        ///            padding: 0;
-        ///            margin: 0;
-        ///            font-family: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;
-        ///            font-size: 16px;
-        ///            color: black;
-        ///            background-color: whitesmoke;
-        ///        }
-        ///
-        ///        body,
-        ///        html, 
-        ///        .body {
-        ///          background: #f3f3f3 !important;
-        ///        }
-        ///
-        ///        .header {
-        ///          background: #f3f3f3;
-        ///        }
-        ///
-        ///        #heade [rest of string was truncated]&quot;;.
+        ///    @media only screen and (min-device-width: 750px) {
+        ///        .table750 {width: 750px !important;}
+        ///    }
+        ///    @media only screen and (max-device-width: 750px), only screen and (max-width: [rest of string was truncated]&quot;;.
         /// </summary>
         public static string reset_password_en_htm {
             get {
@@ -983,7 +970,7 @@ namespace Bastille.Id.Core.Properties {
         ///
         ///$LINK$
         ///
-        ///If you did not request a password reset, please contact us..
+        ///If you did not request a password reset, please contact us at $SUPPORTEMAIL$..
         /// </summary>
         public static string reset_password_en_txt {
             get {
@@ -992,31 +979,27 @@ namespace Bastille.Id.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
+        ///   Looks up a localized string similar to The configuration setting &quot;{0}&quot; was not found in application storage configuration..
+        /// </summary>
+        public static string StorageConfigurationNotSpecifiedErrorText {
+            get {
+                return ResourceManager.GetString("StorageConfigurationNotSpecifiedErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+        ///&lt;html&gt;
         ///&lt;head&gt;
-        ///    &lt;title&gt;Reset Your Password&lt;/title&gt;
-        ///    &lt;style&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; &gt;
+        ///&lt;title&gt;Verify Your Account&lt;/title&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;
+        ///html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
         ///
-        ///        body, html {
-        ///            padding: 0;
-        ///            margin: 0;
-        ///            font-family: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;
-        ///            font-size: 16px;
-        ///            color: black;
-        ///            background-color: whitesmoke;
-        ///        }
-        ///
-        ///        #header {
-        ///            height: 64px;
-        ///        }
-        ///
-        ///        #logo {
-        ///            padding: 0;
-        ///            height: 64px;
-        ///            width: 182px;
-        ///        }
-        ///
-        ///        #conta [rest of string was truncated]&quot;;.
+        ///    @media only screen and (min-device-width: 750px) {
+        ///        .table750 {width: 750px !important;}
+        ///    }
+        ///    @media only screen and (max-device-width: 750px), only screen and (max-width: [rest of string was truncated]&quot;;.
         /// </summary>
         public static string verify_account_en_htm {
             get {
@@ -1025,10 +1008,13 @@ namespace Bastille.Id.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 
+        ///   Looks up a localized string similar to You&apos;re almost there! Please click the link below to verify your e-mail address and activate your account.
+        ///
         ///Please click the link below to verify your e-mail address and activate your account.
         ///
-        ///$LINK$.
+        ///$LINK$
+        ///
+        ///If you did not request an account from us, please contact us at $SUPPORTEMAIL$..
         /// </summary>
         public static string verify_account_en_txt {
             get {

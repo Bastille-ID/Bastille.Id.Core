@@ -129,21 +129,53 @@
             Gets the current user name.
             </summary>
         </member>
-        <member name="T:Bastille.Id.Core.Configuration.InstrumentationConfigInitializer">
+        <member name="T:Bastille.Id.Core.Configuration.LoginIdentifierMethod">
             <summary>
-            This class implements a Microsoft Instrumentation Telemetry Initializer instance.
+            Contains an enumerated list of required authentication identifier types.
             </summary>
         </member>
-        <member name="M:Bastille.Id.Core.Configuration.InstrumentationConfigInitializer.#ctor">
+        <member name="F:Bastille.Id.Core.Configuration.LoginIdentifierMethod.UserName">
             <summary>
-            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Configuration.InstrumentationConfigInitializer" /> class.
+            User must specify their user name.
             </summary>
         </member>
-        <member name="M:Bastille.Id.Core.Configuration.InstrumentationConfigInitializer.Initialize(Microsoft.ApplicationInsights.Channel.ITelemetry)">
+        <member name="F:Bastille.Id.Core.Configuration.LoginIdentifierMethod.Email">
             <summary>
-            This method is called to initialize the instrumentation telemetry configuration.
+            User must specify their e-mail address.
             </summary>
-            <param name="telemetry">Contains the telemetry object that is being initialized.</param>
+        </member>
+        <member name="F:Bastille.Id.Core.Configuration.LoginIdentifierMethod.UserNameOrEmail">
+            <summary>
+            User can specify their username, or email address
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Configuration.LoginIdentifierMethod.UserNameOrEmailOrPhone">
+            <summary>
+            User can specify their username, email address, or phone number
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Configuration.ProfileSettings">
+            <summary>
+            This class contains profile related settings.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.ProfileSettings.IdentifierMethod">
+            <summary>
+            Gets or sets the identifier method.
+            </summary>
+            <value>The identifier method.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.ProfileSettings.AllowUserNameChange">
+            <summary>
+            Gets or sets a value indicating whether to allow the call to modify the user name on a profile.
+            </summary>
+            <value><c>true</c> if allowing the call to modify the user name on a profile; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.ProfileSettings.ProfilePictureUriBase">
+            <summary>
+            Gets or sets the profile picture URI base.
+            </summary>
+            <value>The profile picture URI base.</value>
         </member>
         <member name="T:Bastille.Id.Core.Configuration.StorageType">
             <summary>
@@ -170,17 +202,25 @@
             Contains storage settings.
             </summary>
         </member>
-        <member name="P:Bastille.Id.Core.Configuration.StorageSettings.RootPath">
-            <summary>
-            Gets or sets the root path.
-            </summary>
-            <value>The root path.</value>
-        </member>
         <member name="P:Bastille.Id.Core.Configuration.StorageSettings.StorageType">
             <summary>
             Gets or sets the type of the storage.
             </summary>
             <value>The type of the storage.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.StorageSettings.RootPathUri">
+            <summary>
+            Gets or sets the root path.
+            </summary>
+            <value>The root path.</value>
+        </member>
+        <member name="P:Bastille.Id.Core.Configuration.StorageSettings.Configuration">
+            <summary>
+            Gets or sets a dictionary array of configuration settings for an external storage service.
+            </summary>
+            <value>
+            The dictionary contains a key (configuration setting) and value (configuration value) parameter for one or more unique settings for the storage implementation.
+            </value>
         </member>
         <member name="T:Bastille.Id.Core.Configuration.SynchronizationSettings">
             <summary>
@@ -312,7 +352,7 @@
             This class contains page browsing helper methods for paginated queries used throughout the library.
             </summary>
         </member>
-        <member name="M:Bastille.Id.Core.Data.BrowseQueryHelper.ExecutePagedQueryAsync``1(System.Linq.IQueryable{``0},Talegen.Common.Models.Shared.Queries.PaginatedQueryRequestModel,System.String,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Data.BrowseQueryHelper.ExecutePagedQueryAsync``1(System.Linq.IQueryable{``0},Talegen.Common.Models.Server.Queries.PaginatedQueryRequestModel,System.String,System.Threading.CancellationToken)">
             <summary>
             Executes the paged user query.
             </summary>
@@ -321,9 +361,9 @@
             <param name="filters">The filters.</param>
             <param name="defaultSortColumnName">Default name of the sort column.</param>
             <param name="cancellationToken">The cancellation token.</param>
-            <returns>Returns a <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> object.</returns>
+            <returns>Returns a <see cref="T:Talegen.Common.Models.Server.Queries.PaginatedQueryResultModel`1" /> object.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Data.BrowseQueryHelper.BuildPagedQuery``1(Talegen.Common.Models.Shared.Queries.PaginatedQueryRequestModel,System.Linq.IQueryable{``0},System.String,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Data.BrowseQueryHelper.BuildPagedQuery``1(Talegen.Common.Models.Server.Queries.PaginatedQueryRequestModel,System.Linq.IQueryable{``0},System.String,System.Threading.CancellationToken)">
             <summary>
             This method is used to build the query LINQ for reuse between retrieval methods in the service class.
             </summary>
@@ -1206,6 +1246,17 @@
             This class contains extension methods in support of working with claim to model conversions.
             </summary>
         </member>
+        <member name="F:Bastille.Id.Core.Extensions.ClaimExtensions.allowedProfileClaims">
+            <summary>
+            The allowed profile claims.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Extensions.ClaimExtensions.AllowedProfileClaims">
+            <summary>
+            Gets the allowed profile claims.
+            </summary>
+            <value>The allowed profile claims.</value>
+        </member>
         <member name="M:Bastille.Id.Core.Extensions.ClaimExtensions.ToClaims(Bastille.Id.Models.Security.BastilleUserModel,System.String)">
             <summary>
             Converts the specified user model to related JWT claims.
@@ -1232,11 +1283,12 @@
             <param name="userClaims">Contains the claims used to populate the model.</param>
             <param name="baseUri">Contains the base address to prefix for a user's default picture URL if none is found or specified.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ClaimExtensions.GenerateDefaultPictureUrl(System.String)">
+        <member name="M:Bastille.Id.Core.Extensions.ClaimExtensions.GenerateDefaultPictureUrl(System.String,System.String)">
             <summary>
             This method is used to generate the default picture address.
             </summary>
             <param name="baseUri">Contains the base URI for the default picture address.</param>
+            <param name="subjectId">Contains the subject id.</param>
             <returns>Returns the generated default picture address.</returns>
         </member>
         <member name="T:Bastille.Id.Core.Extensions.MessagingExtensions">
@@ -1712,7 +1764,7 @@
             </summary>
             <param name="filters">The filters.</param>
             <param name="cancellationToken">The cancellation token.</param>
-            <returns>Returns a <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> result.</returns>
+            <returns>Returns a <see cref="T:Talegen.Common.Models.Server.Queries.PaginatedQueryResultModel`1" /> result.</returns>
             <exception cref="T:System.ArgumentNullException">The exception is thrown if the <paramref name="filters" /> parameter is not set.</exception>
         </member>
         <member name="M:Bastille.Id.Core.Logging.AuditLogService.LogAsync(Bastille.Id.Models.Logging.AuditEvent,Bastille.Id.Models.Logging.AuditResult,System.String,System.String,System.Nullable{System.Guid},System.String,System.Threading.CancellationToken)">
@@ -1743,7 +1795,7 @@
             <param name="query">Contains the LINQ statement to execute.</param>
             <param name="filters">Contains the filters used for the query</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the results of the query in an <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> model.</returns>
+            <returns>Returns the results of the query in an <see cref="T:Talegen.Common.Models.Server.Queries.PaginatedQueryResultModel`1" /> model.</returns>
         </member>
         <member name="T:Bastille.Id.Core.Organization.GroupService">
             <summary>
@@ -1764,7 +1816,7 @@
             </summary>
             <param name="filter">The filter.</param>
             <param name="cancellationToken">The cancellation token.</param>
-            <returns>Returns the <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> containing the records found.</returns>
+            <returns>Returns the <see cref="T:Talegen.Common.Models.Server.Queries.PaginatedQueryResultModel`1" /> containing the records found.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Organization.GroupService.ReadAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
@@ -1891,7 +1943,7 @@
             </summary>
             <param name="filter">The filter.</param>
             <param name="cancellationToken">The cancellation token.</param>
-            <returns>Returns the <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> containing the records found.</returns>
+            <returns>Returns the <see cref="T:Talegen.Common.Models.Server.Queries.PaginatedQueryResultModel`1" /> containing the records found.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Organization.OrganizationService.ReadAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
@@ -1954,6 +2006,16 @@
             This class is automatically generated and will create resource keys for use within the application.
             </summary>
         </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.default_template_en_htm">
+            <summary>
+            Gets the key for the default_template_en_htm resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.default_template_en_txt">
+            <summary>
+            Gets the key for the default_template_en_txt resource string.
+            </summary>
+        </member>
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorAccessDeniedText">
             <summary>
             Gets the key for the ErrorAccessDeniedText resource string.
@@ -1962,6 +2024,26 @@
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorClientNotFoundText">
             <summary>
             Gets the key for the ErrorClientNotFoundText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorGroupNameExistsText">
+            <summary>
+            Gets the key for the ErrorGroupNameExistsText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorGroupNotFoundText">
+            <summary>
+            Gets the key for the ErrorGroupNotFoundText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorGroupSpecifyOwnerText">
+            <summary>
+            Gets the key for the ErrorGroupSpecifyOwnerText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorOrganizationNotFoundText">
+            <summary>
+            Gets the key for the ErrorOrganizationNotFoundText resource string.
             </summary>
         </member>
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.ErrorRecordNotFoundText">
@@ -1994,6 +2076,51 @@
             Gets the key for the LabelNewPasswordText resource string.
             </summary>
         </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PrompGroupCreateSuccessText">
+            <summary>
+            Gets the key for the PrompGroupCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientClaimCreateFailText">
+            <summary>
+            Gets the key for the PromptClientClaimCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientClaimCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientClaimCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientClaimDeleteFailText">
+            <summary>
+            Gets the key for the PromptClientClaimDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientClaimDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientClaimDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientClaimExistsFailText">
+            <summary>
+            Gets the key for the PromptClientClaimExistsFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientClaimNotFoundFailText">
+            <summary>
+            Gets the key for the PromptClientClaimNotFoundFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientClaimUpdateFailText">
+            <summary>
+            Gets the key for the PromptClientClaimUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientClaimUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientClaimUpdateSuccessText resource string.
+            </summary>
+        </member>
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientCreateFailureText">
             <summary>
             Gets the key for the PromptClientCreateFailureText resource string.
@@ -2014,6 +2141,41 @@
             Gets the key for the PromptClientDeleteSuccessText resource string.
             </summary>
         </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientGrantTypeCreateFailText">
+            <summary>
+            Gets the key for the PromptClientGrantTypeCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientGrantTypeCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientGrantTypeCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientGrantTypeDeleteFailText">
+            <summary>
+            Gets the key for the PromptClientGrantTypeDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientGrantTypeDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientGrantTypeDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientGrantTypeExistsFailText">
+            <summary>
+            Gets the key for the PromptClientGrantTypeExistsFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientGrantTypeUpdateFailText">
+            <summary>
+            Gets the key for the PromptClientGrantTypeUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientGrantTypeUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientGrantTypeUpdateSuccessText resource string.
+            </summary>
+        </member>
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientIdExistsText">
             <summary>
             Gets the key for the PromptClientIdExistsText resource string.
@@ -2024,6 +2186,216 @@
             Gets the key for the PromptClientIdRequiredText resource string.
             </summary>
         </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientLogoutCreateFailText">
+            <summary>
+            Gets the key for the PromptClientLogoutCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientLogoutCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientLogoutCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientLogoutDeleteFailText">
+            <summary>
+            Gets the key for the PromptClientLogoutDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientLogoutDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientLogoutDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientLogoutExistsFailText">
+            <summary>
+            Gets the key for the PromptClientLogoutExistsFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientLogoutUpdateFailText">
+            <summary>
+            Gets the key for the PromptClientLogoutUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientLogoutUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientLogoutUpdateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientOriginCreateFailText">
+            <summary>
+            Gets the key for the PromptClientOriginCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientOriginCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientOriginCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientOriginDeleteFailText">
+            <summary>
+            Gets the key for the PromptClientOriginDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientOriginDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientOriginDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientOriginExistsFailText">
+            <summary>
+            Gets the key for the PromptClientOriginExistsFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientOriginUpdateFailText">
+            <summary>
+            Gets the key for the PromptClientOriginUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientOriginUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientOriginUpdateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientPropertyCreateFailText">
+            <summary>
+            Gets the key for the PromptClientPropertyCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientPropertyCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientPropertyCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientPropertyDeleteFailText">
+            <summary>
+            Gets the key for the PromptClientPropertyDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientPropertyDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientPropertyDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientPropertyExistsFailText">
+            <summary>
+            Gets the key for the PromptClientPropertyExistsFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientPropertyUpdateFailText">
+            <summary>
+            Gets the key for the PromptClientPropertyUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientPropertyUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientPropertyUpdateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientRedirectCreateFailText">
+            <summary>
+            Gets the key for the PromptClientRedirectCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientRedirectCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientRedirectCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientRedirectDeleteFailText">
+            <summary>
+            Gets the key for the PromptClientRedirectDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientRedirectDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientRedirectDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientRedirectExistsFailText">
+            <summary>
+            Gets the key for the PromptClientRedirectExistsFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientRedirectUpdateFailText">
+            <summary>
+            Gets the key for the PromptClientRedirectUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientRedirectUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientRedirectUpdateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientScopeCreateFailText">
+            <summary>
+            Gets the key for the PromptClientScopeCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientScopeCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientScopeCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientScopeDeleteFailText">
+            <summary>
+            Gets the key for the PromptClientScopeDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientScopeDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientScopeDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientScopeExistsFailText">
+            <summary>
+            Gets the key for the PromptClientScopeExistsFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientScopeUpdateFailText">
+            <summary>
+            Gets the key for the PromptClientScopeUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientScopeUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientScopeUpdateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientSecretCreateFailText">
+            <summary>
+            Gets the key for the PromptClientSecretCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientSecretCreateSuccessText">
+            <summary>
+            Gets the key for the PromptClientSecretCreateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientSecretDeleteFailText">
+            <summary>
+            Gets the key for the PromptClientSecretDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientSecretDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptClientSecretDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientSecretExistsFailText">
+            <summary>
+            Gets the key for the PromptClientSecretExistsFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientSecretUpdateFailText">
+            <summary>
+            Gets the key for the PromptClientSecretUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientSecretUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptClientSecretUpdateSuccessText resource string.
+            </summary>
+        </member>
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientUpdateFailureText">
             <summary>
             Gets the key for the PromptClientUpdateFailureText resource string.
@@ -2032,6 +2404,31 @@
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptClientUpdateSuccessText">
             <summary>
             Gets the key for the PromptClientUpdateSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptGroupCreateFailText">
+            <summary>
+            Gets the key for the PromptGroupCreateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptGroupDeleteFailText">
+            <summary>
+            Gets the key for the PromptGroupDeleteFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptGroupDeleteSuccessText">
+            <summary>
+            Gets the key for the PromptGroupDeleteSuccessText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptGroupUpdateFailText">
+            <summary>
+            Gets the key for the PromptGroupUpdateFailText resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptGroupUpdateSuccessText">
+            <summary>
+            Gets the key for the PromptGroupUpdateSuccessText resource string.
             </summary>
         </member>
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.PromptNewAndConfirmPasswordAreNeededText">
@@ -2097,6 +2494,11 @@
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.reset_password_en_txt">
             <summary>
             Gets the key for the reset_password_en_txt resource string.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Properties.ResourceKeys.StorageConfigurationNotSpecifiedErrorText">
+            <summary>
+            Gets the key for the StorageConfigurationNotSpecifiedErrorText resource string.
             </summary>
         </member>
         <member name="F:Bastille.Id.Core.Properties.ResourceKeys.verify_account_en_htm">
@@ -2626,31 +3028,18 @@
         </member>
         <member name="P:Bastille.Id.Core.Properties.Resources.reset_password_en_htm">
              <summary>
-               Looks up a localized string similar to &lt;html&gt;
+               Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+            &lt;html&gt;
             &lt;head&gt;
-                &lt;title&gt;Reset Your Password&lt;/title&gt;
-                &lt;style&gt;
+            &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; &gt;
+            &lt;title&gt;Reset Your Password&lt;/title&gt;
+            &lt;style type=&quot;text/css&quot;&gt;
+            html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
             
-                    body, html {
-                        padding: 0;
-                        margin: 0;
-                        font-family: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;
-                        font-size: 16px;
-                        color: black;
-                        background-color: whitesmoke;
-                    }
-            
-                    body,
-                    html, 
-                    .body {
-                      background: #f3f3f3 !important;
-                    }
-            
-                    .header {
-                      background: #f3f3f3;
-                    }
-            
-                    #heade [rest of string was truncated]&quot;;.
+                @media only screen and (min-device-width: 750px) {
+                    .table750 {width: 750px !important;}
+                }
+                @media only screen and (max-device-width: 750px), only screen and (max-width: [rest of string was truncated]&quot;;.
              </summary>
         </member>
         <member name="P:Bastille.Id.Core.Properties.Resources.reset_password_en_txt">
@@ -2661,44 +3050,39 @@
             
             $LINK$
             
-            If you did not request a password reset, please contact us..
+            If you did not request a password reset, please contact us at $SUPPORTEMAIL$..
              </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.StorageConfigurationNotSpecifiedErrorText">
+            <summary>
+              Looks up a localized string similar to The configuration setting &quot;{0}&quot; was not found in application storage configuration..
+            </summary>
         </member>
         <member name="P:Bastille.Id.Core.Properties.Resources.verify_account_en_htm">
              <summary>
-               Looks up a localized string similar to &lt;html&gt;
+               Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+            &lt;html&gt;
             &lt;head&gt;
-                &lt;title&gt;Reset Your Password&lt;/title&gt;
-                &lt;style&gt;
+            &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; &gt;
+            &lt;title&gt;Verify Your Account&lt;/title&gt;
+            &lt;style type=&quot;text/css&quot;&gt;
+            html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
             
-                    body, html {
-                        padding: 0;
-                        margin: 0;
-                        font-family: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;
-                        font-size: 16px;
-                        color: black;
-                        background-color: whitesmoke;
-                    }
-            
-                    #header {
-                        height: 64px;
-                    }
-            
-                    #logo {
-                        padding: 0;
-                        height: 64px;
-                        width: 182px;
-                    }
-            
-                    #conta [rest of string was truncated]&quot;;.
+                @media only screen and (min-device-width: 750px) {
+                    .table750 {width: 750px !important;}
+                }
+                @media only screen and (max-device-width: 750px), only screen and (max-width: [rest of string was truncated]&quot;;.
              </summary>
         </member>
         <member name="P:Bastille.Id.Core.Properties.Resources.verify_account_en_txt">
              <summary>
-               Looks up a localized string similar to 
+               Looks up a localized string similar to You&apos;re almost there! Please click the link below to verify your e-mail address and activate your account.
+            
             Please click the link below to verify your e-mail address and activate your account.
             
-            $LINK$.
+            $LINK$
+            
+            If you did not request an account from us, please contact us at $SUPPORTEMAIL$..
              </summary>
         </member>
         <member name="T:Bastille.Id.Core.Security.ModelExtensions">
@@ -2718,9 +3102,24 @@
             This class contains security default constants
             </summary>
         </member>
-        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.IdentityApiResource">
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ApiResourceNameKey">
             <summary>
             The identity API resource.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ScopePolicy">
+            <summary>
+            The scope policy.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.BackchannelPolicy">
+            <summary>
+            The backchannel policy.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Security.SecurityDefaults.ClientClaimBackchannel">
+            <summary>
+            The client claim backchannel.
             </summary>
         </member>
         <member name="F:Bastille.Id.Core.Security.SecurityDefaults.DefaultOrganizationSlug">
@@ -2999,7 +3398,7 @@
             </summary>
             <param name="filter">The filter.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns a <see cref="T:Talegen.Common.Models.Shared.Queries.PaginatedQueryResultModel`1" /> paginated result model.</returns>
+            <returns>Returns a <see cref="T:Talegen.Common.Models.Server.Queries.PaginatedQueryResultModel`1" /> paginated result model.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Security.UserService.ReadUserAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>
@@ -3167,6 +3566,12 @@
             Contains The base URL.
             </summary>
         </member>
+        <member name="P:Bastille.Id.Core.Security.UserServiceContext.ProfileSettings">
+            <summary>
+            Gets or sets the profile settings.
+            </summary>
+            <value>The profile settings.</value>
+        </member>
         <member name="P:Bastille.Id.Core.Security.UserServiceContext.SecurityService">
             <summary>
             Gets or sets the security service.
@@ -3240,6 +3645,59 @@
             </summary>
             <param name="cancellationToken">Contains an optional cancellation token.</param>
             <returns>Returns the number of rows updated on success.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Storage.ImageService">
+            <summary>
+            This class contains methods for interacting with stored images.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Storage.ImageService.storageService">
+            <summary>
+            The storage service.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Storage.ImageService.#ctor(Bastille.Id.Core.Configuration.StorageSettings)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Storage.ImageService" /> class.
+            </summary>
+            <param name="storageSettings">The storage settings.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Storage.ImageService.ReadImage(System.Guid,System.Int32,System.String)">
+            <summary>
+            Reads the image.
+            </summary>
+            <param name="userId">The user identifier.</param>
+            <param name="scaleSize">Size of the scale.</param>
+            <param name="defaultImageNamePath">The default image name path.</param>
+            <returns>Returns the image bytes</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:Bastille.Id.Core.Storage.StorageConfigurationKeys">
+            <summary>
+            This class contains storage configuration key names.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Storage.StorageConfigurationKeys.AzureAccountName">
+            <summary>
+            The azure account name
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Storage.StorageConfigurationKeys.AzureAccountKey">
+            <summary>
+            The azure account key
+            </summary>
+        </member>
+        <member name="T:Bastille.Id.Core.Storage.StorageFactory">
+            <summary>
+            This class contains methods for creating a storage service.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Storage.StorageFactory.Create(Bastille.Id.Core.Configuration.StorageSettings)">
+            <summary>
+            Creates the specified storage settings.
+            </summary>
+            <param name="storageSettings">The storage settings.</param>
+            <returns>Returns a new <see cref="T:Talegen.Storage.Net.Core.IStorageService" /> instance.</returns>
         </member>
         <member name="T:Bastille.Id.Server.Core.Data.DataInstallHelpers">
             <summary>

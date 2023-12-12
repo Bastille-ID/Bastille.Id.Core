@@ -16,6 +16,7 @@
 
 namespace Bastille.Id.Core.Configuration
 {
+    using System.Collections.Generic;
     using System.Text.Json.Serialization;
     using Newtonsoft.Json.Converters;
 
@@ -47,15 +48,23 @@ namespace Bastille.Id.Core.Configuration
     public class StorageSettings
     {
         /// <summary>
-        /// Gets or sets the root path.
-        /// </summary>
-        /// <value>The root path.</value>
-        public string RootPath { get; set; }
-
-        /// <summary>
         /// Gets or sets the type of the storage.
         /// </summary>
         /// <value>The type of the storage.</value>
         public StorageType StorageType { get; set; } = StorageType.Local;
+
+        /// <summary>
+        /// Gets or sets the root path.
+        /// </summary>
+        /// <value>The root path.</value>
+        public string RootPathUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets a dictionary array of configuration settings for an external storage service.
+        /// </summary>
+        /// <value>
+        /// The dictionary contains a key (configuration setting) and value (configuration value) parameter for one or more unique settings for the storage implementation.
+        /// </value>
+        public Dictionary<string, string> Configuration { get; set; } = new Dictionary<string, string>();
     }
 }

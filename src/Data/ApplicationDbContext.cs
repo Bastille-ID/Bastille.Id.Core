@@ -170,6 +170,11 @@ namespace Bastille.Id.Core.Data
             builder.Entity<IdentityUserRole<Guid>>().ToTable("IdentityUserRoles");
             builder.Entity<IdentityRoleClaim<Guid>>().ToTable("IdentityRoleClaims").Property(p => p.Id).HasColumnName("RoleClaimId");
             builder.Entity<IdentityUserClaim<Guid>>().ToTable("IdentityUserClaims").Property(p => p.Id).HasColumnName("UserClaimId");
+            builder.Entity<IdentityUserClaim<Guid>>()
+                .HasOne("Bastille.Id.Core.Data.Entities.User", null)
+                .WithMany("Claims")
+                .HasForeignKey("UserId");
+
             builder.Entity<IdentityUserLogin<Guid>>().ToTable("IdentityUserLogins");
             builder.Entity<IdentityUserToken<Guid>>().ToTable("IdentityUserTokens");
             builder.Entity<User>().HasKey(u => u.Id);

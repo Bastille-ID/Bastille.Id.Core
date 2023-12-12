@@ -3180,14 +3180,9 @@ If you did not request a password reset, please contact us at $SUPPORTEMAIL$.",
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("UserId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("IdentityUserClaims");
                 });
@@ -3374,7 +3369,7 @@ If you did not request a password reset, please contact us at $SUPPORTEMAIL$.",
 
                     b.HasOne("Bastille.Id.Core.Data.Entities.User", null)
                         .WithMany("Claims")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>

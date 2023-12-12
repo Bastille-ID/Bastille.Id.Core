@@ -27,13 +27,15 @@ namespace Bastille.Id.Core.Security
     using Bastille.Id.Core.Extensions;
     using Bastille.Id.Core.Properties;
     using Bastille.Id.Models.Logging;
+    using Bastille.Id.Models.Organization;
     using Bastille.Id.Models.Security;
     using IdentityModel;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Talegen.Common.Core.Errors;
+    using Talegen.Common.Core.Extensions;
     using Talegen.Common.Models.Security.Queries;
-    using Talegen.Common.Models.Shared.Queries;
+    using Talegen.Common.Models.Server.Queries;
 
     /// <summary>
     /// This class contains methods for querying the application database for user related data and queries.
@@ -70,9 +72,9 @@ namespace Bastille.Id.Core.Security
                 .AsNoTracking()
                 .Select(u => new BastilleUserModel
                 {
-                    UserId = u.Id,
+                    Id = u.Id,
                     Email = u.Email,
-                    UserName = u.UserName,
+                    Name = u.UserName,
                     TimeZone = u.Claims.Where(c => c.ClaimType == JwtClaimTypes.ZoneInfo).Select(c => c.ClaimValue).FirstOrDefault(),
                     Locale = u.Claims.Where(c => c.ClaimType == JwtClaimTypes.Locale).Select(c => c.ClaimValue).FirstOrDefault(),
                     FirstName = u.Claims.Where(c => c.ClaimType == JwtClaimTypes.GivenName).Select(c => c.ClaimValue).FirstOrDefault(),
@@ -88,7 +90,7 @@ namespace Bastille.Id.Core.Security
 
             if (!string.IsNullOrWhiteSpace(filter.SearchText))
             {
-                query = query.Where(g => g.UserName.Contains(filter.SearchText) ||
+                query = query.Where(g => g.Name.Contains(filter.SearchText) ||
                 g.Email.Contains(filter.SearchText) ||
                 g.FirstName.Contains(filter.SearchText) ||
                 g.LastName.Contains(filter.SearchText) ||
@@ -195,7 +197,7 @@ namespace Bastille.Id.Core.Security
         /// <returns>Returns the <see cref="BastilleUserModel" /> model updated.</returns>
         public async Task<BastilleUserModel> UpdateUserAsync(BastilleUserModel model, CancellationToken cancellationToken)
         {
-            User updatedUser = await this.context.UserManager.FindByIdAsync(model.UserId.ToString());
+            User updatedUser = await this.context.UserManager.FindByIdAsync(model.Id.ToString());
 
             if (updatedUser != null)
             {
@@ -381,15 +383,15 @@ namespace Bastille.Id.Core.Security
         public async Task<bool> UpdateProfileAsync(ProfileModel model, CancellationToken cancellationToken)
         {
             // can the current user manage the profile we're seeking to update...
-            if (await this.context.SecurityService.CanManageUserAsync(model.UserId, cancellationToken))
+            if (await this.context.SecurityService.CanManageUserAsync(model.UserId.ToGuid(), cancellationToken))
             {
                 // continue...
-                User updatedUser = await this.ReadUserAsync(model.UserId, cancellationToken);
+                User updatedUser = await this.ReadUserAsync(model.UserId.ToGuid(), cancellationToken);
 
                 if (updatedUser != null)
                 {
                     // Update this users profile information
-                    model = await this.UpdateUserFromProfileAsync(updatedUser, model);
+                    await this.UpdateUserFromProfileAsync(updatedUser, model);
 
                     // Update this users Claim records
                     if ((await this.UpdateUserClaimsAsync(updatedUser, model.ToClaims(this.context.BaseUrl))).Succeeded)
@@ -477,19 +479,38 @@ namespace Bastille.Id.Core.Security
                     }
                 }
 
-                // get the first group the user is a member of
-                Group group = await this.context.DataContext.Groups
+                model.UserId = user.Id.ToString();
+                model.Email = user.Email;
+                model.IsEmailConfirmed = user.EmailConfirmed;
+
+                if (string.IsNullOrWhiteSpace(model.PhoneNumber) && !string.IsNullOrWhiteSpace(user.PhoneNumber))
+                {
+                    model.PhoneNumber = user.PhoneNumber;
+                }
+
+                model.Organizations = await this.context.DataContext.Organizations
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(o => o.Members.Any(ou => ou.UserId == user.Id), cancellationToken)
+                    .Where(o => o.Groups.Any(g => g.Members.Any(m => m.UserId == user.Id)))
+                    .Select(o => new MicroOrganizationModel { OrganizationId = o.OrganizationId, Name = o.Name })
+                    .ToListAsync(cancellationToken)
                     .ConfigureAwait(false);
 
-                if (group != null)
-                {
-                    model.GroupId = group.GroupId;
+                // get the user's group assignments
+                model.Groups = await this.context.DataContext.Groups
+                    .AsNoTracking()
+                    .Where(o => o.Members.Any(ou => ou.UserId == user.Id))
+                    .Select(o => new MinimalGroupModel { GroupId = o.GroupId, Name = o.Name })
+                    .ToListAsync(cancellationToken)
+                    .ConfigureAwait(false);
 
-                    // set the user's group name
-                    model.GroupName = group.Name;
-                }
+                // get the various application user's role assignments
+                model.Roles = await this.context.DataContext.UserRoles
+                    .AsNoTracking()
+                    .Join(this.context.DataContext.Roles, ur => ur.RoleId, r => r.Id, (ur, r) => new { ur.UserId, ur.RoleId, r.Name })
+                    .Where(ur => ur.UserId == user.Id)
+                    .Select(ur => ur.Name)
+                    .ToListAsync(cancellationToken)
+                    .ConfigureAwait(false);
             }
 
             return model;
@@ -572,10 +593,10 @@ namespace Bastille.Id.Core.Security
         {
             var model = new BastilleUserModel
             {
-                UserId = userFound.Id,
+                Id = userFound.Id,
                 Email = userFound.Email,
                 LockoutEnd = userFound.LockoutEnd,
-                UserName = userFound.UserName,
+                Name = userFound.UserName,
                 Groups = await this.context.DataContext.GroupUsers
                     .AsNoTracking()
                     .Where(o => o.UserId == userFound.Id)
@@ -610,10 +631,10 @@ namespace Bastille.Id.Core.Security
         /// <returns>Returns the <see cref="BastilleUserModel" /> object.</returns>
         private async Task<BastilleUserModel> UpdateUserFromModelAsync(User updatedUser, BastilleUserModel model)
         {
-            if (!updatedUser.UserName.Equals(model.UserName, StringComparison.OrdinalIgnoreCase))
+            if (!updatedUser.UserName.Equals(model.Name, StringComparison.OrdinalIgnoreCase))
             {
-                updatedUser.UserName = model.UserName;
-                updatedUser.NormalizedUserName = model.UserName.ToUpperInvariant();
+                updatedUser.UserName = model.Name;
+                updatedUser.NormalizedUserName = model.Name.ToUpperInvariant();
 
                 await this.context.UserManager.UpdateNormalizedUserNameAsync(updatedUser);
             }
@@ -651,18 +672,33 @@ namespace Bastille.Id.Core.Security
         /// <returns>Returns the <see cref="ProfileModel" /> object.</returns>
         private async Task<ProfileModel> UpdateUserFromProfileAsync(User updatedUser, ProfileModel model)
         {
-            if (!updatedUser.UserName.Equals(model.UserName, StringComparison.OrdinalIgnoreCase))
+            if (this.context.ProfileSettings.AllowUserNameChange)
             {
-                updatedUser.UserName = model.UserName;
-                updatedUser.NormalizedUserName = model.UserName.ToUpperInvariant();
+                switch (this.context.ProfileSettings.IdentifierMethod)
+                {
+                    case Configuration.LoginIdentifierMethod.Email:
+                        if (!updatedUser.Email.Equals(model.Email, StringComparison.OrdinalIgnoreCase))
+                        {
+                            // Change the user's email
+                            await this.context.UserManager.ChangeEmailAsync(updatedUser, model.Email, await this.context.UserManager.GenerateChangeEmailTokenAsync(updatedUser, model.Email));
+                            updatedUser.UserName = model.Email;
+                        }
+                        break;
+
+                    case Configuration.LoginIdentifierMethod.UserName:
+                    case Configuration.LoginIdentifierMethod.UserNameOrEmail:
+                    case Configuration.LoginIdentifierMethod.UserNameOrEmailOrPhone:
+
+                        if (!updatedUser.UserName.Equals(model.UserName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            updatedUser.UserName = model.UserName;
+                            updatedUser.NormalizedUserName = model.UserName.ToUpperInvariant();
+                        }
+
+                        break;
+                }
 
                 await this.context.UserManager.UpdateNormalizedUserNameAsync(updatedUser);
-            }
-
-            if (!updatedUser.Email.Equals(model.Email, StringComparison.OrdinalIgnoreCase))
-            {
-                // Change the user's email
-                await this.context.UserManager.ChangeEmailAsync(updatedUser, model.Email, await this.context.UserManager.GenerateChangeEmailTokenAsync(updatedUser, model.Email));
             }
 
             return model;
@@ -693,7 +729,7 @@ namespace Bastille.Id.Core.Security
         {
             // get the current user organizations from the database for this user
             var groups = await this.context.DataContext.GroupUsers
-                .Where(o => o.UserId == model.UserId)
+                .Where(o => o.UserId == model.Id)
                 .ToListAsync(cancellationToken);
 
             // Remove group users for any group this user isn't a part of
@@ -707,7 +743,7 @@ namespace Bastille.Id.Core.Security
                     .Select(groupToAdd => new GroupUser
                     {
                         GroupId = groupToAdd.GroupId,
-                        UserId = model.UserId,
+                        UserId = model.Id,
                         CreatedDate = DateTime.UtcNow
                     });
 

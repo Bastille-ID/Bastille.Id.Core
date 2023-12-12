@@ -28,7 +28,7 @@ There are five steps to building this project:
 1. [Install dependencies](#install-dependencies)
 1. [Run the project](#run-the-project)
 
-Once you get the project built, see if you can fix some [issues](https://github.com/Talegen/Talegen.AspNetCore.hCAPTCHA/issues).
+Once you get the project built, see if you can fix some [issues](https://github.com/Bastille-ID/Bastille.Id.Core/issues).
 
 ### Set up Git and Install Visual Studio
 

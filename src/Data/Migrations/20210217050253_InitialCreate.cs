@@ -164,8 +164,7 @@ namespace Bastille.Id.Core.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<Guid>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    UserId1 = table.Column<Guid>(nullable: true)
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -176,12 +175,6 @@ namespace Bastille.Id.Core.Data.Migrations
                         principalTable: "IdentityUsers",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_IdentityUserClaims_IdentityUsers_UserId1",
-                        column: x => x.UserId1,
-                        principalTable: "IdentityUsers",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1166,11 +1159,6 @@ namespace Bastille.Id.Core.Data.Migrations
                 name: "IX_IdentityUserClaims_UserId",
                 table: "IdentityUserClaims",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_IdentityUserClaims_UserId1",
-                table: "IdentityUserClaims",
-                column: "UserId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IdentityUserLogins_UserId",

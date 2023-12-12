@@ -27,7 +27,7 @@ namespace Bastille.Id.Core.Organization
     using Talegen.Common.Core.Errors;
     using Bastille.Id.Core.Logging;
     using System.Linq;
-    using Talegen.Common.Models.Shared.Queries;
+    using Talegen.Common.Models.Server.Queries;
     using IdentityModel;
 
     /// <summary>
@@ -73,9 +73,9 @@ namespace Bastille.Id.Core.Organization
                     UpdatedDate = o.UpdatedDate,
                     Owner = new Models.Security.BastilleMicroUserModel
                     {
-                        UserId = o.Owner.Id,
+                        Id = o.Owner.Id,
                         Email = o.Owner.Email,
-                        UserName = o.Owner.UserName,
+                        Name = o.Owner.UserName,
                         TimeZone = o.Owner.Claims.Where(c => c.ClaimType == JwtClaimTypes.ZoneInfo).Select(c => c.ClaimValue).FirstOrDefault(),
                         Locale = o.Owner.Claims.Where(c => c.ClaimType == JwtClaimTypes.Locale).Select(c => c.ClaimValue).FirstOrDefault(),
                         FirstName = o.Owner.Claims.Where(c => c.ClaimType == JwtClaimTypes.GivenName).Select(c => c.ClaimValue).FirstOrDefault(),
