@@ -19,6 +19,7 @@ namespace Bastille.Id.Core.Storage
     using System;
     using Bastille.Id.Core.Configuration;
     using Bastille.Id.Core.Properties;
+    using Talegen.Storage.Net.Aws;
     using Talegen.Storage.Net.AzureBlobs;
     using Talegen.Storage.Net.Core;
     using Talegen.Storage.Net.Core.Disk;
@@ -54,7 +55,15 @@ namespace Bastille.Id.Core.Storage
 
                     service = new AzureBlobStorageService(new Uri(storageSettings.RootPathUri), accountName, accountKey);
                     break;
+                case StorageType.Aws:
+                    var awsS3Config = new Amazon.S3.AmazonS3Config
+                    {
+                        ServiceURL = storageSettings.Configuration.ContainsKey(StorageConfigurationKeys.AwsServiceUrl) ? storageSettings.Configuration[StorageConfigurationKeys.AwsServiceUrl] : throw new ArgumentException(string.Format(Resources.StorageConfigurationNotSpecifiedErrorText, StorageConfigurationKeys.AwsServiceUrl)),
+                    };
+                    string bucketName = storageSettings.Configuration.ContainsKey(StorageConfigurationKeys.AwsBucketName) ? storageSettings.Configuration[StorageConfigurationKeys.AwsBucketName] : throw new ArgumentException(string.Format(Resources.StorageConfigurationNotSpecifiedErrorText, StorageConfigurationKeys.AwsBucketName));
 
+                    service = new AwsStorageService(new AwsS3StorageContext(awsS3Config, bucketName));
+                    break;
                 default:
                     throw new NotImplementedException();
             }

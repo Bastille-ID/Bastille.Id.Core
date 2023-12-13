@@ -16,9 +16,9 @@
     <PackageReleaseNotes>Updated packages.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <Version>1.0.5</Version>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
-    <FileVersion>1.0.5.0</FileVersion>
+    <Version>1.0.6</Version>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -64,6 +64,7 @@
     <PackageReference Include="Talegen.Common.Core" Version="1.0.11" />
     <PackageReference Include="Talegen.Common.Messaging" Version="1.0.5" />
     <PackageReference Include="Talegen.Common.Models" Version="1.0.9" />
+    <PackageReference Include="Talegen.Storage.Net.Aws" Version="1.0.0" />
     <PackageReference Include="Talegen.Storage.Net.AzureBlobs" Version="1.0.5" />
     <PackageReference Include="Vasont.AspnetCore.RedisClient" Version="1.0.3" />
   </ItemGroup>
