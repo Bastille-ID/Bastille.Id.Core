@@ -16,7 +16,6 @@
 namespace Bastille.Id.Core.Messaging.Redis
 {
     using System.Text.Json;
-    using Bastille.Id.Core.Data;
 
     /// <summary>
     /// This class is used to interact with a Redis Pub/Sub messaging service.

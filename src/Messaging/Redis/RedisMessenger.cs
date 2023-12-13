@@ -14,7 +14,7 @@
  *
 */
 
-namespace Bastille.Id.Core.Data
+namespace Bastille.Id.Core.Messaging.Redis
 {
     using StackExchange.Redis;
 
