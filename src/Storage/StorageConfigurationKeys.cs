@@ -30,5 +30,15 @@ namespace Bastille.Id.Core.Storage
         /// The azure account key
         /// </summary>
         public const string AzureAccountKey = "AzureAccountKey";
+
+        /// <summary>
+        /// The AWS service URL.
+        /// </summary>
+        public const string AwsServiceUrl = "AwsServiceUrl";
+
+        /// <summary>
+        /// The AWS bucket name.
+        /// </summary>
+        public const string AwsBucketName = "AwsBucketName";
     }
 }

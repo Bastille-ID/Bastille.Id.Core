@@ -197,6 +197,11 @@
             Uses the Azure cloud storage mechanisms for storing files.
             </summary>
         </member>
+        <member name="F:Bastille.Id.Core.Configuration.StorageType.Aws">
+            <summary>
+            Uses the AWS cloud storage mechanisms for storing files.
+            </summary>
+        </member>
         <member name="T:Bastille.Id.Core.Configuration.StorageSettings">
             <summary>
             Contains storage settings.
@@ -1215,24 +1220,24 @@
             </summary>
             <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
         </member>
-        <member name="T:Bastille.Id.Core.Data.RedisManager">
+        <member name="T:Bastille.Id.Core.Data.RedisMessenger">
             <summary>
             This class is used to interact with the redis server.
             </summary>
         </member>
-        <member name="P:Bastille.Id.Core.Data.RedisManager.Connection">
+        <member name="P:Bastille.Id.Core.Data.RedisMessenger.Connection">
             <summary>
             Gets the connection multiplexer
             </summary>
         </member>
-        <member name="M:Bastille.Id.Core.Data.RedisManager.Initialize(System.String)">
+        <member name="M:Bastille.Id.Core.Data.RedisMessenger.Initialize(System.String)">
             <summary>
             Initializes the multiplexer with the specified connection string.
             </summary>
             <param name="connectionString">Contains the connection string to connect to.</param>
             <returns>Returns the new Redis multiplexer object.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Data.RedisManager.Publish(System.String,System.String,StackExchange.Redis.CommandFlags)">
+        <member name="M:Bastille.Id.Core.Data.RedisMessenger.Publish(System.String,System.String,StackExchange.Redis.CommandFlags)">
             <summary>
             This method is used to publish a message to a specified channel.
             </summary>
@@ -1796,6 +1801,52 @@
             <param name="filters">Contains the filters used for the query</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns the results of the query in an <see cref="T:Talegen.Common.Models.Server.Queries.PaginatedQueryResultModel`1" /> model.</returns>
+        </member>
+        <member name="T:Bastille.Id.Core.Messaging.IMessagingService">
+            <summary>
+            This interface is used to interact with the messaging service.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Messaging.IMessagingService.Publish(System.String,System.String)">
+            <summary>
+            This method is used to publish a message to a specified channel.
+            </summary>
+            <param name="channel">Contains the channel name to send the message to.</param>
+            <param name="message">Contains the message to send to the channel.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Messaging.IMessagingService.Publish``1(System.String,``0)">
+            <summary>
+            This method is used to publish a model to a specified channel.
+            </summary>
+            <typeparam name="T">Contains the model object type.</typeparam>
+            <param name="channel">Contains the channel name to send the model to.</param>
+            <param name="model">Contains the model to serialize and send to the channel.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Messaging.Redis.RedisMessagingService">
+            <summary>
+            This class is used to interact with a Redis Pub/Sub messaging service.
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Messaging.Redis.RedisMessagingService.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bastille.Id.Core.Messaging.Redis.RedisMessagingService" /> class.
+            </summary>
+            <param name="connectionString">Contains the Redis connection string.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Messaging.Redis.RedisMessagingService.Publish(System.String,System.String)">
+            <summary>
+            This method is used to publish a message to a specified channel.
+            </summary>
+            <param name="channel">Contains the channel name to send the message to.</param>
+            <param name="message">Contains the message to send to the channel.</param>
+        </member>
+        <member name="M:Bastille.Id.Core.Messaging.Redis.RedisMessagingService.Publish``1(System.String,``0)">
+            <summary>
+            This method is used to publish a model to a specified channel.
+            </summary>
+            <typeparam name="T">Contains the model object type.</typeparam>
+            <param name="channel">Contains the channel name to send the model to.</param>
+            <param name="model">Contains the model to serialize and send to the channel.</param>
         </member>
         <member name="T:Bastille.Id.Core.Organization.GroupService">
             <summary>
@@ -3685,6 +3736,16 @@
         <member name="F:Bastille.Id.Core.Storage.StorageConfigurationKeys.AzureAccountKey">
             <summary>
             The azure account key
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Storage.StorageConfigurationKeys.AwsServiceUrl">
+            <summary>
+            The AWS service URL.
+            </summary>
+        </member>
+        <member name="F:Bastille.Id.Core.Storage.StorageConfigurationKeys.AwsBucketName">
+            <summary>
+            The AWS bucket name.
             </summary>
         </member>
         <member name="T:Bastille.Id.Core.Storage.StorageFactory">

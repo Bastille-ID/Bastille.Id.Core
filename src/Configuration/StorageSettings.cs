@@ -39,7 +39,12 @@ namespace Bastille.Id.Core.Configuration
         /// <summary>
         /// Uses the Azure cloud storage mechanisms for storing files.
         /// </summary>
-        Azure
+        Azure,
+
+        /// <summary>
+        /// Uses the AWS cloud storage mechanisms for storing files.
+        /// </summary>
+        Aws
     }
 
     /// <summary>

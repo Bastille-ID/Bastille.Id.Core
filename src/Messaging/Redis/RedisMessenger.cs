@@ -21,7 +21,7 @@ namespace Bastille.Id.Core.Data
     /// <summary>
     /// This class is used to interact with the redis server.
     /// </summary>
-    public static class RedisManager
+    public static class RedisMessenger
     {
         /// <summary>
         /// Gets the connection multiplexer

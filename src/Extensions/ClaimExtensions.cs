@@ -20,7 +20,6 @@ namespace Bastille.Id.Core.Extensions
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
-    using Bastille.Id.Core.Security;
     using Bastille.Id.Models.Security;
     using IdentityModel;
     using Microsoft.AspNetCore.Identity;
