@@ -151,6 +151,9 @@
   <data name="ErrorUserNotFoundText" xml:space="preserve">
     <value>User not found.</value>
   </data>
+  <data name="HomeText" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="LabelChangePasswordText" xml:space="preserve">
     <value>Change Password</value>
   </data>

@@ -20,9 +20,13 @@ namespace Bastille.Id.Server.Core.Data
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Amazon.Runtime;
     using Bastille.Id.Core.Data;
     using Bastille.Id.Core.Data.Entities;
+    using Bastille.Id.Core.Properties;
     using Bastille.Id.Core.Security;
+    using IdentityModel;
+    using IdentityServer4.EntityFramework.DbContexts;
     using Microsoft.AspNetCore.Identity;
     using Talegen.Common.Models.Security;
 
@@ -154,6 +158,308 @@ namespace Bastille.Id.Server.Core.Data
             ////        AsyncHelper.RunSync(() => roleManager.AddClaimAsync(supportRole, defaultClaim));
             ////    });
             ////}
+        }
+
+        public static async Task InitializeDefaultIdentityDataAsync(ConfigurationDbContext configurationDbContext, CancellationToken cancellationToken = default)
+        {
+            await configurationDbContext.IdentityResources.AddAsync(new IdentityServer4.EntityFramework.Entities.IdentityResource
+            {
+                Name = "openid",
+                DisplayName = "Your user identifier",
+                Description = "Your user identifier",
+                Enabled = true,
+                Required = true,
+                Emphasize = false,
+                NonEditable = true,
+                UserClaims = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.IdentityResourceClaim>
+                {
+                    new IdentityServer4.EntityFramework.Entities.IdentityResourceClaim { Type = "sub" }
+                },
+                ShowInDiscoveryDocument = true,
+                Created = DateTime.UtcNow,
+                Updated = DateTime.UtcNow
+            }, cancellationToken);
+
+            // 
+            await configurationDbContext.IdentityResources.AddAsync(new IdentityServer4.EntityFramework.Entities.IdentityResource
+            {
+                Name = "profile",
+                DisplayName = "Your profile information",
+                Description = "Your profile information",
+                Enabled = true,
+                Required = true,
+                Emphasize = false,
+                NonEditable = true,
+                UserClaims = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.IdentityResourceClaim>
+                {
+                    new IdentityServer4.EntityFramework.Entities.IdentityResourceClaim { Type = "name" },
+                    new IdentityServer4.EntityFramework.Entities.IdentityResourceClaim { Type = "email" },
+                    new IdentityServer4.EntityFramework.Entities.IdentityResourceClaim { Type = "email_verified" },
+                    new IdentityServer4.EntityFramework.Entities.IdentityResourceClaim { Type = "website" },
+                    new IdentityServer4.EntityFramework.Entities.IdentityResourceClaim { Type = "address" },
+                    new IdentityServer4.EntityFramework.Entities.IdentityResourceClaim { Type = "phone_number" }
+                },
+                ShowInDiscoveryDocument = true,
+                Created = DateTime.UtcNow,
+                Updated = DateTime.UtcNow
+            }, cancellationToken);
+
+            // this is the user level scope
+            await configurationDbContext.ApiScopes.AddAsync(new IdentityServer4.EntityFramework.Entities.ApiScope
+            {
+                Name = "basic_user",
+                DisplayName = "Basic User Subscriber",
+                Description = "Is the user a basic subscriber user.",
+                Enabled = true,
+                Required = true,
+                Emphasize = false,
+                ShowInDiscoveryDocument = true,
+                UserClaims = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ApiScopeClaim>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ApiScopeClaim { Type = "user_level" }
+                }
+            }, cancellationToken);
+
+            // this is a premium user scope
+            await configurationDbContext.ApiScopes.AddAsync(new IdentityServer4.EntityFramework.Entities.ApiScope
+            {
+                Name = "premium_user",
+                DisplayName = "Premium User",
+                Description = "Is user a premium subscriber.",
+                Enabled = true,
+                Required = true,
+                Emphasize = false,
+                ShowInDiscoveryDocument = true,
+                UserClaims = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ApiScopeClaim>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ApiScopeClaim { Type = "premium_user" }
+                }
+            }, cancellationToken);
+
+            // this is the swept api resource
+            await configurationDbContext.ApiResources.AddAsync(new IdentityServer4.EntityFramework.Entities.ApiResource
+            {
+                Name = "swept_api",
+                DisplayName = "Swept API",
+                Description = "Swept API",
+                Enabled = true,
+                ShowInDiscoveryDocument = true,
+                Created = DateTime.UtcNow,
+                Updated = DateTime.UtcNow,
+                UserClaims = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ApiResourceClaim>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ApiResourceClaim { Type = "user_level" },
+                    new IdentityServer4.EntityFramework.Entities.ApiResourceClaim { Type = "premium_user" }
+                },
+                Scopes = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ApiResourceScope>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ApiResourceScope { Scope = "user_level" },
+                    new IdentityServer4.EntityFramework.Entities.ApiResourceScope { Scope = "premium_user" }
+                },
+                Secrets = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ApiResourceSecret>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ApiResourceSecret { Value = "change_me123!".ToSha256() }
+                }
+            }, cancellationToken);
+
+            // this is the identity-server client that will be used to communicate with the API (e.g., SCIM)
+            await configurationDbContext.Clients.AddAsync(new IdentityServer4.EntityFramework.Entities.Client
+            {
+                ClientId = "identity_server",
+                ClientName = "Identity Server",
+                Description = "Identity Server",
+                ClientSecrets = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientSecret>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientSecret { Value = "change_me123!".ToSha256() }
+                },
+                AllowedGrantTypes = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientGrantType>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientGrantType { GrantType = "client_credentials" }
+                },
+                AllowedScopes = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientScope>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "openid" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "profile" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "user_level" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "premium_user" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "swept_api" }
+                },
+                RedirectUris = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientRedirectUri>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientRedirectUri { RedirectUri = "https://localhost:5001/signin-oidc" }
+                },
+                PostLogoutRedirectUris = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri { PostLogoutRedirectUri = "https://localhost:5001/signout-callback-oidc" }
+                },
+                RequirePkce = true,
+                RequireClientSecret = true,
+                AllowOfflineAccess = false,
+                Enabled = true,
+                Created = DateTime.UtcNow,
+                Updated = DateTime.UtcNow,
+                AccessTokenType = (int)IdentityServer4.Models.AccessTokenType.Jwt,
+                IdentityTokenLifetime = 300,
+                AccessTokenLifetime = 3600,
+                AuthorizationCodeLifetime = 300,
+                AbsoluteRefreshTokenLifetime = 2592000,
+                RefreshTokenUsage = (int)IdentityServer4.Models.TokenUsage.OneTimeOnly,
+                RefreshTokenExpiration = (int)IdentityServer4.Models.TokenExpiration.Absolute,
+                UpdateAccessTokenClaimsOnRefresh = true,
+                AlwaysIncludeUserClaimsInIdToken = true,
+                AllowAccessTokensViaBrowser = true,
+                FrontChannelLogoutUri = "https://localhost:5001/signout-oidc",
+                FrontChannelLogoutSessionRequired = true,
+                BackChannelLogoutUri = "https://localhost:5001/signout-oidc",
+                BackChannelLogoutSessionRequired = true,
+                SlidingRefreshTokenLifetime = 1296000,
+                ConsentLifetime = 300,
+                EnableLocalLogin = true,
+                IncludeJwtId = true,
+                AlwaysSendClientClaims = true,
+                ClientClaimsPrefix = "client_",
+                AllowRememberConsent = true,
+                ProtocolType = "oidc",
+                RequireConsent = false,
+                AllowPlainTextPkce = false,
+                RequireRequestObject = false,
+                ClientUri = "https://localhost:5001",
+                LogoUri = "https://localhost:5001/images/logo.png"
+
+            }, cancellationToken);
+
+            // this is the client that will be used by the web app
+            await configurationDbContext.Clients.AddAsync(new IdentityServer4.EntityFramework.Entities.Client
+            {
+                ClientId = "swept_web_app",
+                ClientName = "Swept Web App",
+                Description = "Swept Web App",
+                ClientSecrets = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientSecret>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientSecret { Value = "change_me123!".ToSha256() }
+                },
+                AllowedGrantTypes = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientGrantType>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientGrantType { GrantType = "code" }
+                },
+                AllowedScopes = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientScope>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "openid" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "profile" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "user_level" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "premium_user" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "swept_api" }
+                },
+                RedirectUris = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientRedirectUri>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientRedirectUri { RedirectUri = "https://localhost:5001/signin-oidc" }
+                },
+                PostLogoutRedirectUris = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri { PostLogoutRedirectUri = "https://localhost:5001/signout-callback-oidc" }
+                },
+                RequirePkce = true,
+                RequireClientSecret = false,
+                AllowOfflineAccess = true,
+                Enabled = true,
+                Created = DateTime.UtcNow,
+                Updated = DateTime.UtcNow,
+                AccessTokenType = (int)IdentityServer4.Models.AccessTokenType.Jwt,
+                IdentityTokenLifetime = 300,
+                AccessTokenLifetime = 3600,
+                AuthorizationCodeLifetime = 300,
+                AbsoluteRefreshTokenLifetime = 2592000,
+                RefreshTokenUsage = (int)IdentityServer4.Models.TokenUsage.OneTimeOnly,
+                RefreshTokenExpiration = (int)IdentityServer4.Models.TokenExpiration.Absolute,
+                UpdateAccessTokenClaimsOnRefresh = true,
+                AlwaysIncludeUserClaimsInIdToken = true,
+                AllowAccessTokensViaBrowser = true,
+                FrontChannelLogoutUri = "https://localhost:5001/signout-oidc",
+                FrontChannelLogoutSessionRequired = true,
+                BackChannelLogoutUri = "https://localhost:5001/signout-oidc",
+                BackChannelLogoutSessionRequired = true,
+                SlidingRefreshTokenLifetime = 1296000,
+                ConsentLifetime = 300,
+                EnableLocalLogin = true,
+                IncludeJwtId = true,
+                AlwaysSendClientClaims = true,
+                ClientClaimsPrefix = "client_",
+                AllowRememberConsent = true,
+                ProtocolType = "oidc",
+                RequireConsent = false,
+                AllowPlainTextPkce = false,
+                RequireRequestObject = false,
+                ClientUri = "https://localhost:5001",
+                LogoUri = "https://localhost:5001/images/logo.png"
+            }, cancellationToken);
+            
+            // this is the client that will be used by the mobile app
+            await configurationDbContext.Clients.AddAsync(new IdentityServer4.EntityFramework.Entities.Client
+            {
+                ClientId = "swept_mobile_android_app",
+                ClientName = "Swept Mobile Android App",
+                Description = "Swept Mobile Android App",
+                ClientSecrets = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientSecret>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientSecret { Value = "change_me123!".ToSha256() }
+                },
+                AllowedGrantTypes = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientGrantType>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientGrantType { GrantType = "code" }
+                },
+                AllowedScopes = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientScope>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "openid" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "profile" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "user_level" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "premium_user" },
+                    new IdentityServer4.EntityFramework.Entities.ClientScope { Scope = "swept_api" }
+                },
+                RedirectUris = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientRedirectUri>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientRedirectUri { RedirectUri = "https://localhost:5001/signin-oidc" }
+                },
+                PostLogoutRedirectUris = new System.Collections.Generic.List<IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri>
+                {
+                    new IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri { PostLogoutRedirectUri = "https://localhost:5001/signout-callback-oidc" }
+                },
+                RequirePkce = true,
+                RequireClientSecret = false,
+                AllowOfflineAccess = true,
+                Enabled = true,
+                Created = DateTime.UtcNow,
+                Updated = DateTime.UtcNow,
+                AccessTokenType = (int)IdentityServer4.Models.AccessTokenType.Jwt,
+                IdentityTokenLifetime = 300,
+                AccessTokenLifetime = 3600,
+                AuthorizationCodeLifetime = 300,
+                AbsoluteRefreshTokenLifetime = 2592000,
+                RefreshTokenUsage = (int)IdentityServer4.Models.TokenUsage.OneTimeOnly,
+                RefreshTokenExpiration = (int)IdentityServer4.Models.TokenExpiration.Absolute,
+                UpdateAccessTokenClaimsOnRefresh = true,
+                AlwaysIncludeUserClaimsInIdToken = true,
+                AllowAccessTokensViaBrowser = true,
+                FrontChannelLogoutUri = "https://localhost:5001/signout-oidc",
+                FrontChannelLogoutSessionRequired = true,
+                BackChannelLogoutUri = "https://localhost:5001/signout-oidc",
+                BackChannelLogoutSessionRequired = true,
+                SlidingRefreshTokenLifetime = 1296000,
+                ConsentLifetime = 300,
+                EnableLocalLogin = true,
+                IncludeJwtId = true,
+                AlwaysSendClientClaims = true,
+                ClientClaimsPrefix = "client_",
+                AllowRememberConsent = true,
+                ProtocolType = "oidc",
+                RequireConsent = false,
+                AllowPlainTextPkce = false,
+                RequireRequestObject = false,
+                ClientUri = "https://localhost:5001",
+                LogoUri = "https://localhost:5001/images/logo.png"
+            }, cancellationToken);
+
+            // save changes
+            await configurationDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

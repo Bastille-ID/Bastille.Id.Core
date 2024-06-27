@@ -1167,18 +1167,6 @@
             </summary>
             <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
         </member>
-        <member name="T:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.ConfigurationDbContextModelSnapshot">
-            <summary>
-            This class implements the identity server configuration model builder.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
-        </member>
-        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.ConfigurationDbContextModelSnapshot.BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Called lazily by <see cref="P:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot.Model" /> to build the model snapshot the first time it is requested.
-            </summary>
-            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
-        </member>
         <member name="T:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.InitialPersist">
             <summary>
             This class implements the initial database implementation for Identity Server persisted grants schema DDL.
@@ -1219,32 +1207,6 @@
             Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
             </summary>
             <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
-        </member>
-        <member name="T:Bastille.Id.Core.Data.RedisMessenger">
-            <summary>
-            This class is used to interact with the redis server.
-            </summary>
-        </member>
-        <member name="P:Bastille.Id.Core.Data.RedisMessenger.Connection">
-            <summary>
-            Gets the connection multiplexer
-            </summary>
-        </member>
-        <member name="M:Bastille.Id.Core.Data.RedisMessenger.Initialize(System.String)">
-            <summary>
-            Initializes the multiplexer with the specified connection string.
-            </summary>
-            <param name="connectionString">Contains the connection string to connect to.</param>
-            <returns>Returns the new Redis multiplexer object.</returns>
-        </member>
-        <member name="M:Bastille.Id.Core.Data.RedisMessenger.Publish(System.String,System.String,StackExchange.Redis.CommandFlags)">
-            <summary>
-            This method is used to publish a message to a specified channel.
-            </summary>
-            <param name="channelName">Contains the channel name to send to.</param>
-            <param name="message">Contains the message to send.</param>
-            <param name="commandFlags">Contains optional command flags.</param>
-            <returns>Returns the count of subscribers the message was sent to.</returns>
         </member>
         <member name="T:Bastille.Id.Core.Extensions.ClaimExtensions">
             <summary>
@@ -1847,6 +1809,32 @@
             <typeparam name="T">Contains the model object type.</typeparam>
             <param name="channel">Contains the channel name to send the model to.</param>
             <param name="model">Contains the model to serialize and send to the channel.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Messaging.Redis.RedisMessenger">
+            <summary>
+            This class is used to interact with the redis server.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Messaging.Redis.RedisMessenger.Connection">
+            <summary>
+            Gets the connection multiplexer
+            </summary>
+        </member>
+        <member name="M:Bastille.Id.Core.Messaging.Redis.RedisMessenger.Initialize(System.String)">
+            <summary>
+            Initializes the multiplexer with the specified connection string.
+            </summary>
+            <param name="connectionString">Contains the connection string to connect to.</param>
+            <returns>Returns the new Redis multiplexer object.</returns>
+        </member>
+        <member name="M:Bastille.Id.Core.Messaging.Redis.RedisMessenger.Publish(System.String,System.String,StackExchange.Redis.CommandFlags)">
+            <summary>
+            This method is used to publish a message to a specified channel.
+            </summary>
+            <param name="channelName">Contains the channel name to send to.</param>
+            <param name="message">Contains the message to send.</param>
+            <param name="commandFlags">Contains optional command flags.</param>
+            <returns>Returns the count of subscribers the message was sent to.</returns>
         </member>
         <member name="T:Bastille.Id.Core.Organization.GroupService">
             <summary>
@@ -2650,6 +2638,11 @@
         <member name="P:Bastille.Id.Core.Properties.Resources.ErrorUserNotFoundText">
             <summary>
               Looks up a localized string similar to User not found..
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Core.Properties.Resources.HomeText">
+            <summary>
+              Looks up a localized string similar to Home.
             </summary>
         </member>
         <member name="P:Bastille.Id.Core.Properties.Resources.LabelChangePasswordText">
