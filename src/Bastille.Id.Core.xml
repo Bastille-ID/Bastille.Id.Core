@@ -3753,19 +3753,5 @@
             <param name="storageSettings">The storage settings.</param>
             <returns>Returns a new <see cref="T:Talegen.Storage.Net.Core.IStorageService" /> instance.</returns>
         </member>
-        <member name="T:Bastille.Id.Server.Core.Data.DataInstallHelpers">
-            <summary>
-            This class contains static methods used to initialize database records
-            </summary>
-        </member>
-        <member name="M:Bastille.Id.Server.Core.Data.DataInstallHelpers.InitializeDefaultSecurityDataAsync(Bastille.Id.Core.Data.ApplicationDbContext,Microsoft.AspNetCore.Identity.RoleManager{Bastille.Id.Core.Data.Entities.Role},Microsoft.AspNetCore.Identity.UserManager{Bastille.Id.Core.Data.Entities.User},System.Threading.CancellationToken)">
-            <summary>
-            Initializes a user in the database.
-            </summary>
-            <param name="appContext">Contains the application database context.</param>
-            <param name="roleManager">Contains a role manager.</param>
-            <param name="userManager">Contains a user manager.</param>
-            <param name="cancellationToken">Contains an optional cancellation token.</param>
-        </member>
     </members>
 </doc>
