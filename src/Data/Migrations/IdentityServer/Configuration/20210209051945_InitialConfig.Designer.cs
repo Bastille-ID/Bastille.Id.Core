@@ -16,7 +16,7 @@
 namespace Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration
 {
     using System;
-    using IdentityServer4.EntityFramework.DbContexts;
+    using Duende.IdentityServer.EntityFramework.DbContexts;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Infrastructure;
     using Microsoft.EntityFrameworkCore.Metadata;

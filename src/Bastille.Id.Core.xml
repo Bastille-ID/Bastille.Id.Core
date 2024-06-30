@@ -1167,6 +1167,18 @@
             </summary>
             <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
         </member>
+        <member name="T:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.Identity20240630ConfigurationMigrationChanges">
+            <inheritdoc />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.Identity20240630ConfigurationMigrationChanges.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.Identity20240630ConfigurationMigrationChanges.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.Configuration.Identity20240630ConfigurationMigrationChanges.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.InitialPersist">
             <summary>
             This class implements the initial database implementation for Identity Server persisted grants schema DDL.
@@ -1207,6 +1219,18 @@
             Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
             </summary>
             <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
+        </member>
+        <member name="T:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.IdentityMonthAndYearPersistedGrantMigrationChanges">
+            <inheritdoc />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.IdentityMonthAndYearPersistedGrantMigrationChanges.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.IdentityMonthAndYearPersistedGrantMigrationChanges.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Bastille.Id.Core.Data.Migrations.IdentityServer.PersistedGrants.IdentityMonthAndYearPersistedGrantMigrationChanges.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
         </member>
         <member name="T:Bastille.Id.Core.Extensions.ClaimExtensions">
             <summary>
@@ -1286,65 +1310,65 @@
             This class contains extensions related to converting objects between model definitions.
             </summary>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientClaim)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(Duende.IdentityServer.EntityFramework.Entities.ClientClaim)">
             <summary>
             Converts the claim entity to a model.
             </summary>
             <param name="entity">The entity.</param>
             <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientClaimModel" /> model.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientScope)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(Duende.IdentityServer.EntityFramework.Entities.ClientScope)">
             <summary>
             Converts the client scope entity to a model.
             </summary>
             <param name="entity">The entity.</param>
             <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientSecret)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(Duende.IdentityServer.EntityFramework.Entities.ClientSecret)">
             <summary>
             Converts the client secret entity to a model.
             </summary>
             <param name="entity">The entity.</param>
             <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientRedirectUri)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(Duende.IdentityServer.EntityFramework.Entities.ClientRedirectUri)">
             <summary>
             Converts the client redirect entity to a model.
             </summary>
             <param name="entity">The entity.</param>
             <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientCorsOrigin)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(Duende.IdentityServer.EntityFramework.Entities.ClientCorsOrigin)">
             <summary>
             Converts the client origin entity to a model.
             </summary>
             <param name="entity">The entity.</param>
             <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientGrantType)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(Duende.IdentityServer.EntityFramework.Entities.ClientGrantType)">
             <summary>
             Converts the client redirect entity to a model.
             </summary>
             <param name="entity">The entity.</param>
             <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(Duende.IdentityServer.EntityFramework.Entities.ClientPostLogoutRedirectUri)">
             <summary>
             Converts the client logout redirect entity to a model.
             </summary>
             <param name="entity">The entity.</param>
             <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(IdentityServer4.EntityFramework.Entities.ClientProperty)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToModel(Duende.IdentityServer.EntityFramework.Entities.ClientProperty)">
             <summary>
             Converts the client origin entity to a model.
             </summary>
             <param name="entity">The entity.</param>
             <returns>Returns a new <see cref="T:Bastille.Id.Models.Clients.ClientScopeModel" /> model.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToClientModel(IdentityServer4.EntityFramework.Entities.Client)">
+        <member name="M:Bastille.Id.Core.Extensions.ModelExtensions.ToClientModel(Duende.IdentityServer.EntityFramework.Entities.Client)">
             <summary>
-            Converts to clientmodel.
+            Converts to client model.
             </summary>
             <param name="entity">The entity.</param>
             <returns></returns>
@@ -1387,7 +1411,7 @@
             </summary>
             <param name="id">Contains the client unique identifier.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns a <see cref="T:IdentityServer4.EntityFramework.Entities.Client" /> entity if found.</returns>
+            <returns>Returns a <see cref="T:Duende.IdentityServer.EntityFramework.Entities.Client" /> entity if found.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.ReadAsync(System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1426,7 +1450,7 @@
             </summary>
             <param name="model">The claim model to add.</param>
             <param name="cancellationToken">Contains an optional cancellation token.</param>
-            <returns>Returns the new <see cref="T:IdentityServer4.Models.ClientClaim" /> model upon success.</returns>
+            <returns>Returns the new <see cref="!:IdentityServer4.Models.ClientClaim" /> model upon success.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClaimAsync(Bastille.Id.Models.Clients.ClientClaimModel,System.Threading.CancellationToken)">
             <summary>
@@ -1434,7 +1458,7 @@
             </summary>
             <param name="model">Contains the claim model.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the updated <see cref="T:IdentityServer4.Models.ClientClaim" /> model.</returns>
+            <returns>Returns the updated <see cref="!:IdentityServer4.Models.ClientClaim" /> model.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteScopeAsync(System.Int32,System.String,System.Threading.CancellationToken)">
             <summary>
@@ -1450,7 +1474,7 @@
             </summary>
             <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns a new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientScope" /> record created.</returns>
+            <returns>Returns a new <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientScope" /> record created.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateScopeAsync(Bastille.Id.Models.Clients.ClientScopeModel,System.Threading.CancellationToken)">
             <summary>
@@ -1458,7 +1482,7 @@
             </summary>
             <param name="model">Contains the model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientScope" /> entity that was updated.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientScope" /> entity that was updated.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteScopeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1474,7 +1498,7 @@
             </summary>
             <param name="model">Contains the secret to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientSecret" /> entity added.</returns>
+            <returns>Returns the new <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientSecret" /> entity added.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateSecretAsync(Bastille.Id.Models.Clients.ClientSecretModel,System.Threading.CancellationToken)">
             <summary>
@@ -1482,7 +1506,7 @@
             </summary>
             <param name="model">Contains the secret model for updating.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientSecret" /> updated.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientSecret" /> updated.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteSecretAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1498,7 +1522,7 @@
             </summary>
             <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the new <see cref="T:IdentityServer4.EntityFramework.Entities.ClientRedirectUri" /> entity added.</returns>
+            <returns>Returns the new <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientRedirectUri" /> entity added.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateRedirectAsync(Bastille.Id.Models.Clients.ClientRedirectUriModel,System.Threading.CancellationToken)">
             <summary>
@@ -1506,7 +1530,7 @@
             </summary>
             <param name="model">Contains the redirect model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientRedirectUri" /> updated.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientRedirectUri" /> updated.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteRedirectAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1522,7 +1546,7 @@
             </summary>
             <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientCorsOrigin" /> entity added.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientCorsOrigin" /> entity added.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateOriginAsync(Bastille.Id.Models.Clients.ClientCorsOriginModel,System.Threading.CancellationToken)">
             <summary>
@@ -1530,7 +1554,7 @@
             </summary>
             <param name="model">Contains the allowed origin model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientCorsOrigin" /> entity updated.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientCorsOrigin" /> entity updated.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteOriginAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1546,7 +1570,7 @@
             </summary>
             <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientGrantType" /> entity added.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientGrantType" /> entity added.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateGrantTypeAsync(Bastille.Id.Models.Clients.ClientGrantTypeModel,System.Threading.CancellationToken)">
             <summary>
@@ -1554,7 +1578,7 @@
             </summary>
             <param name="model">Contains the Grant Type model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientGrantType" /> entity updated.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientGrantType" /> entity updated.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.DeleteGrantTypeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1570,7 +1594,7 @@
             </summary>
             <param name="model">Contains the model to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri" /> entity added.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientPostLogoutRedirectUri" /> entity added.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.UpdatePostLogoutRedirectTypeAsync(Bastille.Id.Models.Clients.ClientLogoutRedirectUriModel,System.Threading.CancellationToken)">
             <summary>
@@ -1578,7 +1602,7 @@
             </summary>
             <param name="model">Contains the Logout Redirect model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri" /> entity updated.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientPostLogoutRedirectUri" /> entity updated.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.DeletePostLogoutRedirectTypeAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1594,7 +1618,7 @@
             </summary>
             <param name="model">Contains the Property to add.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientProperty" /> entity added.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientProperty" /> entity added.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.UpdatePropertyAsync(Bastille.Id.Models.Clients.ClientPropertyModel,System.Threading.CancellationToken)">
             <summary>
@@ -1602,7 +1626,7 @@
             </summary>
             <param name="model">Contains the Property model to update.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
-            <returns>Returns the <see cref="T:IdentityServer4.EntityFramework.Entities.ClientProperty" /> updated.</returns>
+            <returns>Returns the <see cref="T:Duende.IdentityServer.EntityFramework.Entities.ClientProperty" /> updated.</returns>
         </member>
         <member name="M:Bastille.Id.Core.Identity.ClientService.DeletePropertyAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1612,7 +1636,7 @@
             <param name="propertyId">Contains the Property identifier to delete.</param>
             <param name="cancellationToken">Contains a cancellation token.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.SaveClientAsync(IdentityServer4.EntityFramework.Entities.Client,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.SaveClientAsync(Duende.IdentityServer.EntityFramework.Entities.Client,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
             <summary>
             This method is used to execute an entity state save to the database.
             </summary>
@@ -1621,7 +1645,7 @@
             <param name="cancellationToken">Contains an optional cancellation token.</param>
             <returns>Returns a value indicating whether the save execution was successful.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.ValidateAsync(IdentityServer4.EntityFramework.Entities.Client,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.ValidateAsync(Duende.IdentityServer.EntityFramework.Entities.Client,Microsoft.EntityFrameworkCore.EntityState,System.Threading.CancellationToken)">
             <summary>
             This method is used to determine if the record meets all business rules during the save method.
             </summary>
@@ -1630,49 +1654,49 @@
             <param name="cancellationToken">Contains a cancellation token.</param>
             <returns>Returns true if the entity is validated for the state method.</returns>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientScopes(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientScopes(Bastille.Id.Models.Clients.ClientModel,Duende.IdentityServer.EntityFramework.Entities.Client)">
             <summary>
             This method is used to update allowed scopes for a client.
             </summary>
             <param name="model">Contains the model that includes the client scopes.</param>
             <param name="entity">Contains the entity that will be updated.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientSecrets(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientSecrets(Bastille.Id.Models.Clients.ClientModel,Duende.IdentityServer.EntityFramework.Entities.Client)">
             <summary>
             This method is used to update secrets for a client.
             </summary>
             <param name="model">Contains the model that includes the client secrets.</param>
             <param name="entity">Contains the entity that will be updated.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientRedirectUris(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientRedirectUris(Bastille.Id.Models.Clients.ClientModel,Duende.IdentityServer.EntityFramework.Entities.Client)">
             <summary>
             This method is used to update redirect URIs for a client.
             </summary>
             <param name="model">Contains the model that includes the client redirect URIs.</param>
             <param name="entity">Contains the entity that will be updated.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientCorsOrigins(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientCorsOrigins(Bastille.Id.Models.Clients.ClientModel,Duende.IdentityServer.EntityFramework.Entities.Client)">
             <summary>
             This method is used to update CORS origins for a client.
             </summary>
             <param name="model">Contains the model that includes the client CORS origins.</param>
             <param name="entity">Contains the entity that will be updated.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientGrantTypes(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientGrantTypes(Bastille.Id.Models.Clients.ClientModel,Duende.IdentityServer.EntityFramework.Entities.Client)">
             <summary>
             This method is used to update grant types for a client.
             </summary>
             <param name="model">Contains the model that includes the client grant types.</param>
             <param name="entity">Contains the entity that will be updated.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientLogoutRedirectUris(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientLogoutRedirectUris(Bastille.Id.Models.Clients.ClientModel,Duende.IdentityServer.EntityFramework.Entities.Client)">
             <summary>
             This method is used to update logout redirect uris for a client.
             </summary>
             <param name="model">Contains the model that includes the client logout redirect uris.</param>
             <param name="entity">Contains the entity that will be updated.</param>
         </member>
-        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientProperties(Bastille.Id.Models.Clients.ClientModel,IdentityServer4.EntityFramework.Entities.Client)">
+        <member name="M:Bastille.Id.Core.Identity.ClientService.UpdateClientProperties(Bastille.Id.Models.Clients.ClientModel,Duende.IdentityServer.EntityFramework.Entities.Client)">
             <summary>
             This method is used to update properties for a client.
             </summary>

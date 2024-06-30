@@ -27,8 +27,8 @@ namespace Bastille.Id.Core.Identity
     using Bastille.Id.Models.Clients;
     using Bastille.Id.Models.Logging;
     using IdentityModel;
-    using IdentityServer4.EntityFramework.DbContexts;
-    using IdentityServer4.EntityFramework.Entities;
+    using Duende.IdentityServer.EntityFramework.DbContexts;
+    using Duende.IdentityServer.EntityFramework.Entities;
     using Microsoft.EntityFrameworkCore;
     using Talegen.Common.Core.Errors;
     using Talegen.Common.Core.Extensions;
@@ -104,7 +104,7 @@ namespace Bastille.Id.Core.Identity
         /// <param name="id">Contains the client unique identifier.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns a <see cref="Client" /> entity if found.</returns>
-        public async Task<IdentityServer4.EntityFramework.Entities.Client> ReadEntityAsync(int id, CancellationToken cancellationToken)
+        public async Task<Duende.IdentityServer.EntityFramework.Entities.Client> ReadEntityAsync(int id, CancellationToken cancellationToken)
         {
             var client = await this.context.ConfigurationDbContext.Clients.FirstOrDefaultAsync(c => c.Id == id).ConfigureAwait(false);
 
@@ -164,7 +164,7 @@ namespace Bastille.Id.Core.Identity
                     DeviceCodeLifetime = c.DeviceCodeLifetime,
                     UserSsoLifetime = c.UserSsoLifetime,
                     AllowedScopes = c.AllowedScopes.Select(cs => cs.Scope).ToList(),
-                    ClientSecrets = c.ClientSecrets.Select(cs => new IdentityServer4.Models.Secret
+                    ClientSecrets = c.ClientSecrets.Select(cs => new Duende.IdentityServer.Models.Secret
                     {
                         Description = cs.Description,
                         Expiration = cs.Expiration,
@@ -195,7 +195,7 @@ namespace Bastille.Id.Core.Identity
         public async Task<ClientModel> CreateAsync(ClientModel model, CancellationToken cancellationToken)
         {
             // create new Client entity for save
-            IdentityServer4.EntityFramework.Entities.Client entityToCreate = new IdentityServer4.EntityFramework.Entities.Client
+            Duende.IdentityServer.EntityFramework.Entities.Client entityToCreate = new Duende.IdentityServer.EntityFramework.Entities.Client
             {
                 AllowedScopes = new List<ClientScope>(),
                 ClientSecrets = new List<ClientSecret>(),
@@ -216,7 +216,7 @@ namespace Bastille.Id.Core.Identity
                 });
             };
 
-            foreach (IdentityServer4.Models.Secret secretToAdd in model.ClientSecrets)
+            foreach (Duende.IdentityServer.Models.Secret secretToAdd in model.ClientSecrets)
             {
                 entityToCreate.ClientSecrets.Add(new ClientSecret
                 {
@@ -1610,7 +1610,7 @@ namespace Bastille.Id.Core.Identity
         /// <param name="state">Contains the state of the entity to execute on the database.</param>
         /// <param name="cancellationToken">Contains an optional cancellation token.</param>
         /// <returns>Returns a value indicating whether the save execution was successful.</returns>
-        private async Task<bool> SaveClientAsync(IdentityServer4.EntityFramework.Entities.Client entity, EntityState state = EntityState.Modified, CancellationToken cancellationToken = default)
+        private async Task<bool> SaveClientAsync(Duende.IdentityServer.EntityFramework.Entities.Client entity, EntityState state = EntityState.Modified, CancellationToken cancellationToken = default)
         {
             if (entity == null)
             {
@@ -1645,13 +1645,13 @@ namespace Bastille.Id.Core.Identity
         /// <param name="method">The method of record action to validate.</param>
         /// <param name="cancellationToken">Contains a cancellation token.</param>
         /// <returns>Returns true if the entity is validated for the state method.</returns>
-        private async Task<bool> ValidateAsync(IdentityServer4.EntityFramework.Entities.Client entity, EntityState method, CancellationToken cancellationToken)
+        private async Task<bool> ValidateAsync(Duende.IdentityServer.EntityFramework.Entities.Client entity, EntityState method, CancellationToken cancellationToken)
         {
             if (method == EntityState.Added || method == EntityState.Modified)
             {
                 if (string.IsNullOrWhiteSpace(entity.ClientId))
                 {
-                    this.ErrorManager.Validation(nameof(IdentityServer4.EntityFramework.Entities.Client.ClientId), ResourceKeys.PromptClientIdRequiredText);
+                    this.ErrorManager.Validation(nameof(Duende.IdentityServer.EntityFramework.Entities.Client.ClientId), ResourceKeys.PromptClientIdRequiredText);
                 }
                 else if (method == EntityState.Added)
                 {
@@ -1671,7 +1671,7 @@ namespace Bastille.Id.Core.Identity
         /// </summary>
         /// <param name="model">Contains the model that includes the client scopes.</param>
         /// <param name="entity">Contains the entity that will be updated.</param>
-        private static void UpdateClientScopes(ClientModel model, IdentityServer4.EntityFramework.Entities.Client entity)
+        private static void UpdateClientScopes(ClientModel model, Duende.IdentityServer.EntityFramework.Entities.Client entity)
         {
             // find valid (non-Null) models
             var validScopes = model.AllowedScopes.Where(scope => !string.IsNullOrWhiteSpace(scope)).ToList();
@@ -1703,7 +1703,7 @@ namespace Bastille.Id.Core.Identity
         /// </summary>
         /// <param name="model">Contains the model that includes the client secrets.</param>
         /// <param name="entity">Contains the entity that will be updated.</param>
-        private static void UpdateClientSecrets(ClientModel model, IdentityServer4.EntityFramework.Entities.Client entity)
+        private static void UpdateClientSecrets(ClientModel model, Duende.IdentityServer.EntityFramework.Entities.Client entity)
         {
             // find valid (non-Null) models
             var validSecrets = model.ClientSecrets.Where(m => m != null && !string.IsNullOrWhiteSpace(m.Value)).ToList();
@@ -1739,7 +1739,7 @@ namespace Bastille.Id.Core.Identity
         /// </summary>
         /// <param name="model">Contains the model that includes the client redirect URIs.</param>
         /// <param name="entity">Contains the entity that will be updated.</param>
-        private static void UpdateClientRedirectUris(ClientModel model, IdentityServer4.EntityFramework.Entities.Client entity)
+        private static void UpdateClientRedirectUris(ClientModel model, Duende.IdentityServer.EntityFramework.Entities.Client entity)
         {
             entity.RedirectUris.Clear();
 
@@ -1758,7 +1758,7 @@ namespace Bastille.Id.Core.Identity
         /// </summary>
         /// <param name="model">Contains the model that includes the client CORS origins.</param>
         /// <param name="entity">Contains the entity that will be updated.</param>
-        private static void UpdateClientCorsOrigins(ClientModel model, IdentityServer4.EntityFramework.Entities.Client entity)
+        private static void UpdateClientCorsOrigins(ClientModel model, Duende.IdentityServer.EntityFramework.Entities.Client entity)
         {
             entity.AllowedCorsOrigins.Clear();
 
@@ -1777,7 +1777,7 @@ namespace Bastille.Id.Core.Identity
         /// </summary>
         /// <param name="model">Contains the model that includes the client grant types.</param>
         /// <param name="entity">Contains the entity that will be updated.</param>
-        private static void UpdateClientGrantTypes(ClientModel model, IdentityServer4.EntityFramework.Entities.Client entity)
+        private static void UpdateClientGrantTypes(ClientModel model, Duende.IdentityServer.EntityFramework.Entities.Client entity)
         {
             entity.AllowedGrantTypes.Clear();
 
@@ -1796,7 +1796,7 @@ namespace Bastille.Id.Core.Identity
         /// </summary>
         /// <param name="model">Contains the model that includes the client logout redirect uris.</param>
         /// <param name="entity">Contains the entity that will be updated.</param>
-        private static void UpdateClientLogoutRedirectUris(ClientModel model, IdentityServer4.EntityFramework.Entities.Client entity)
+        private static void UpdateClientLogoutRedirectUris(ClientModel model, Duende.IdentityServer.EntityFramework.Entities.Client entity)
         {
             entity.PostLogoutRedirectUris.Clear();
 
@@ -1815,7 +1815,7 @@ namespace Bastille.Id.Core.Identity
         /// </summary>
         /// <param name="model">Contains the model that includes the client properties.</param>
         /// <param name="entity">Contains the entity that will be updated.</param>
-        private static void UpdateClientProperties(ClientModel model, IdentityServer4.EntityFramework.Entities.Client entity)
+        private static void UpdateClientProperties(ClientModel model, Duende.IdentityServer.EntityFramework.Entities.Client entity)
         {
             entity.Properties.Clear();
 

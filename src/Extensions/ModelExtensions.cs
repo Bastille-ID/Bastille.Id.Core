@@ -18,7 +18,7 @@ namespace Bastille.Id.Core.Extensions
 {
     using System;
     using Bastille.Id.Models.Clients;
-    using IdentityServer4.EntityFramework.Mappers;
+    using Duende.IdentityServer.EntityFramework.Mappers;
     using Talegen.Common.Core.Extensions;
 
     /// <summary>
@@ -31,7 +31,7 @@ namespace Bastille.Id.Core.Extensions
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Returns a new <see cref="ClientClaimModel" /> model.</returns>
-        public static ClientClaimModel ToModel(this IdentityServer4.EntityFramework.Entities.ClientClaim entity)
+        public static ClientClaimModel ToModel(this Duende.IdentityServer.EntityFramework.Entities.ClientClaim entity)
         {
             if (entity == null)
             {
@@ -52,7 +52,7 @@ namespace Bastille.Id.Core.Extensions
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Returns a new <see cref="ClientScopeModel" /> model.</returns>
-        public static ClientScopeModel ToModel(this IdentityServer4.EntityFramework.Entities.ClientScope entity)
+        public static ClientScopeModel ToModel(this Duende.IdentityServer.EntityFramework.Entities.ClientScope entity)
         {
             if (entity == null)
             {
@@ -72,7 +72,7 @@ namespace Bastille.Id.Core.Extensions
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Returns a new <see cref="ClientScopeModel" /> model.</returns>
-        public static ClientSecretModel ToModel(this IdentityServer4.EntityFramework.Entities.ClientSecret entity)
+        public static ClientSecretModel ToModel(this Duende.IdentityServer.EntityFramework.Entities.ClientSecret entity)
         {
             if (entity == null)
             {
@@ -126,7 +126,7 @@ namespace Bastille.Id.Core.Extensions
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Returns a new <see cref="ClientScopeModel" /> model.</returns>
-        public static ClientRedirectUriModel ToModel(this IdentityServer4.EntityFramework.Entities.ClientRedirectUri entity)
+        public static ClientRedirectUriModel ToModel(this Duende.IdentityServer.EntityFramework.Entities.ClientRedirectUri entity)
         {
             if (entity == null)
             {
@@ -146,7 +146,7 @@ namespace Bastille.Id.Core.Extensions
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Returns a new <see cref="ClientScopeModel" /> model.</returns>
-        public static ClientCorsOriginModel ToModel(this IdentityServer4.EntityFramework.Entities.ClientCorsOrigin entity)
+        public static ClientCorsOriginModel ToModel(this Duende.IdentityServer.EntityFramework.Entities.ClientCorsOrigin entity)
         {
             if (entity == null)
             {
@@ -166,7 +166,7 @@ namespace Bastille.Id.Core.Extensions
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Returns a new <see cref="ClientScopeModel" /> model.</returns>
-        public static ClientGrantTypeModel ToModel(this IdentityServer4.EntityFramework.Entities.ClientGrantType entity)
+        public static ClientGrantTypeModel ToModel(this Duende.IdentityServer.EntityFramework.Entities.ClientGrantType entity)
         {
             if (entity == null)
             {
@@ -225,7 +225,7 @@ namespace Bastille.Id.Core.Extensions
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Returns a new <see cref="ClientScopeModel" /> model.</returns>
-        public static ClientLogoutRedirectUriModel ToModel(this IdentityServer4.EntityFramework.Entities.ClientPostLogoutRedirectUri entity)
+        public static ClientLogoutRedirectUriModel ToModel(this Duende.IdentityServer.EntityFramework.Entities.ClientPostLogoutRedirectUri entity)
         {
             if (entity == null)
             {
@@ -245,7 +245,7 @@ namespace Bastille.Id.Core.Extensions
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Returns a new <see cref="ClientScopeModel" /> model.</returns>
-        public static ClientPropertyModel ToModel(this IdentityServer4.EntityFramework.Entities.ClientProperty entity)
+        public static ClientPropertyModel ToModel(this Duende.IdentityServer.EntityFramework.Entities.ClientProperty entity)
         {
             if (entity == null)
             {
@@ -262,11 +262,11 @@ namespace Bastille.Id.Core.Extensions
         }
 
         /// <summary>
-        /// Converts to clientmodel.
+        /// Converts to client model.
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
-        public static ClientModel ToClientModel(this IdentityServer4.EntityFramework.Entities.Client entity)
+        public static ClientModel ToClientModel(this Duende.IdentityServer.EntityFramework.Entities.Client entity)
         {
             if (entity == null)
             {
