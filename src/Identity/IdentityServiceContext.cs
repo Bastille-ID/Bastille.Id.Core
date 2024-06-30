@@ -16,8 +16,8 @@
 
 namespace Bastille.Id.Core.Identity
 {
-    using IdentityServer4.EntityFramework.DbContexts;
-    using IdentityServer4.Stores;
+    using Duende.IdentityServer.EntityFramework.DbContexts;
+    using Duende.IdentityServer.Stores;
 
     /// <summary>
     /// This class implements the base properties for identity related service classes.

@@ -17,7 +17,7 @@
 namespace Bastille.Id.Core.Security
 {
     using Bastille.Id.Core.Configuration;
-    using IdentityServer4.Stores;
+    using Duende.IdentityServer.Stores;
     using Talegen.AspNetCore.Web.Extensions;
 
     /// <summary>
